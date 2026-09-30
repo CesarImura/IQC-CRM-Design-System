@@ -47,9 +47,11 @@ proxy.ts               ← password gate for pages and /r/* registry JSON
 
 ## Deploy (Vercel)
 
+Live: https://iqc-crm-design-system.vercel.app (auto-deploys from `main`).
+
 1. Import the repo in Vercel (framework: Next.js; defaults are fine).
 2. Set the environment variable `DOCS_PASSWORD`. Without it, production returns 500 (fails closed).
-3. Update `homepage` in `registry.json` and the URL in the Installation page to the deployed domain.
+3. If the domain changes, update `homepage` in `registry.json` and the URL in the Installation page.
 
 ## Consuming (for app developers)
 
@@ -59,7 +61,7 @@ See **/docs/installation** on the site. In short:
 // components.json
 "registries": {
   "@iq": {
-    "url": "https://<docs-domain>/r/{name}.json",
+    "url": "https://iqc-crm-design-system.vercel.app/r/{name}.json",
     "headers": { "Authorization": "Bearer ${IQ_REGISTRY_TOKEN}" }
   }
 }

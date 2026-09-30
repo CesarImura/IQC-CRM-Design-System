@@ -32,7 +32,7 @@ export default function InstallationPage() {
         code={`{
   "registries": {
     "@iq": {
-      "url": "https://<docs-domain>/r/{name}.json",
+      "url": "https://iqc-crm-design-system.vercel.app/r/{name}.json",
       "headers": {
         "Authorization": "Bearer \${IQ_REGISTRY_TOKEN}"
       }
