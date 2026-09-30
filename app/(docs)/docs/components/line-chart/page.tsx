@@ -53,6 +53,13 @@ export default function LineChartDocsPage() {
       </UL>
       <ComponentPreview name="line-chart-types" className="p-4 sm:p-6" />
 
+      <H2>Series colors</H2>
+      <P>
+        All eight series colors on the Single chart, so you can see each line and its area fill. Series are colored in this
+        order; hover any card to see its point and tooltip.
+      </P>
+      <ComponentPreview name="line-chart-colors" className="block p-4 sm:p-6" />
+
       <H2>Sizes</H2>
       <UL>
         <li>

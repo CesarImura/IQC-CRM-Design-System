@@ -12,6 +12,7 @@ import CheckboxStates from "./checkbox-states"
 import DataTableCompact from "./data-table-compact"
 import DataTableDemo from "./data-table-demo"
 import DataTableStates from "./data-table-states"
+import LineChartColors from "./line-chart-colors"
 import LineChartDemo from "./line-chart-demo"
 import LineChartSizes from "./line-chart-sizes"
 import LineChartStates from "./line-chart-states"
@@ -94,6 +95,7 @@ export const examples = {
   "skeleton-recipes": SkeletonRecipes,
   "status-dot-demo": StatusDotDemo,
   "tabs-pill-demo": TabsPillDemo,
+  "line-chart-colors": LineChartColors,
   "line-chart-demo": LineChartDemo,
   "line-chart-sizes": LineChartSizes,
   "line-chart-states": LineChartStates,
