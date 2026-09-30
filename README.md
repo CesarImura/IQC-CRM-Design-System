@@ -51,11 +51,11 @@ Live: https://iqc-crm-design-system.vercel.app (auto-deploys from `main`).
 
 1. Import the repo in Vercel (framework: Next.js; defaults are fine).
 2. Set the environment variable `DOCS_PASSWORD`. Without it, production returns 500 (fails closed).
-3. If the domain changes, update `homepage` in `registry.json` and the URL in the Installation page.
+3. If the domain changes, update `homepage` in `registry.json`.
 
 ## Consuming (for app developers)
 
-See **/docs/installation** on the site. In short:
+The site is a design reference (tokens, components, variants). The shadcn registry still works if a developer wants the source:
 
 ```jsonc
 // components.json

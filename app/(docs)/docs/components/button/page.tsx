@@ -1,15 +1,12 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { Launch } from "@carbon/icons-react"
 
 import { figmaNode } from "@/lib/docs"
 import { Button } from "@/registry/iq/ui/button"
 import { ButtonMatrix } from "@/components/docs/button-matrix"
-import { CodeBlock } from "@/components/docs/code-block"
-import { FigmaMapping } from "@/components/docs/figma-mapping"
 import { ComponentPreview } from "@/components/docs/component-preview"
-import { PropsTable } from "@/components/docs/props-table"
-import { Callout, Code, H2, H3, P, PageHeader, UL } from "@/components/docs/typography"
+import { TokenTable } from "@/components/docs/token-table"
+import { Callout, H2, H3, P, PageHeader, UL } from "@/components/docs/typography"
 
 export const metadata: Metadata = {
   title: "Button",
@@ -40,179 +37,123 @@ export default function ButtonPage() {
 
       <ComponentPreview name="button-demo" />
 
-      <H2>Installation</H2>
-      <P>
-        Add the component with the shadcn CLI. This also installs the IQ tokens and the{" "}
-        <Code>cn</Code> helper if your project doesn’t have them yet. Setup is covered in{" "}
-        <Link href="/docs/installation" className="text-brand underline-offset-4 hover:underline">
-          Installation
-        </Link>
-        .
-      </P>
-      <CodeBlock lang="bash" code="npx shadcn@latest add @iq/button" />
-
-      <H2>Usage</H2>
-      <CodeBlock
-        code={`import { Button } from "@/components/ui/button"`}
-      />
-      <CodeBlock
-        className="mt-3"
-        code={`<Button variant="secondary">Export</Button>`}
-      />
-
       <H2>Styles</H2>
-      <P>
-        Pick one style per action based on its weight. Keep a single <Code>primary</Code> button per
-        view or section.
-      </P>
-
+      <P>Pick one style per action based on its weight. Keep a single Primary button per view or section.</P>
       <H3>Primary</H3>
       <P>The main action on the page: save, create, confirm.</P>
       <ComponentPreview name="button-primary" />
-
       <H3>Secondary</H3>
-      <P>Supporting actions that sit next to a primary, or stand alone in toolbars.</P>
+      <P>Supporting actions next to a Primary, or standalone in toolbars.</P>
       <ComponentPreview name="button-secondary" />
-
       <H3>Ghost</H3>
       <P>Low-emphasis actions: cancel, dismiss, inline table actions.</P>
       <ComponentPreview name="button-ghost" />
-
-      <H3>Danger</H3>
+      <H3>Danger Filled</H3>
       <P>Confirms a destructive action, usually inside a confirmation dialog.</P>
       <ComponentPreview name="button-danger" />
-
       <H3>Danger Outline</H3>
-      <P>Starts a destructive flow without making it the most prominent action on the page.</P>
+      <P>Starts a destructive flow without making it the most prominent action.</P>
       <ComponentPreview name="button-danger-outline" />
 
       <H2>Sizes</H2>
-      <P>
-        <Code>sm</Code> (32px) for dense tables and toolbars, <Code>md</Code> (40px) as the default,{" "}
-        <Code>lg</Code> (48px) for prominent standalone calls to action.
-      </P>
+      <P>Small (32px) for dense tables and toolbars, Medium (40px) as the default, Large (48px) for prominent calls to action.</P>
       <ComponentPreview name="button-sizes" />
 
-      <H2>With icon</H2>
-      <P>
-        Put a Carbon icon before or after the label as a child. It’s sized automatically: 16px for sm
-        and md, 24px for lg.
-      </P>
+      <H2>Icons</H2>
+      <P>A leading or trailing IBM Carbon icon: 16px on Small and Medium, 24px on Large.</P>
       <ComponentPreview name="button-with-icon" />
-
-      <H2>Icon only</H2>
-      <P>
-        Use <Code>icon-sm</Code>, <Code>icon</Code> or <Code>icon-lg</Code> for a square button. Always
-        give it an <Code>aria-label</Code>.
-      </P>
+      <H3>Icon only</H3>
+      <P>Square, with the same styles and sizes. Always has an accessible name.</P>
       <ComponentPreview name="button-icon" />
 
-      <H2>Loading</H2>
+      <H2>Loading and disabled</H2>
       <P>
-        <Code>loading</Code> swaps the content for the loading indicator, keeps the button’s width so
-        the layout doesn’t jump, and blocks clicks. Click the first button to try it.
+        Loading replaces the content with the indicator (turning anticlockwise), keeps the width and blocks clicks. Click
+        the first button to try it.
       </P>
       <ComponentPreview name="button-loading" />
-
-      <H2>Disabled</H2>
       <ComponentPreview name="button-disabled" />
 
-      <H2>As a link</H2>
-      <P>
-        Use <Code>asChild</Code> to give a link (e.g. Next.js <Code>{"<Link>"}</Code>) button
-        styles. Use a link when the action navigates, and a button when it does something on the
-        page.
-      </P>
-      <ComponentPreview name="button-as-link" />
-
       <H2>All states</H2>
-      <P>
-        Every style, size and state, laid out like the Figma matrix for QA. Hover, press and Tab
-        through the buttons to see the interactive states.
-      </P>
+      <P>Every style, size and state, laid out like the Figma matrix. Hover, press and Tab through them for the interactive states.</P>
       <ButtonMatrix />
 
-      <H2>API reference</H2>
-      <PropsTable
-        props={[
-          {
-            name: "variant",
-            type: '"primary" | "secondary" | "ghost" | "danger" | "danger-outline"',
-            default: '"primary"',
-            description: "Visual style. Maps to the Figma Style property.",
-          },
-          {
-            name: "size",
-            type: '"sm" | "md" | "lg" | "icon-sm" | "icon" | "icon-lg"',
-            default: '"md"',
-            description: "Height, padding, font and icon size. The icon-* sizes are square and correspond to Button / Icon Only.",
-          },
-          {
-            name: "loading",
-            type: "boolean",
-            default: "false",
-            description: "Shows the loading indicator, sets aria-busy, keeps the width and ignores clicks.",
-          },
-          {
-            name: "disabled",
-            type: "boolean",
-            default: "false",
-            description: "Native disabled attribute.",
-          },
-          {
-            name: "asChild",
-            type: "boolean",
-            default: "false",
-            description: "Merges the button styles onto its single child (e.g. <Link>). loading is not supported with asChild.",
-          },
-          {
-            name: "...props",
-            type: 'React.ComponentProps<"button">',
-            description: "All native button attributes (type, onClick, aria-*, …).",
-          },
-        ]}
-      />
-      <P>
-        <Code>buttonVariants</Code> is exported too, so you can apply button styles to other
-        elements: <Code>{'className={buttonVariants({ variant: "ghost" })}'}</Code>.
-      </P>
-
-      <H2>Figma mapping</H2>
-      <FigmaMapping
+      <H2>Tokens</H2>
+      <TokenTable
+        title="Shape and size"
         rows={[
-          ["Style = Primary / Secondary / Ghost", 'variant="primary" | "secondary" | "ghost"'],
-          ["Style = Danger Filled / Danger Outline", 'variant="danger" | "danger-outline"'],
-          ["Size = Small / Medium / Large", 'size="sm" | "md" | "lg"'],
-          ["Button / Icon Only", 'size="icon-sm" | "icon" | "icon-lg"'],
-          ["State = Hover / Pressed / Focus", ":hover / :active / :focus-visible (automatic)"],
-          ["State = Disabled", "disabled"],
-          ["State = Loading", "loading"],
-          ["Leading / Trailing icon", "Icon placed before / after the label"],
+          ["Corner radius", "button-radius-control"],
+          ["Border width", "button-stroke-default"],
+          ["Icon–label gap", "button-spacing-gap"],
+          ["Small height", "button-size-sm-height"],
+          ["Small padding", "button-size-sm-padding-x"],
+          ["Small icon", "button-size-sm-icon"],
+          ["Medium height", "button-size-md-height"],
+          ["Medium padding", "button-size-md-padding-x"],
+          ["Medium icon", "button-size-md-icon"],
+          ["Large height", "button-size-lg-height"],
+          ["Large padding", "button-size-lg-padding-x"],
+          ["Large icon", "button-size-lg-icon"],
+        ]}
+      />
+      <TokenTable
+        title="Primary"
+        rows={[
+          ["Background", "button-primary-bg-default"],
+          ["Hover", "button-primary-bg-hover"],
+          ["Pressed", "button-primary-bg-pressed"],
+          ["Disabled", "button-primary-bg-disabled"],
+          ["Label", "button-filled-content-default"],
+          ["Label, disabled", "button-filled-content-disabled"],
+        ]}
+      />
+      <TokenTable
+        title="Secondary and Ghost"
+        rows={[
+          ["Secondary background", "button-secondary-bg-default"],
+          ["Secondary pressed", "button-secondary-bg-pressed"],
+          ["Secondary border", "button-secondary-border-default"],
+          ["Secondary border, hover / pressed", "button-secondary-border-active"],
+          ["Secondary border, disabled", "button-secondary-border-disabled"],
+          ["Ghost pressed", "button-ghost-bg-pressed"],
+          ["Label", "button-neutral-content-default"],
+          ["Label, disabled", "button-neutral-content-disabled"],
+        ]}
+      />
+      <TokenTable
+        title="Danger"
+        rows={[
+          ["Filled background", "button-danger-bg-default"],
+          ["Filled hover", "button-danger-bg-hover"],
+          ["Filled pressed", "button-danger-bg-pressed"],
+          ["Filled disabled", "button-danger-bg-disabled"],
+          ["Outline border and label", "button-danger-content-default"],
+          ["Outline hover", "button-danger-bg-subtle-hover"],
+          ["Outline pressed", "button-danger-bg-subtle-pressed"],
+          ["Outline disabled", "button-danger-content-disabled"],
+        ]}
+      />
+      <TokenTable
+        title="Focus"
+        rows={[
+          ["Ring", "focus-ring"],
+          ["Ring, danger styles", "focus-danger"],
+          ["Ring width", "focus-spread"],
+          ["Inner stroke on filled styles", "focus-stroke-on-fill"],
         ]}
       />
 
-      <H2>Accessibility</H2>
+      <H2>Behavior</H2>
       <UL>
-        <li>Renders a native <Code>{"<button>"}</Code>, so Enter and Space work out of the box.</li>
-        <li>
-          Focus shows a 3px ring (<Code>--focus-ring</Code>, or <Code>--focus-danger</Code> on danger
-          styles) only when using the keyboard, via <Code>:focus-visible</Code>.
-        </li>
-        <li>
-          Loading sets <Code>aria-busy</Code> and announces “Loading” to screen readers.
-        </li>
-        <li>Icon-only buttons need an <Code>aria-label</Code>.</li>
-        <li>
-          Set <Code>type=&quot;button&quot;</Code> on buttons inside forms that shouldn’t submit
-          them.
-        </li>
+        <li>The focus ring only appears for keyboard focus, never on mouse click.</li>
+        <li>Enter and Space activate it. Loading and disabled buttons ignore clicks and key presses.</li>
+        <li>A button that navigates to another page is rendered as a link but keeps the same look.</li>
       </UL>
 
       <Callout tone="warning">
-        <strong className="text-white">Figma notes for design:</strong> in the Loading variants, the
-        leading and trailing icons are still visible while the label is hidden. The code hides all the
-        content and shows only the loading indicator. Ghost Hover is also identical to Default, so
-        the code matches that for now.
+        <strong className="text-white">Figma notes:</strong> in the Loading variants the leading and trailing icons stay
+        visible while the label is hidden; the build hides all content and shows only the indicator. Ghost Hover is identical
+        to Ghost Default.
       </Callout>
     </>
   )

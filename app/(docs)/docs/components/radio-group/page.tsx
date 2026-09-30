@@ -1,11 +1,8 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 
-import { CodeBlock } from "@/components/docs/code-block"
 import { ComponentPreview } from "@/components/docs/component-preview"
-import { FigmaMapping } from "@/components/docs/figma-mapping"
-import { PropsTable } from "@/components/docs/props-table"
-import { Code, H2, P, PageHeader, UL } from "@/components/docs/typography"
+import { TokenTable } from "@/components/docs/token-table"
+import { H2, P, PageHeader, UL } from "@/components/docs/typography"
 
 export const metadata: Metadata = {
   title: "Radio Group",
@@ -23,52 +20,30 @@ export default function RadioGroupDocsPage() {
 
       <ComponentPreview name="radio-group-demo" />
 
-      <H2>Installation</H2>
-      <CodeBlock lang="bash" code="npx shadcn@latest add @iq/radio-group" />
       <P>
-        For a labelled field with helper text and validation states, use{" "}
-        <Link href="/docs/components/form-field" className="text-brand underline-offset-4 hover:underline">
-          RadioGroupField
-        </Link>
-        , which is built on this.
+        For a group with a caption, helper text and warning, error, disabled or read-only states, see Radio group on the Form
+        Field page.
       </P>
 
-      <H2>Usage</H2>
-      <CodeBlock code={`import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"`} />
-      <CodeBlock
-        className="mt-3"
-        code={`<RadioGroup value={plan} onValueChange={setPlan} aria-label="Billing">
-  <RadioGroupItem value="monthly">Monthly</RadioGroupItem>
-  <RadioGroupItem value="yearly" description="Two months free">Yearly</RadioGroupItem>
-</RadioGroup>`}
-      />
-
-      <H2>API reference</H2>
-      <PropsTable
-        props={[
-          { name: "value / defaultValue", type: "string", description: "RadioGroup: selected option." },
-          { name: "onValueChange", type: "(value: string) => void", description: "RadioGroup: called on selection." },
-          { name: "disabled", type: "boolean", description: "RadioGroup or RadioGroupItem." },
-          { name: "children", type: "ReactNode", description: "RadioGroupItem: label (Figma _Label Block label)." },
-          { name: "description", type: "ReactNode", description: "RadioGroupItem: second line (Figma _Label Block description)." },
-        ]}
-      />
-
-      <H2>Figma mapping</H2>
-      <FigmaMapping
+      <H2>Tokens</H2>
+      <P>Radio shares the Checkbox colors.</P>
+      <TokenTable
         rows={[
-          ["Radio · Selection = Unselected / Selected", "value on RadioGroup"],
-          ["Interaction = Hover / Pressed / Focus", ":hover / :active / :focus-visible (automatic)"],
-          ["Interaction = Disabled", "disabled"],
-          ["_Label Block · Label / Description", "children / description"],
-          ["Show label = false", "no children + aria-label"],
+          ["Border", "checkbox-border-default"],
+          ["Border hover / pressed", "checkbox-border-hover"],
+          ["Border disabled", "checkbox-border-disabled"],
+          ["Selected", "checkbox-fill-selected"],
+          ["Selected hover", "checkbox-fill-selected-hover"],
+          ["Label", "checkbox-label-default"],
+          ["Description", "content-muted"],
+          ["Disabled text", "content-disabled"],
+          ["Focus ring", "focus-ring"],
         ]}
       />
 
-      <H2>Accessibility</H2>
+      <H2>Behavior</H2>
       <UL>
-        <li>Built on Radix Radio Group: arrow keys move and select, Tab leaves the group.</li>
-        <li>Label the group with <Code>aria-label</Code> or <Code>aria-labelledby</Code>.</li>
+        <li>Arrow keys move and select; Tab leaves the group.</li>
         <li>Keyboard focus rings the whole row, as in the Figma Focus variant, without moving the layout.</li>
       </UL>
     </>

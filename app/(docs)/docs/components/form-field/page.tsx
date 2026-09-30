@@ -1,16 +1,13 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { Launch } from "@carbon/icons-react"
 
 import { figmaNode } from "@/lib/docs"
 import { Button } from "@/registry/iq/ui/button"
-import { CodeBlock } from "@/components/docs/code-block"
-import { ComponentPreview } from "@/components/docs/component-preview"
-import { FigmaMapping } from "@/components/docs/figma-mapping"
 import { ChoiceFieldMatrix } from "@/components/docs/choice-field-matrix"
+import { ComponentPreview } from "@/components/docs/component-preview"
 import { FormFieldMatrix, FormFieldTypes } from "@/components/docs/form-field-matrix"
-import { PropsTable } from "@/components/docs/props-table"
-import { Callout, Code, H2, H3, P, PageHeader, UL } from "@/components/docs/typography"
+import { TokenTable } from "@/components/docs/token-table"
+import { Callout, H2, H3, P, PageHeader, UL } from "@/components/docs/typography"
 
 export const metadata: Metadata = {
   title: "Form Field",
@@ -23,7 +20,7 @@ export default function FormFieldDocsPage() {
       <PageHeader
         eyebrow="Components"
         title="Form Field"
-        description="Stacked fields with the label inside the control and helper text below. Text, Password, Textarea and Currency, in two sizes, with warning, error, disabled and read-only states."
+        description="Stacked fields with the label inside the control and helper text below. Text, Password, Textarea, Currency, Phone, Radio group and Checkbox group, in two sizes, with warning, error, disabled and read-only states."
       >
         <Button asChild variant="secondary" size="sm">
           <a href={figmaNode("2407:6340")} target="_blank" rel="noreferrer">
@@ -35,85 +32,46 @@ export default function FormFieldDocsPage() {
 
       <ComponentPreview name="form-field-demo" />
 
-      <H2>Installation</H2>
-      <CodeBlock lang="bash" code="npx shadcn@latest add @iq/form-field" />
-      <P>
-        For registry setup, see{" "}
-        <Link href="/docs/installation" className="text-brand underline-offset-4 hover:underline">
-          Installation
-        </Link>
-        .
-      </P>
-
-      <H2>Usage</H2>
-      <CodeBlock code={`import { CurrencyField, PasswordField, TextareaField, TextField } from "@/components/ui/form-field"`} />
-      <CodeBlock
-        className="mt-3"
-        code={`<TextField
-  label="Email"
-  type="email"
-  required
-  status={error ? "error" : undefined}
-  helper={error ?? "We’ll send the invite here."}
-/>`}
-      />
-      <P>
-        Every field accepts the normal input attributes (<Code>name</Code>, <Code>value</Code>,{" "}
-        <Code>onChange</Code>, <Code>autoComplete</Code>…), so it works with plain forms, React Hook
-        Form or server actions.
-      </P>
-
       <H2>Field types</H2>
       <UL>
-        <li>
-          <Code>TextField</Code>: Figma Form Field / Input. Add a <Code>trailing</Code> icon when useful.
-        </li>
-        <li>
-          <Code>PasswordField</Code>: the eye button shows and hides the value.
-        </li>
-        <li>
-          <Code>TextareaField</Code>: grows with its content and can be resized from the corner.
-        </li>
-        <li>
-          <Code>CurrencyField</Code>: currency symbol prefix, locale formatting on blur, and the +/−
-          stepper (also ↑/↓ keys). Works with numbers through <Code>value</Code> and{" "}
-          <Code>onValueChange</Code>.
-        </li>
+        <li>Input: single-line text, with an optional trailing icon.</li>
+        <li>Password: the eye button shows and hides the value.</li>
+        <li>Textarea: grows with its content and can be resized from the corner.</li>
+        <li>Currency: symbol prefix, locale formatting when you leave the field, and a +/− stepper (also ↑/↓ keys).</li>
       </UL>
       <FormFieldTypes />
 
       <H2>Sizes</H2>
-      <P>
-        <Code>sm</Code> (60px, 14px value) is the default for dense CRM forms. <Code>md</Code> (66px,
-        16px value) suits standalone forms.
-      </P>
+      <P>Small (60px, 14px value) is the default for dense CRM forms. Medium (66px, 16px value) suits standalone forms.</P>
       <ComponentPreview name="form-field-sizes" />
 
       <H2>States</H2>
-      <P>
-        Hover, Focus and Active are automatic. <strong className="text-white">Focus</strong> (teal
-        ring) appears when you Tab into a field. <strong className="text-white">Active</strong>{" "}
-        (lighter border, neutral ring, blinking caret) means you’re editing: you clicked into the
-        field or started typing. <Code>status=&quot;warning&quot;</Code> and{" "}
-        <Code>status=&quot;error&quot;</Code> color the frame and the helper and add its icon.{" "}
-        <Code>readOnly</Code> shows a value the user can copy but not change. <Code>disabled</Code>{" "}
-        greys everything out.
-      </P>
+      <UL>
+        <li>
+          <strong className="text-white">Focus</strong>: teal ring, when you Tab into a field.
+        </li>
+        <li>
+          <strong className="text-white">Active</strong>: lighter border, neutral ring and caret, when you click in or type.
+        </li>
+        <li>
+          <strong className="text-white">Warning / Error</strong>: color the frame and the helper and add its icon. They
+          override Focus and Active.
+        </li>
+        <li>
+          <strong className="text-white">Read-only</strong>: the value can be copied but not changed.{" "}
+          <strong className="text-white">Disabled</strong>: everything greyed out.
+        </li>
+      </UL>
       <ComponentPreview name="form-field-status" align="start" />
 
       <H2>All states</H2>
-      <P>
-        The Figma matrix: size and content by all eight states. Hover, Focus and Active are forced
-        here with <Code>visualState</Code> so they can be compared side by side.
-      </P>
+      <P>The Figma matrix: size and content by all eight states, with Hover, Focus and Active forced for comparison.</P>
       <FormFieldMatrix />
 
       <H2>Radio group and Checkbox group</H2>
       <P>
-        <Code>RadioGroupField</Code> (one choice) and <Code>CheckboxGroupField</Code> (any number) put
-        a caption above the options and the helper below. Warning and Error only change the helper;
-        Disabled and Read-only disable every option. Import them from{" "}
-        <Code>@/components/ui/choice-field</Code> (<Code>npx shadcn@latest add @iq/choice-field</Code>).
+        One choice or any number, with a caption above the options and the helper below. Warning and Error only change the
+        helper; Disabled and Read-only disable every option.
       </P>
       <ComponentPreview name="choice-field-demo" align="start" />
       <H3>Radio group states</H3>
@@ -123,119 +81,76 @@ export default function FormFieldDocsPage() {
 
       <H2>Phone</H2>
       <P>
-        <Code>PhoneField</Code> combines a country picker (flag and dial code) with the number, formatted
-        as you type. Open the picker to search by name, code or dial code; Suggested countries stay on
-        top. <Code>onValueChange</Code> returns the country, the formatted number, the E.164 value and
-        whether it’s valid. Add it with <Code>npx shadcn@latest add @iq/phone-field</Code>.
+        A country picker (flag and dial code) with the number, formatted as you type. Open the picker to search by name, code
+        or dial code; Suggested countries stay on top.
       </P>
       <ComponentPreview name="phone-field-demo" />
 
-      <H2>Custom controls</H2>
-      <P>
-        <Code>FormField</Code> is the frame by itself. Put <Code>FieldInput</Code>,{" "}
-        <Code>FieldTextarea</Code> or your own element inside, and read the id, size and state with{" "}
-        <Code>useField()</Code>.
-      </P>
-      <CodeBlock
-        code={`<FormField label="Deal code" helper="Format DL-0000" prefix="DL-" trailing={<Barcode />}>
-  <FieldInput placeholder="2041" inputMode="numeric" />
-</FormField>`}
-      />
-
-      <H2>API reference</H2>
-      <H3>Shared props (all fields and FormField)</H3>
-      <PropsTable
-        props={[
-          { name: "label", type: "ReactNode", description: "Caption inside the control (uppercase)." },
-          { name: "helper", type: "ReactNode", description: "Text under the control. Linked with aria-describedby." },
-          { name: "size", type: '"sm" | "md"', default: '"sm"', description: "Maps to the Figma Size property." },
-          { name: "status", type: '"warning" | "error"', description: "Figma State = Warning / Error. Error also sets aria-invalid." },
-          { name: "required", type: "boolean", description: "Red asterisk and the native required attribute." },
-          { name: "disabled / readOnly", type: "boolean", description: "Figma State = Disabled / Read-only." },
-          { name: "id", type: "string", description: "Input id. Generated when omitted." },
-        ]}
-      />
-      <H3>CurrencyField</H3>
-      <PropsTable
-        props={[
-          { name: "value / defaultValue", type: "number | null", description: "Numeric value. null is empty." },
-          { name: "onValueChange", type: "(value: number | null) => void", description: "Called after blur, stepper or arrow keys." },
-          { name: "currency", type: "string", default: '"$"', description: "Symbol before the value, e.g. \"R$\"." },
-          { name: "locale", type: "string", default: "user locale", description: "Formatting locale, e.g. \"pt-BR\"." },
-          { name: "fractionDigits", type: "number", default: "2", description: "Decimal places." },
-          { name: "step / min / max", type: "number", default: "1", description: "Stepper increment and limits." },
-          { name: "hideStepper", type: "boolean", default: "false", description: "Hide the +/− buttons." },
-        ]}
-      />
-      <H3>FormField</H3>
-      <PropsTable
-        props={[
-          { name: "prefix", type: "ReactNode", description: "Before the value, with a divider (currency, dial code)." },
-          { name: "trailing", type: "ReactNode", description: "After the value (icon or small button)." },
-          { name: "aside", type: "ReactNode", description: "Absolutely positioned on the right edge (e.g. a stepper)." },
-          { name: "open", type: "boolean", description: "Open dropdown: forces Active (used by Select, Date…)." },
-          { name: "visualState", type: '"hover" | "focus" | "active"', description: "Forces a state for docs and visual tests. Leave unset in apps." },
-        ]}
-      />
-
-      <H2>Figma mapping</H2>
-      <FigmaMapping
+      <H2>Tokens</H2>
+      <TokenTable
+        title="Layout"
         rows={[
-          ["State = Default / Hover", "automatic (:hover)"],
-          ["State = Focus", "automatic: keyboard focus (Tab)"],
-          ["State = Active", "automatic: pointer focus or typing; open for dropdowns"],
-          ["State = Warning / Error", 'status="warning" | "error"'],
-          ["State = Disabled / Read-only", "disabled / readOnly"],
-          ["Size = Small / Medium", 'size="sm" | "md"'],
-          ["Content = Empty / Filled", "automatic (placeholder vs value)"],
-          ["_Form Field / Helper · Tone", "follows status"],
-          ["Required", "required"],
-          ["Show currency", "CurrencyField (prefix)"],
-          ["_Form Field / Stepper", "CurrencyField stepper"],
-          ["Multiline + Expandable", "TextareaField"],
-          ["Form Field / Radio group", "RadioGroupField"],
-          ["Form Field / Checkbox group", "CheckboxGroupField"],
-          ["Form Field / Phone (Show country)", "PhoneField"],
-          ["Phone · State = Active (country list)", "PhoneField picker open"],
+          ["Radius", "form-field-radius"],
+          ["Padding x", "form-field-px"],
+          ["Padding y, Small", "form-field-py-sm"],
+          ["Padding y, Medium", "form-field-py-md"],
+          ["Label → value gap", "form-field-gap"],
+          ["Label tracking", "form-field-label-tracking"],
+        ]}
+      />
+      <TokenTable
+        title="States"
+        rows={[
+          ["Background", "form-field-bg"],
+          ["Background hover", "form-field-bg-hover"],
+          ["Background focus / active", "form-field-bg-focus"],
+          ["Background read-only", "form-field-bg-readonly"],
+          ["Border", "form-field-border"],
+          ["Border hover", "form-field-border-hover"],
+          ["Border active", "form-field-border-active"],
+          ["Ring active", "form-field-ring-active"],
+          ["Focus ring", "focus-ring"],
+          ["Border disabled", "form-field-border-disabled"],
+          ["Warning border", "form-field-warning-border"],
+          ["Warning ring", "focus-warning"],
+          ["Error border", "form-field-error-border"],
+          ["Error ring", "focus-danger"],
+          ["Warning text", "warning"],
+          ["Error text", "danger"],
+        ]}
+      />
+      <TokenTable
+        title="Content"
+        rows={[
+          ["Value", "content-default"],
+          ["Label / helper / placeholder", "content-muted"],
+          ["Disabled", "content-disabled"],
+          ["Icons", "form-field-icon"],
+          ["Prefix divider", "form-field-divider"],
+          ["Resize handle", "form-field-resize-handle"],
         ]}
       />
 
-      <H2>Accessibility</H2>
+      <H2>Behavior</H2>
       <UL>
-        <li>The caption is a real &lt;label&gt;; clicking anywhere in the frame focuses the input.</li>
-        <li>Helper text is linked with <Code>aria-describedby</Code>; errors set <Code>aria-invalid</Code>.</li>
-        <li>The password toggle is a button with a name and <Code>aria-pressed</Code>.</li>
+        <li>Clicking anywhere in the frame focuses the input; helper and error text are read with the field.</li>
+        <li>The password toggle is a button with a name that announces whether the value is shown.</li>
         <li>The currency stepper is mouse-only (skipped by Tab); keyboard users use ↑/↓.</li>
       </UL>
 
       <Callout tone="warning">
-        <strong className="text-white">Coming next on this page:</strong> Select, Autocomplete and
-        Date, which need the Option Panel and Date Picker.
+        <strong className="text-white">Coming next:</strong> Select, Autocomplete and Date, which need the Option Panel and Date
+        Picker.
       </Callout>
       <Callout tone="warning">
-        <strong className="text-white">Figma notes for design:</strong>
+        <strong className="text-white">Figma notes:</strong>
         <ul className="mt-2 ml-4 list-disc space-y-1">
-          <li>
-            Focus uses a teal ring, but the Input page description says “white 2px border and green
-            50% outer ring”. These should be aligned; code follows the Form Field component.
-          </li>
-          <li>The Password field has no “hidden” eye icon; code uses Carbon View--off.</li>
-          <li>
-            In Checkbox group, the checked Checkbox instances have their fill overridden to the canvas
-            color, so the black checkmark is invisible. Code uses the real Checkbox (green).
-          </li>
-          <li>
-            Radio group options use Radio (14px medium label), while Checkbox group uses Checkbox (16px
-            regular label, 40px rows). The two groups look different side by side.
-          </li>
-          <li>
-            Phone numbers are formatted and validated with libphonenumber-js. Regions without a phone
-            plan (EU, UN, CEFTA) are not in the country list.
-          </li>
-          <li>
-            Read-only background, the Active border and ring, and the icon and handle opacities are
-            raw values. They’re named in code as <Code>--form-field-*</Code>.
-          </li>
+          <li>Focus uses a teal ring, but the Input page description says “white 2px border and green 50% outer ring”. These should be aligned; the build follows the component.</li>
+          <li>The Password field has no “hidden” eye icon; the build uses Carbon View--off.</li>
+          <li>In Checkbox group, the checked Checkbox instances have their fill overridden to the canvas color, so the black checkmark is invisible. The build uses the real Checkbox (green).</li>
+          <li>Radio group options use Radio (14px medium label), while Checkbox group uses Checkbox (16px regular label, 40px rows). The two groups look different side by side.</li>
+          <li>Regions without a phone plan (EU, UN, CEFTA) are not in the country list.</li>
+          <li>Read-only background, the Active border and ring, and the icon and handle opacities are raw values.</li>
         </ul>
       </Callout>
     </>

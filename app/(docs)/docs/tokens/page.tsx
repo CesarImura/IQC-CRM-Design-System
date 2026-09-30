@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import tokens from "@/registry/iq/tokens/tokens.json"
 import { CopyButton } from "@/components/docs/copy-button"
-import { Code, H2, P, PageHeader } from "@/components/docs/typography"
+import { H2, P, PageHeader } from "@/components/docs/typography"
 
 export const metadata: Metadata = { title: "Tokens" }
 
@@ -18,9 +18,8 @@ export default function TokensPage() {
       />
 
       <P>
-        Use a token as <Code>var(--token-name)</Code>, or in Tailwind v4 as{" "}
-        <Code>bg-(--button-primary-bg-default)</Code>. The system is dark-only, so every token has a
-        single value.
+        Every token maps to a Figma variable, or names a raw Figma value that should become one. The system is dark-only, so
+        every token has a single value. Click a token to copy it.
       </P>
 
       {tokens.groups.map((group) => (

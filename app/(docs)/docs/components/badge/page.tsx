@@ -1,20 +1,19 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { Launch } from "@carbon/icons-react"
 
 import { figmaNode } from "@/lib/docs"
 import { Button } from "@/registry/iq/ui/button"
 import { BadgeMatrix } from "@/components/docs/badge-matrix"
-import { CodeBlock } from "@/components/docs/code-block"
 import { ComponentPreview } from "@/components/docs/component-preview"
-import { FigmaMapping } from "@/components/docs/figma-mapping"
-import { PropsTable } from "@/components/docs/props-table"
-import { Callout, Code, H2, H3, P, PageHeader, UL } from "@/components/docs/typography"
+import { TokenTable } from "@/components/docs/token-table"
+import { Callout, H2, P, PageHeader, UL } from "@/components/docs/typography"
 
 export const metadata: Metadata = {
   title: "Badge",
-  description: "Short labels for categories, roles and metadata, plus DeltaBadge for metric changes.",
+  description: "Short labels for categories, roles and metadata, plus Delta for metric changes.",
 }
+
+const colors = ["gray", "white", "blue", "green", "yellow", "red", "purple"] as const
 
 export default function BadgeDocsPage() {
   return (
@@ -40,47 +39,22 @@ export default function BadgeDocsPage() {
 
       <ComponentPreview name="badge-demo" />
 
-      <H2>Installation</H2>
-      <CodeBlock lang="bash" code="npx shadcn@latest add @iq/badge" />
-      <P>
-        For registry setup, see{" "}
-        <Link href="/docs/installation" className="text-brand underline-offset-4 hover:underline">
-          Installation
-        </Link>
-        .
-      </P>
-
-      <H2>Usage</H2>
-      <CodeBlock code={`import { Badge, DeltaBadge } from "@/components/ui/badge"`} />
-      <CodeBlock className="mt-3" code={`<Badge color="blue">Admin</Badge>`} />
-
       <H2>Styles</H2>
-      <P>
-        <Code>filled</Code> (default) for most labels, <Code>outline</Code> for quieter or removable
-        tags, and <Code>ghost</Code> for inline text-level labels.
-      </P>
+      <P>Filled (default) for most labels, Outline for quieter or removable tags, Ghost for inline text-level labels.</P>
       <ComponentPreview name="badge-variants" />
 
       <H2>Sizes</H2>
-      <P>
-        <Code>sm</Code> (12px text) for dense tables, <Code>md</Code> (14px, default), and{" "}
-        <Code>lg</Code> (16px). Icons scale with the size: 12, 16 and 20px.
-      </P>
+      <P>Small (12px text, 12px icons) for dense tables, Medium (14px, 16px icons) as the default, Large (16px, 20px icons).</P>
       <ComponentPreview name="badge-sizes" />
 
       <H2>Dot, icon and remove</H2>
-      <P>
-        <Code>dot</Code> adds the square status mark. Put an icon before the label as a child.{" "}
-        <Code>onDismiss</Code> adds a remove button; give it a <Code>dismissLabel</Code> such as
-        “Remove Fintech”. Try removing the tags below.
-      </P>
+      <P>The square dot marks status, an icon can lead the label, and the × removes the badge. Try removing the tags.</P>
       <ComponentPreview name="badge-anatomy" />
 
       <H2>Delta</H2>
       <P>
-        <Code>DeltaBadge</Code> shows a metric change with an arrow. Green means up, red down, gray
-        flat, picked from the sign of the text. Set <Code>tone</Code> when a rise is bad news. The
-        arrow is announced as “Increase”, “Decrease” or “No change”.
+        Metric change with an arrow: green up, red down, gray flat. The tone follows the sign unless a rise is bad news (churn
+        up is red).
       </P>
       <ComponentPreview name="delta-badge-demo" />
 
@@ -88,62 +62,56 @@ export default function BadgeDocsPage() {
       <P>Every size, style and color, laid out like the Figma matrix.</P>
       <BadgeMatrix />
 
-      <H2>API reference</H2>
-      <H3>Badge</H3>
-      <PropsTable
-        props={[
-          { name: "color", type: '"gray" | "white" | "blue" | "green" | "yellow" | "red" | "purple"', default: '"gray"', description: "Maps to the Figma Color property." },
-          { name: "variant", type: '"filled" | "outline" | "ghost"', default: '"filled"', description: "Maps to the Figma Style property." },
-          { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Text, padding and icon size." },
-          { name: "dot", type: "boolean", default: "false", description: "Square status mark before the label." },
-          { name: "onDismiss", type: "() => void", description: "Shows a remove button that calls this." },
-          { name: "dismissLabel", type: "string", default: '"Remove"', description: "Accessible name of the remove button." },
-        ]}
-      />
-      <H3>DeltaBadge</H3>
-      <PropsTable
-        props={[
-          { name: "tone", type: '"positive" | "negative" | "neutral"', default: "from the text", description: "Overrides the color picked from the sign." },
-          { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Same sizes as Badge." },
-        ]}
-      />
-
-      <H2>Figma mapping</H2>
-      <FigmaMapping
+      <H2>Tokens</H2>
+      <TokenTable
+        title="Size"
         rows={[
-          ["Color = Gray … Purple", 'color="gray" | … | "purple"'],
-          ["Style = Filled / Outline / Ghost", 'variant="filled" | "outline" | "ghost"'],
-          ["Size = sm / md / lg", 'size="sm" | "md" | "lg"'],
-          ["Square", "dot"],
-          ["Icon leading", "icon as the first child"],
-          ["Icon / Dismiss", "onDismiss + dismissLabel"],
-          ["Badge / Delta · Direction", "DeltaBadge tone (or inferred)"],
+          ["Corner radius", "badge-radius-default"],
+          ["Outline width", "badge-stroke-width"],
+          ["Small padding x / y", "badge-px-sm"],
+          ["", "badge-py-sm"],
+          ["Small gap / text / icon", "badge-gap-sm"],
+          ["", "badge-font-sm"],
+          ["", "badge-icon-sm"],
+          ["Medium padding x / y", "badge-px-md"],
+          ["", "badge-py-md"],
+          ["Medium gap / text / icon", "badge-gap-md"],
+          ["", "badge-font-md"],
+          ["", "badge-icon-md"],
+          ["Large padding x / y", "badge-px-lg"],
+          ["", "badge-py-lg"],
+          ["Large gap / text / icon", "badge-gap-lg"],
+          ["", "badge-font-lg"],
+          ["", "badge-icon-lg"],
+          ["Remove icon", "badge-dismiss"],
         ]}
       />
+      {colors.map((c) => (
+        <TokenTable
+          key={c}
+          title={c[0].toUpperCase() + c.slice(1)}
+          rows={[
+            ["Filled background", `badge-${c}-bg`],
+            ["Text, icon and dot", `badge-${c}-content`],
+            ["Outline border", `badge-${c}-border`],
+          ]}
+        />
+      ))}
+      <TokenTable title="Delta" rows={[["Neutral background", "badge-delta-neutral-bg"]]} />
 
-      <H2>Accessibility</H2>
+      <H2>Behavior</H2>
       <UL>
-        <li>Color is never the only signal: the label text carries the meaning.</li>
-        <li>The remove button is a real button with its own name and a keyboard focus ring.</li>
-        <li>DeltaBadge’s arrow has an accessible name, so the direction is announced.</li>
+        <li>Color is never the only signal: the label carries the meaning.</li>
+        <li>The remove button is keyboard reachable, has its own name (“Remove Fintech”) and a focus ring.</li>
+        <li>The Delta arrow is announced as “Increase”, “Decrease” or “No change”.</li>
       </UL>
 
       <Callout tone="warning">
-        <strong className="text-white">Figma notes for design:</strong>
+        <strong className="text-white">Figma notes:</strong>
         <ul className="mt-2 ml-4 list-disc space-y-1">
-          <li>
-            The Badge / Delta neutral background is a raw <Code>#ffffff0d</Code>, not{" "}
-            <Code>--badge-gray-bg</Code> (<Code>#141716</Code>). It’s named{" "}
-            <Code>--badge-delta-neutral-bg</Code> in code.
-          </li>
-          <li>
-            The Focus Ring layer inside each badge has a 0px spread, so it never shows. In code the
-            remove button gets the standard focus ring.
-          </li>
-          <li>
-            The Value Slot page still uses “Badge (Legacy)”: 15% backgrounds, 1.5 line height and a
-            25px height. Code uses the current Badge (16%, 22px).
-          </li>
+          <li>The Delta neutral background is a raw #ffffff0d instead of the gray badge variable (#141716).</li>
+          <li>The Focus Ring layer inside each badge has a 0px spread, so it never shows.</li>
+          <li>The Value Slot page still uses “Badge (Legacy)”: 15% backgrounds and a 25px height instead of 16% and 22px.</li>
         </ul>
       </Callout>
     </>

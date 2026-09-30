@@ -1,21 +1,22 @@
 import Link from "next/link"
-import { ArrowRight } from "@carbon/icons-react"
+import { ArrowRight, Launch } from "@carbon/icons-react"
 
+import { FIGMA_FILE } from "@/lib/docs"
 import { Button } from "@/registry/iq/ui/button"
-import { Code, H2, P, PageHeader, UL } from "@/components/docs/typography"
+import { H2, P, PageHeader, UL } from "@/components/docs/typography"
 
 const principles = [
   {
-    title: "You own the code",
-    body: "Components are copied into your app with the shadcn CLI. Read them, change them, and keep them in your repo. There’s no package to upgrade.",
+    title: "Tokens first",
+    body: "Every color, spacing and radius comes from a named token that maps to a Figma variable. Where Figma uses a raw value, the token is named here and flagged.",
+  },
+  {
+    title: "Every variant, every state",
+    body: "Each component shows its full Figma matrix: sizes, styles and states such as hover, pressed, focus, disabled and error. All live and interactive.",
   },
   {
     title: "Figma is the source of truth",
-    body: "Tokens come from Figma variables, and every component links back to its Figma node and maps its variants 1:1.",
-  },
-  {
-    title: "Built on your stack",
-    body: "React 19, Next.js 16, Tailwind CSS v4 and Radix UI. Accessible by default, dark-only.",
+    body: "Each page links to its Figma component set, and differences or open questions are listed under Figma notes.",
   },
 ]
 
@@ -25,16 +26,22 @@ export default function IntroductionPage() {
       <PageHeader
         eyebrow="Getting started"
         title="IQ Capital CRM Design System"
-        description="The components, tokens and guidelines behind the IQ Capital CRM, built from the Figma library and ready to copy into your app."
+        description="A live reference for the tokens, components and variants behind the IQ Capital CRM, built from the Figma library. Dark mode only."
       >
         <Button asChild>
-          <Link href="/docs/installation">
-            Get started
+          <Link href="/docs/components/button">
+            Browse components
             <ArrowRight />
           </Link>
         </Button>
         <Button asChild variant="secondary">
-          <Link href="/docs/components/button">Browse components</Link>
+          <Link href="/docs/tokens">Tokens</Link>
+        </Button>
+        <Button asChild variant="ghost">
+          <a href={FIGMA_FILE} target="_blank" rel="noreferrer">
+            Figma file
+            <Launch />
+          </a>
         </Button>
       </PageHeader>
 
@@ -47,28 +54,32 @@ export default function IntroductionPage() {
         ))}
       </div>
 
-      <H2>How it works</H2>
+      <H2>How to read a component page</H2>
       <UL>
         <li>
-          <strong className="text-white">Tokens:</strong> Figma variables become CSS variables such as{" "}
-          <Code>--button-primary-bg-default</Code>. Components use only these variables, never
-          hard-coded values.
+          <strong className="text-white">Previews:</strong> live components. Hover, click and Tab through them to see
+          interactive states.
         </li>
         <li>
-          <strong className="text-white">Components:</strong> each one is a single React file with{" "}
-          <Code>cva</Code> variants that match the Figma properties.
+          <strong className="text-white">All variants:</strong> the Figma matrix, with states forced side by side for comparison.
         </li>
         <li>
-          <strong className="text-white">Registry:</strong> this site also serves a shadcn registry,
-          so <Code>npx shadcn add @iq/button</Code> installs the component and its tokens.
+          <strong className="text-white">Tokens:</strong> each property with its token, value and Figma source. Click a token to
+          copy it.
+        </li>
+        <li>
+          <strong className="text-white">Behavior:</strong> keyboard, focus and screen reader expectations.
+        </li>
+        <li>
+          <strong className="text-white">Figma notes:</strong> where the build differs from Figma, and why.
         </li>
       </UL>
 
       <H2>Status</H2>
       <P>
-        Available now: Badge, Breadcrumb, Button, Checkbox, Data Table, Flag, Pagination, Pill, Stat
-        Card, Status Dot and Value Slot. Next up: the Toolbar pieces (Search Bar, Dropdown, Date
-        Picker, Toggle), then Input, Option Panel and the charts.
+        Available now: Badge, Breadcrumb, Button, Checkbox, Data Table, Flag, Form Field (Input, Password, Textarea, Currency,
+        Phone, Radio group, Checkbox group), Pagination, Pill, Radio Group, Stat Card, Status Dot and Value Slot. Next up: Select,
+        Autocomplete and Date (with the Option Panel and Date Picker), then the Toolbar pieces and the charts.
       </P>
     </>
   )

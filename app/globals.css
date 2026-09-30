@@ -23,12 +23,3 @@ body {
   background: color-mix(in srgb, var(--button-primary-bg-default) 40%, transparent);
 }
 
-/* Shiki output */
-.shiki {
-  background: transparent !important;
-  font-size: 13px;
-  line-height: 1.7;
-}
-.shiki code {
-  counter-reset: line;
-}
