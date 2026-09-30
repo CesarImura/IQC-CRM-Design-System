@@ -243,7 +243,12 @@
           "focus-warning": "#ffc04580",
           "form-field-divider": "#ffffff14",
           "form-field-icon": "#ffffff80",
-          "form-field-resize-handle": "#ffffff1a"
+          "form-field-resize-handle": "#ffffff1a",
+          "skeleton-bone": "#ffffff14",
+          "skeleton-bone-pulse": "#ffffff29",
+          "skeleton-radius-bar": "2px",
+          "skeleton-radius-circle": "100px",
+          "skeleton-pulse-duration": "2s"
         }
       }
     },
@@ -396,6 +401,32 @@
       "files": [
         {
           "path": "registry/iq/ui/status-dot.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Loading placeholders: Bar and Circle bones (Rest or Pulse), plus Text, Control and Table Row recipes.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "css": {
+        "@keyframes skeleton-pulse": {
+          "0%, 80%, 100%": {
+            "background-color": "var(--skeleton-bone)"
+          },
+          "40%": {
+            "background-color": "var(--skeleton-bone-pulse)"
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "registry/iq/ui/skeleton.tsx",
           "type": "registry:ui"
         }
       ]

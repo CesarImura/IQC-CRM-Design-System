@@ -32,6 +32,7 @@ export const nav: NavSection[] = [
       { title: "Pagination", href: "/docs/components/pagination" },
       { title: "Pill", href: "/docs/components/pill" },
       { title: "Radio Group", href: "/docs/components/radio-group" },
+      { title: "Skeleton", href: "/docs/components/skeleton" },
       { title: "Stat Card", href: "/docs/components/stat-card" },
       { title: "Status Dot", href: "/docs/components/status-dot" },
       { title: "Value Slot", href: "/docs/components/value-slot" },

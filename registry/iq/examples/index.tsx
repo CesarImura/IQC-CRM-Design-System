@@ -25,6 +25,10 @@ import PillClickable from "./pill-clickable"
 import PillColors from "./pill-colors"
 import PillDisabled from "./pill-disabled"
 import PillSizes from "./pill-sizes"
+import SkeletonBones from "./skeleton-bones"
+import SkeletonCard from "./skeleton-card"
+import SkeletonDemo from "./skeleton-demo"
+import SkeletonRecipes from "./skeleton-recipes"
 import StatusDotDemo from "./status-dot-demo"
 import StatusDotMarkOnly from "./status-dot-mark-only"
 import ValueSlotDemo from "./value-slot-demo"
@@ -79,6 +83,10 @@ export const examples = {
   "pill-colors": PillColors,
   "pill-disabled": PillDisabled,
   "pill-sizes": PillSizes,
+  "skeleton-bones": SkeletonBones,
+  "skeleton-card": SkeletonCard,
+  "skeleton-demo": SkeletonDemo,
+  "skeleton-recipes": SkeletonRecipes,
   "status-dot-demo": StatusDotDemo,
   "status-dot-mark-only": StatusDotMarkOnly,
   "value-slot-demo": ValueSlotDemo,

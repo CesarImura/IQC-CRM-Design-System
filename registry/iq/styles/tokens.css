@@ -256,4 +256,10 @@
   --form-field-divider: #ffffff14;
   --form-field-icon: #ffffff80;
   --form-field-resize-handle: #ffffff1a;
+  /* Skeleton */
+  --skeleton-bone: #ffffff14;
+  --skeleton-bone-pulse: #ffffff29;
+  --skeleton-radius-bar: 2px;
+  --skeleton-radius-circle: 100px;
+  --skeleton-pulse-duration: 2s;
 }
