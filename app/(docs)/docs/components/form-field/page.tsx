@@ -90,7 +90,10 @@ export default function FormFieldDocsPage() {
 
       <H2>States</H2>
       <P>
-        Hover and Focus are automatic. <Code>status=&quot;warning&quot;</Code> and{" "}
+        Hover, Focus and Active are automatic. <strong className="text-white">Focus</strong> (teal
+        ring) appears when you Tab into a field. <strong className="text-white">Active</strong>{" "}
+        (lighter border, neutral ring, blinking caret) means you’re editing: you clicked into the
+        field or started typing. <Code>status=&quot;warning&quot;</Code> and{" "}
         <Code>status=&quot;error&quot;</Code> color the frame and the helper and add its icon.{" "}
         <Code>readOnly</Code> shows a value the user can copy but not change. <Code>disabled</Code>{" "}
         greys everything out.
@@ -99,8 +102,8 @@ export default function FormFieldDocsPage() {
 
       <H2>All states</H2>
       <P>
-        The Figma matrix: size and content by state. Point at or Tab into any field to see Hover and
-        Focus.
+        The Figma matrix: size and content by all eight states. Hover, Focus and Active are forced
+        here with <Code>visualState</Code> so they can be compared side by side.
       </P>
       <FormFieldMatrix />
 
@@ -147,17 +150,19 @@ export default function FormFieldDocsPage() {
           { name: "prefix", type: "ReactNode", description: "Before the value, with a divider (currency, dial code)." },
           { name: "trailing", type: "ReactNode", description: "After the value (icon or small button)." },
           { name: "aside", type: "ReactNode", description: "Absolutely positioned on the right edge (e.g. a stepper)." },
-          { name: "open", type: "boolean", description: "Figma State = Active: the open state of dropdown fields." },
+          { name: "open", type: "boolean", description: "Open dropdown: forces Active (used by Select, Date…)." },
+          { name: "visualState", type: '"hover" | "focus" | "active"', description: "Forces a state for docs and visual tests. Leave unset in apps." },
         ]}
       />
 
       <H2>Figma mapping</H2>
       <FigmaMapping
         rows={[
-          ["State = Default / Hover / Focus", "automatic (:hover, :focus-within)"],
+          ["State = Default / Hover", "automatic (:hover)"],
+          ["State = Focus", "automatic: keyboard focus (Tab)"],
+          ["State = Active", "automatic: pointer focus or typing; open for dropdowns"],
           ["State = Warning / Error", 'status="warning" | "error"'],
           ["State = Disabled / Read-only", "disabled / readOnly"],
-          ["State = Active", "open (dropdown fields)"],
           ["Size = Small / Medium", 'size="sm" | "md"'],
           ["Content = Empty / Filled", "automatic (placeholder vs value)"],
           ["_Form Field / Helper · Tone", "follows status"],
@@ -192,10 +197,6 @@ export default function FormFieldDocsPage() {
           <li>
             Read-only background, the Active border and ring, and the icon and handle opacities are
             raw values. They’re named in code as <Code>--form-field-*</Code>.
-          </li>
-          <li>
-            Active only makes sense for dropdown fields (the chevron flips), yet it appears on Input,
-            Password and Currency too.
           </li>
         </ul>
       </Callout>

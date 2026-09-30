@@ -4,7 +4,9 @@ import { CurrencyField, FieldInput, FormField, PasswordField, TextareaField } fr
 
 const states = [
   { label: "Default", props: {} },
-  { label: "Active", props: { open: true } },
+  { label: "Hover", props: { visualState: "hover" as const } },
+  { label: "Focus", props: { visualState: "focus" as const } },
+  { label: "Active", props: { visualState: "active" as const } },
   { label: "Warning", props: { status: "warning" as const } },
   { label: "Error", props: { status: "error" as const } },
   { label: "Disabled", props: { disabled: true } },
@@ -18,7 +20,7 @@ const rows = [
   { label: "Medium / Filled", size: "md" as const, filled: true },
 ]
 
-/** Mirrors the Figma Form Field / Input matrix. Hover and Focus are live: point at or Tab into a field. */
+/** Mirrors the Figma Form Field / Input matrix: all eight states, with Hover, Focus and Active forced. */
 export function FormFieldMatrix() {
   return (
     <div className="overflow-x-auto rounded-[2px] border border-grid">

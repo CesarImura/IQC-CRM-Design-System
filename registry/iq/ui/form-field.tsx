@@ -9,7 +9,8 @@ import { cn } from "@/lib/utils"
 // _Form Field / Helper (2412:6243), Form Field / Input (2407:6251), / Password (2415:5940),
 // / Textarea (2536:29220), / Currency (2545:31002).
 // State × Size × Content: Hover, Focus and Filled are automatic; Warning, Error, Disabled and
-// Read-only are props; Active is the open state of dropdown fields (data-state="open").
+// Read-only are props. Focus (teal ring) is keyboard focus; Active (neutral ring + caret) is
+// editing: focusing with the pointer, typing, or an open dropdown.
 
 type FieldSize = "sm" | "md"
 type FieldStatus = "error" | "warning"
@@ -97,8 +98,10 @@ type FormFieldProps = Omit<React.ComponentProps<"div">, "children"> & {
   trailing?: React.ReactNode
   /** Positioned on the right edge across the full height (e.g. the currency stepper). */
   aside?: React.ReactNode
-  /** Open state for dropdown fields (Figma State = Active). */
+  /** Open dropdown: forces the Active state (Figma State = Active, chevron up). */
   open?: boolean
+  /** Forces an interaction state for documentation and visual tests. Leave unset in apps. */
+  visualState?: "hover" | "focus" | "active"
   /** The actual control: <FieldInput />, <FieldTextarea /> or a custom element using useField(). */
   children: React.ReactNode
 }
@@ -108,8 +111,11 @@ const frameVariants = cva(
     "group/field relative flex cursor-text items-center gap-2 overflow-hidden rounded-(--form-field-radius) border px-(--form-field-px) transition-[background-color,border-color,box-shadow] duration-100",
     "border-(--form-field-border) bg-(--form-field-bg)",
     "hover:border-(--form-field-border-hover) hover:bg-(--form-field-bg-hover)",
-    "focus-within:border-(--form-field-border) focus-within:bg-(--form-field-bg-focus) focus-within:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]",
-    "data-[state=open]:border-(--form-field-border-active) data-[state=open]:bg-(--form-field-bg-hover) data-[state=open]:shadow-[0_0_0_var(--focus-spread)_var(--form-field-ring-active)]",
+    "data-[visual=hover]:border-(--form-field-border-hover) data-[visual=hover]:bg-(--form-field-bg-hover)",
+    // Focus: keyboard focus, teal ring.
+    "data-[interaction=focus]:border-(--form-field-border) data-[interaction=focus]:bg-(--form-field-bg-focus) data-[interaction=focus]:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]",
+    // Active: editing or open, lighter border and neutral ring.
+    "data-[interaction=active]:border-(--form-field-border-active) data-[interaction=active]:bg-(--form-field-bg-hover) data-[interaction=active]:shadow-[0_0_0_var(--focus-spread)_var(--form-field-ring-active)]",
     // Status chrome stays on in every interaction state.
     "data-[status=warning]:border-(--form-field-warning-border) data-[status=warning]:bg-(--form-field-bg) data-[status=warning]:shadow-[0_0_0_var(--focus-spread)_var(--focus-warning)]",
     "data-[status=error]:border-(--form-field-error-border) data-[status=error]:bg-(--form-field-bg) data-[status=error]:shadow-[0_0_0_var(--focus-spread)_var(--focus-danger)]",
@@ -139,6 +145,7 @@ function FormField({
   trailing,
   aside,
   open,
+  visualState,
   className,
   children,
   ...props
@@ -147,6 +154,15 @@ function FormField({
   const id = idProp ?? generatedId
   const helperId = `${id}-helper`
   const frameRef = React.useRef<HTMLDivElement>(null)
+  const pointerRef = React.useRef(false)
+  const [interaction, setInteraction] = React.useState<"focus" | "active" | null>(null)
+
+  const resolvedInteraction =
+    visualState === "focus" || visualState === "active"
+      ? visualState
+      : open
+        ? "active"
+        : (interaction ?? undefined)
 
   return (
     <FieldContext.Provider value={{ id, helperId: helper ? helperId : "", size, status, disabled, readOnly, required }}>
@@ -158,7 +174,26 @@ function FormField({
           data-disabled={disabled || undefined}
           data-readonly={readOnly || undefined}
           data-state={open ? "open" : undefined}
+          data-interaction={resolvedInteraction}
+          data-visual={visualState === "hover" ? "hover" : undefined}
           className={frameVariants({ size })}
+          onPointerDownCapture={() => {
+            pointerRef.current = true
+          }}
+          onFocus={() => {
+            // Pointer focus means the user is about to edit (Active); keyboard focus shows the ring.
+            const viaPointer = pointerRef.current
+            pointerRef.current = false
+            setInteraction((current) => (viaPointer ? "active" : (current ?? "focus")))
+          }}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setInteraction(null)
+          }}
+          onKeyDown={(event) => {
+            // Typing after tabbing in switches Focus to Active.
+            const navigation = ["Tab", "Shift", "Escape", "Meta", "Control", "Alt", "CapsLock"]
+            if (interaction === "focus" && !navigation.includes(event.key)) setInteraction("active")
+          }}
           onMouseDown={(event) => {
             // Clicking the frame (not a control inside it) focuses the input, like a big label.
             const target = event.target as HTMLElement
