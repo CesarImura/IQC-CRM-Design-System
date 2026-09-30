@@ -1,0 +1,455 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "iq",
+  "homepage": "https://iq-ui.vercel.app",
+  "items": [
+    {
+      "name": "tokens",
+      "type": "registry:theme",
+      "title": "IQ Tokens",
+      "description": "IQ Capital CRM design tokens (dark-only) as CSS variables.",
+      "cssVars": {
+        "light": {
+          "canvas": "#0d100f",
+          "border-grid": "#1e2120",
+          "form-field-surface-transparent": "#ffffff00",
+          "surface-raised": "#121514",
+          "focus-ring": "#76ffda",
+          "focus-danger": "#ff495180",
+          "focus-stroke-on-fill": "#000000",
+          "focus-spread": "3px",
+          "font-size-sm": "14px",
+          "line-height-sm": "21px",
+          "font-size-md": "16px",
+          "line-height-md": "24px",
+          "font-size-lg": "18px",
+          "line-height-lg": "27px",
+          "button-radius-control": "2px",
+          "button-stroke-default": "1px",
+          "button-spacing-gap": "8px",
+          "button-size-sm-height": "32px",
+          "button-size-sm-padding-x": "12px",
+          "button-size-sm-icon": "16px",
+          "button-size-md-height": "40px",
+          "button-size-md-padding-x": "16px",
+          "button-size-md-icon": "16px",
+          "button-size-lg-height": "48px",
+          "button-size-lg-padding-x": "24px",
+          "button-size-lg-icon": "24px",
+          "button-neutral-content-default": "#ffffff",
+          "button-neutral-content-active": "#ffffff",
+          "button-neutral-content-disabled": "#ffffff52",
+          "button-filled-content-default": "#000000",
+          "button-filled-content-disabled": "#00000052",
+          "button-danger-content-default": "#d73a3c",
+          "button-danger-content-disabled": "#ff495152",
+          "button-primary-bg-default": "#00b886",
+          "button-primary-bg-hover": "#1fc195",
+          "button-primary-bg-pressed": "#00a276",
+          "button-primary-bg-disabled": "#00b88680",
+          "button-secondary-bg-default": "#ffffff0a",
+          "button-secondary-bg-hover": "#ffffff0a",
+          "button-secondary-bg-pressed": "#ffffff14",
+          "button-secondary-bg-disabled": "#ffffff00",
+          "button-secondary-border-default": "#ffffff14",
+          "button-secondary-border-active": "#ffffff1f",
+          "button-secondary-border-disabled": "#ffffff0a",
+          "button-ghost-bg-pressed": "#191c1b",
+          "button-danger-bg-default": "#d73a3c",
+          "button-danger-bg-hover": "#dc5253",
+          "button-danger-bg-pressed": "#bd3335",
+          "button-danger-bg-disabled": "#d73a3c80",
+          "button-danger-bg-subtle-hover": "#d73a3c14",
+          "button-danger-bg-subtle-pressed": "#d73a3c29",
+          "content-disabled": "#ffffff52",
+          "content-muted": "#ffffff80",
+          "breadcrumb-text-link-default": "#ffffff80",
+          "breadcrumb-text-link-hover": "#ffffff",
+          "breadcrumb-text-current": "#ffffffcc",
+          "breadcrumb-text-separator": "#ffffff3d",
+          "breadcrumb-surface-focus": "#0d100f",
+          "breadcrumb-surface-pressed": "#0d100f",
+          "breadcrumb-surface-open": "#ffffff0d",
+          "breadcrumb-hit-padding": "8px",
+          "breadcrumb-radius-control": "4px",
+          "breadcrumb-item-gap": "8px",
+          "breadcrumb-item-max-width": "200px",
+          "option-panel-bg": "#ffffff0d",
+          "option-panel-border": "#ffffff1a",
+          "option-panel-radius": "2px",
+          "option-panel-padding": "4px",
+          "option-panel-width": "220px",
+          "option-item-content": "#ffffffe6",
+          "option-item-bg-hover": "#ffffff08",
+          "badge-radius-default": "2px",
+          "badge-stroke-width": "1px",
+          "badge-px-sm": "4px",
+          "badge-py-sm": "1px",
+          "badge-gap-sm": "4px",
+          "badge-font-sm": "12px",
+          "badge-icon-sm": "12px",
+          "badge-px-md": "6px",
+          "badge-py-md": "2px",
+          "badge-gap-md": "4px",
+          "badge-font-md": "14px",
+          "badge-icon-md": "16px",
+          "badge-px-lg": "8px",
+          "badge-py-lg": "4px",
+          "badge-gap-lg": "6px",
+          "badge-font-lg": "16px",
+          "badge-icon-lg": "20px",
+          "badge-gray-bg": "#141716",
+          "badge-gray-content": "#b7bcc5",
+          "badge-gray-border": "#ffffff29",
+          "badge-white-bg": "#191c1b",
+          "badge-white-content": "#ffffff",
+          "badge-white-border": "#ffffff3d",
+          "badge-blue-bg": "#3b82f629",
+          "badge-blue-content": "#86b5ff",
+          "badge-blue-border": "#86b5ff52",
+          "badge-green-bg": "#228e7129",
+          "badge-green-content": "#12f0b4",
+          "badge-green-border": "#12f0b452",
+          "badge-yellow-bg": "#ffc04529",
+          "badge-yellow-content": "#ffc045",
+          "badge-yellow-border": "#ffc04552",
+          "badge-red-bg": "#d73a3c29",
+          "badge-red-content": "#fd9581",
+          "badge-red-border": "#fd958152",
+          "badge-purple-bg": "#7c3aed29",
+          "badge-purple-content": "#c4a7ff",
+          "badge-purple-border": "#c4a7ff52",
+          "badge-dismiss": "#ffffffa3",
+          "badge-delta-neutral-bg": "#ffffff0d",
+          "stat-card-padding": "24px",
+          "stat-card-title": "#ffffff52",
+          "stat-card-value": "#ffffffcc",
+          "stat-card-caption": "#ffffff52",
+          "stat-card-value-size": "20px",
+          "stat-card-value-size-lg": "32px",
+          "chart-positive-line": "#12f0b4",
+          "chart-positive-area": "#12f0b4",
+          "chart-negative-line": "#ff4951",
+          "chart-negative-area": "#d73a3c",
+          "chart-neutral-line": "#ffffff4d",
+          "chart-neutral-area": "#ffffff0d",
+          "chart-crosshair": "#ffffff80",
+          "chart-baseline": "#ffffff4d",
+          "chart-split-lead": "#12f0b4",
+          "chart-split-trail": "#d73a3c",
+          "status-dot-neutral": "#ffffff33",
+          "status-dot-positive": "#12f0b4",
+          "status-dot-negative": "#fd9581",
+          "status-dot-warning": "#ffc045",
+          "status-dot-info": "#86b5ff",
+          "status-dot-label": "#ffffff80",
+          "pill-px-sm": "4px",
+          "pill-py-sm": "1px",
+          "pill-gap-sm": "4px",
+          "pill-hit-sm": "20px",
+          "pill-icon-sm": "12px",
+          "pill-px-md": "6px",
+          "pill-py-md": "2px",
+          "pill-gap-md": "4px",
+          "pill-hit-md": "24px",
+          "pill-icon-md": "16px",
+          "pill-px-lg": "8px",
+          "pill-py-lg": "4px",
+          "pill-gap-lg": "6px",
+          "pill-hit-lg": "28px",
+          "pill-icon-lg": "18px",
+          "pill-dismiss": "#ffffffa3",
+          "pill-overlay-hover": "#ffffff0f",
+          "pill-overlay-pressed": "#00000029",
+          "value-slot-text": "#ffffffcc",
+          "value-slot-secondary": "#ffffff80",
+          "value-slot-strong": "#ffffff",
+          "value-slot-link": "#7affdbcc",
+          "checkbox-radius-control": "4px",
+          "checkbox-stroke-default": "1px",
+          "checkbox-label-gap": "12px",
+          "checkbox-hit-padding": "8px",
+          "checkbox-border-default": "#ffffff66",
+          "checkbox-border-hover": "#ffffffa3",
+          "checkbox-border-disabled": "#ffffff29",
+          "checkbox-label-default": "#ffffffcc",
+          "checkbox-fill-selected": "#12f0b4",
+          "checkbox-fill-selected-hover": "#2af5c0",
+          "checkbox-fill-selected-pressed": "#09c991",
+          "checkbox-fill-selected-disabled": "#12f0b452",
+          "checkbox-fill-neutral-pressed": "#ffffff14",
+          "checkbox-icon-on-selected": "#0d100f",
+          "table-header-bg": "#ffffff05",
+          "table-row-hover": "#ffffff05",
+          "table-text": "#ffffffcc",
+          "table-icon": "#ffffff4d",
+          "table-cell-height": "48px",
+          "table-cell-px": "12px",
+          "table-cell-py": "4px",
+          "table-header-gap": "6px",
+          "table-header-px-sm": "8px",
+          "table-header-py-sm": "4px",
+          "table-header-px-md": "12px",
+          "table-header-py-md": "8px",
+          "table-header-px-lg": "16px",
+          "table-header-py-lg": "12px",
+          "table-avatar-bg": "#ffffff08",
+          "table-status-border": "#ffffff14",
+          "table-status-media-bg": "#ffffff0f",
+          "table-status-radius": "8px",
+          "table-status-title": "#ffffff",
+          "table-status-title-error": "#d73a3c",
+          "table-status-min-height": "432px",
+          "pagination-px": "24px",
+          "pagination-py": "8px",
+          "pagination-min-height": "48px",
+          "pagination-border": "#1e2120",
+          "pagination-content": "#ffffffcc",
+          "pagination-muted": "#ffffff80",
+          "pagination-divider": "#ffffff1f",
+          "pagination-select-bg": "#ffffff0d",
+          "pagination-select-border": "#ffffff1a",
+          "pagination-input-bg": "#ffffff0d",
+          "pagination-gap-controls": "16px",
+          "pagination-gap-buttons": "8px",
+          "pagination-gap-status": "4px",
+          "pagination-item-size": "32px",
+          "pagination-item-padding": "8px",
+          "pagination-item-radius": "2px",
+          "pagination-item-bg-hover": "#141716",
+          "pagination-item-bg-current": "#0d221c",
+          "pagination-item-content-current": "#12f0b4"
+        }
+      }
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Action button with Primary, Secondary, Ghost, Danger and Danger Outline styles, three sizes, icon-only and loading states.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Checkbox with checked, unchecked and indeterminate selection, hover, pressed, focus and disabled states; the whole labelled row is clickable.",
+      "dependencies": [
+        "@radix-ui/react-checkbox"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Table footer with page size, visible range and Status, Input or Pages controls.",
+      "dependencies": [
+        "@radix-ui/react-dropdown-menu"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/button"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Table primitives in Grid and Compact variants with sortable headers, row states and Empty / Loading / Error bodies.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "title": "Data Table",
+      "description": "Data table built on TanStack Table: sorting, row selection, pagination, toolbar slot and status bodies.",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/table",
+        "@iq/checkbox",
+        "@iq/pagination",
+        "@iq/button"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/data-table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Hierarchical navigation with links, a single current page and an optional overflow menu for collapsed ancestors.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "@radix-ui/react-dropdown-menu"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Badge in filled, outline and ghost styles, 7 colors and 3 sizes, with optional dot, icon and dismiss; plus DeltaBadge for metric changes.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "status-dot",
+      "type": "registry:ui",
+      "title": "Status Dot",
+      "description": "Inline semantic status (neutral, positive, negative, warning, info) for tables and lists.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/status-dot.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pill",
+      "type": "registry:ui",
+      "title": "Pill",
+      "description": "Removable value chip for filters and table cells.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/pill.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "value-slot",
+      "type": "registry:ui",
+      "title": "Value Slot",
+      "description": "Table cell content: text, mono, number, phone, link, date and exchange.",
+      "dependencies": [
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/value-slot.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stat-card",
+      "type": "registry:ui",
+      "title": "Stat Card",
+      "description": "KPI card with compact, stacked, spark, compare and split layouts, positive/negative/neutral tones, sparkline and split bar.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/badge",
+        "@iq/status-dot"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/stat-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "flag",
+      "type": "registry:ui",
+      "title": "Flag",
+      "description": "245 country and region flags (4:3) in three sizes, with accessible names and a country list for pickers.",
+      "dependencies": [
+        "flag-icons",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/flag.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

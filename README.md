@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IQ Capital CRM Design System
 
-## Getting Started
+Docs site and [shadcn registry](https://ui.shadcn.com/docs/registry) for the IQ Capital CRM, built from the
+[Figma library](https://www.figma.com/design/6gc2fkxSUQG7VaiOSUz30L/IQ-Capital-CRM-Design-System).
 
-First, run the development server:
+Stack: Next.js 16 · React 19 · Tailwind CSS v4 · Radix UI · cva. Dark-only.
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local   # set DOCS_PASSWORD
+npm install
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+registry/iq/
+  tokens/tokens.json   ← source of truth for tokens (from Figma variables)
+  styles/tokens.css    ← generated, do not edit
+  ui/                  ← components shipped to consumers
+  examples/            ← doc examples (rendered live + shown as code)
+registry.json          ← registry manifest (tokens item's cssVars are generated)
+app/(docs)/            ← docs pages
+components/docs/       ← docs-only UI (preview, code block, props table…)
+proxy.ts               ← password gate for pages and /r/* registry JSON
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
 
-## Learn More
+| Script | What it does |
+| --- | --- |
+| `npm run tokens` | Regenerates `tokens.css` and the registry `tokens` item from `tokens.json` |
+| `npm run registry:build` | Builds `public/r/*.json` with `shadcn build` |
+| `npm run build` | tokens → registry → `next build` |
 
-To learn more about Next.js, take a look at the following resources:
+## Adding a component
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Read the Figma component set, including its variables and states.
+2. Add any new tokens to `registry/iq/tokens/tokens.json`, then run `npm run tokens`.
+3. Create `registry/iq/ui/<name>.tsx`, using only token variables and never hard-coded values.
+4. Add an item to `registry.json`.
+5. Add examples in `registry/iq/examples/` and register them in `examples/index.tsx`.
+6. Add the page in `app/(docs)/docs/components/<name>/page.tsx` and the nav entry in `lib/docs.ts`.
+7. QA it against the Figma matrix.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy (Vercel)
 
-## Deploy on Vercel
+1. Import the repo in Vercel (framework: Next.js; defaults are fine).
+2. Set the environment variable `DOCS_PASSWORD`. Without it, production returns 500 (fails closed).
+3. Update `homepage` in `registry.json` and the URL in the Installation page to the deployed domain.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Consuming (for app developers)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See **/docs/installation** on the site. In short:
+
+```jsonc
+// components.json
+"registries": {
+  "@iq": {
+    "url": "https://<docs-domain>/r/{name}.json",
+    "headers": { "Authorization": "Bearer ${IQ_REGISTRY_TOKEN}" }
+  }
+}
+```
+
+```bash
+npx shadcn@latest add @iq/button
+```

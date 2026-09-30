@@ -1,26 +1,34 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "../registry/iq/styles/tokens.css";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-canvas: var(--canvas);
+  --color-grid: var(--border-grid);
+  --color-brand: var(--button-primary-bg-default);
+  --color-focus: var(--focus-ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--canvas);
+  color: #ffffff;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--button-primary-bg-default) 40%, transparent);
+}
+
+/* Shiki output */
+.shiki {
+  background: transparent !important;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.shiki code {
+  counter-reset: line;
 }
