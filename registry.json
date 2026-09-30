@@ -84,6 +84,7 @@
           "option-panel-width": "220px",
           "option-item-content": "#ffffffe6",
           "option-item-bg-hover": "#ffffff08",
+          "option-item-bg-selected": "#ffffff1a",
           "badge-radius-default": "2px",
           "badge-stroke-width": "1px",
           "badge-px-sm": "4px",
@@ -490,6 +491,67 @@
       "files": [
         {
           "path": "registry/iq/ui/form-field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "Radio options with label and description; selected, hover, pressed, focus and disabled states.",
+      "dependencies": [
+        "@radix-ui/react-radio-group"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "choice-field",
+      "type": "registry:ui",
+      "title": "Choice Field",
+      "description": "RadioGroupField and CheckboxGroupField: caption, options and helper with warning, error, disabled and read-only states.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/form-field",
+        "@iq/radio-group",
+        "@iq/checkbox"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/choice-field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "phone-field",
+      "type": "registry:ui",
+      "title": "Phone Field",
+      "description": "Phone number field with a searchable country picker (flag + dial code) and as-you-type formatting.",
+      "dependencies": [
+        "@radix-ui/react-popover",
+        "cmdk",
+        "libphonenumber-js"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/form-field",
+        "@iq/flag"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/phone-field.tsx",
           "type": "registry:ui"
         }
       ]

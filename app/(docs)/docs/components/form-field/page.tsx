@@ -7,6 +7,7 @@ import { Button } from "@/registry/iq/ui/button"
 import { CodeBlock } from "@/components/docs/code-block"
 import { ComponentPreview } from "@/components/docs/component-preview"
 import { FigmaMapping } from "@/components/docs/figma-mapping"
+import { ChoiceFieldMatrix } from "@/components/docs/choice-field-matrix"
 import { FormFieldMatrix, FormFieldTypes } from "@/components/docs/form-field-matrix"
 import { PropsTable } from "@/components/docs/props-table"
 import { Callout, Code, H2, H3, P, PageHeader, UL } from "@/components/docs/typography"
@@ -107,6 +108,28 @@ export default function FormFieldDocsPage() {
       </P>
       <FormFieldMatrix />
 
+      <H2>Radio group and Checkbox group</H2>
+      <P>
+        <Code>RadioGroupField</Code> (one choice) and <Code>CheckboxGroupField</Code> (any number) put
+        a caption above the options and the helper below. Warning and Error only change the helper;
+        Disabled and Read-only disable every option. Import them from{" "}
+        <Code>@/components/ui/choice-field</Code> (<Code>npx shadcn@latest add @iq/choice-field</Code>).
+      </P>
+      <ComponentPreview name="choice-field-demo" align="start" />
+      <H3>Radio group states</H3>
+      <ChoiceFieldMatrix type="radio" />
+      <H3>Checkbox group states</H3>
+      <ChoiceFieldMatrix type="checkbox" />
+
+      <H2>Phone</H2>
+      <P>
+        <Code>PhoneField</Code> combines a country picker (flag and dial code) with the number, formatted
+        as you type. Open the picker to search by name, code or dial code; Suggested countries stay on
+        top. <Code>onValueChange</Code> returns the country, the formatted number, the E.164 value and
+        whether it’s valid. Add it with <Code>npx shadcn@latest add @iq/phone-field</Code>.
+      </P>
+      <ComponentPreview name="phone-field-demo" />
+
       <H2>Custom controls</H2>
       <P>
         <Code>FormField</Code> is the frame by itself. Put <Code>FieldInput</Code>,{" "}
@@ -170,6 +193,10 @@ export default function FormFieldDocsPage() {
           ["Show currency", "CurrencyField (prefix)"],
           ["_Form Field / Stepper", "CurrencyField stepper"],
           ["Multiline + Expandable", "TextareaField"],
+          ["Form Field / Radio group", "RadioGroupField"],
+          ["Form Field / Checkbox group", "CheckboxGroupField"],
+          ["Form Field / Phone (Show country)", "PhoneField"],
+          ["Phone · State = Active (country list)", "PhoneField picker open"],
         ]}
       />
 
@@ -182,9 +209,8 @@ export default function FormFieldDocsPage() {
       </UL>
 
       <Callout tone="warning">
-        <strong className="text-white">Coming next on this page:</strong> Radio group, Checkbox group
-        and Phone (batch 2), then Select, Autocomplete and Date (batch 3, which need the Option Panel
-        and Date Picker).
+        <strong className="text-white">Coming next on this page:</strong> Select, Autocomplete and
+        Date, which need the Option Panel and Date Picker.
       </Callout>
       <Callout tone="warning">
         <strong className="text-white">Figma notes for design:</strong>
@@ -194,6 +220,18 @@ export default function FormFieldDocsPage() {
             50% outer ring”. These should be aligned; code follows the Form Field component.
           </li>
           <li>The Password field has no “hidden” eye icon; code uses Carbon View--off.</li>
+          <li>
+            In Checkbox group, the checked Checkbox instances have their fill overridden to the canvas
+            color, so the black checkmark is invisible. Code uses the real Checkbox (green).
+          </li>
+          <li>
+            Radio group options use Radio (14px medium label), while Checkbox group uses Checkbox (16px
+            regular label, 40px rows). The two groups look different side by side.
+          </li>
+          <li>
+            Phone numbers are formatted and validated with libphonenumber-js. Regions without a phone
+            plan (EU, UN, CEFTA) are not in the country list.
+          </li>
           <li>
             Read-only background, the Active border and ring, and the icon and handle opacities are
             raw values. They’re named in code as <Code>--form-field-*</Code>.

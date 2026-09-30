@@ -86,6 +86,7 @@
   --option-panel-width: 220px;
   --option-item-content: #ffffffe6;
   --option-item-bg-hover: #ffffff08;
+  --option-item-bg-selected: #ffffff1a;
   /* Badge */
   --badge-radius-default: 2px;
   --badge-stroke-width: 1px;

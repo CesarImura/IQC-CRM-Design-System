@@ -79,7 +79,7 @@ function ViewOffIcon() {
  * FormField (root), control frame, helper
  * -----------------------------------------------------------------------------------------------*/
 
-type FormFieldProps = Omit<React.ComponentProps<"div">, "children"> & {
+type FormFieldProps = Omit<React.ComponentProps<"div">, "children" | "prefix"> & {
   /** Caption shown inside the control, uppercase. */
   label: React.ReactNode
   /** Text under the control. Its tone follows `status`. */
@@ -102,6 +102,8 @@ type FormFieldProps = Omit<React.ComponentProps<"div">, "children"> & {
   open?: boolean
   /** Forces an interaction state for documentation and visual tests. Leave unset in apps. */
   visualState?: "hover" | "focus" | "active"
+  /** Wraps the control frame, e.g. in a popover anchor so an overlay lines up with it. */
+  wrapControl?: (frame: React.ReactElement) => React.ReactElement
   /** The actual control: <FieldInput />, <FieldTextarea /> or a custom element using useField(). */
   children: React.ReactNode
 }
@@ -146,6 +148,7 @@ function FormField({
   aside,
   open,
   visualState,
+  wrapControl,
   className,
   children,
   ...props
@@ -164,9 +167,7 @@ function FormField({
         ? "active"
         : (interaction ?? undefined)
 
-  return (
-    <FieldContext.Provider value={{ id, helperId: helper ? helperId : "", size, status, disabled, readOnly, required }}>
-      <div data-slot="form-field" className={cn("flex w-full flex-col gap-(--form-field-gap)", className)} {...props}>
+  const frame = (
         <div
           ref={frameRef}
           data-slot="form-field-control"
@@ -234,17 +235,24 @@ function FormField({
           )}
           {aside}
         </div>
+  )
+
+  return (
+    <FieldContext.Provider value={{ id, helperId: helper ? helperId : "", size, status, disabled, readOnly, required }}>
+      <div data-slot="form-field" className={cn("flex w-full flex-col gap-(--form-field-gap)", className)} {...props}>
+        {wrapControl ? wrapControl(frame) : frame}
         {helper && (
-          <HelperContent id={helperId} status={status} disabled={disabled}>
+          <FieldHelper id={helperId} status={status} disabled={disabled}>
             {helper}
-          </HelperContent>
+          </FieldHelper>
         )}
       </div>
     </FieldContext.Provider>
   )
 }
 
-function HelperContent({
+/** Helper text under a field (Figma _Form Field / Helper). Tone follows status; disabled greys it. */
+function FieldHelper({
   id,
   status,
   disabled,
@@ -535,5 +543,15 @@ function CurrencyField(props: CurrencyFieldProps) {
   )
 }
 
-export { FormField, FieldInput, FieldTextarea, TextField, PasswordField, TextareaField, CurrencyField, useField }
+export {
+  FormField,
+  FieldInput,
+  FieldTextarea,
+  FieldHelper,
+  TextField,
+  PasswordField,
+  TextareaField,
+  CurrencyField,
+  useField,
+}
 export type { FormFieldProps, TextFieldProps, TextareaFieldProps, CurrencyFieldProps, FieldSize, FieldStatus }

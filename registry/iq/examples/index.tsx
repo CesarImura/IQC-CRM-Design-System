@@ -1,5 +1,8 @@
 import type { ComponentType } from "react"
 
+import ChoiceFieldDemo from "./choice-field-demo"
+import PhoneFieldDemo from "./phone-field-demo"
+import RadioGroupDemo from "./radio-group-demo"
 import FormFieldDemo from "./form-field-demo"
 import FormFieldSizes from "./form-field-sizes"
 import FormFieldStatus from "./form-field-status"
@@ -51,6 +54,9 @@ import StatCardTones from "./stat-card-tones"
 
 // Each key must match a file name in this folder: the docs read the source from disk.
 export const examples = {
+  "choice-field-demo": ChoiceFieldDemo,
+  "phone-field-demo": PhoneFieldDemo,
+  "radio-group-demo": RadioGroupDemo,
   "form-field-demo": FormFieldDemo,
   "form-field-sizes": FormFieldSizes,
   "form-field-status": FormFieldStatus,

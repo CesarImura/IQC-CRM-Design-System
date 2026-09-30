@@ -16,7 +16,9 @@ export default function InstallationPage() {
 
       <H2>1. Initialize shadcn</H2>
       <P>
-        Skip this step if your project already has a <Code>components.json</Code>.
+        Skip this step if your project already has a <Code>components.json</Code>. When asked for the
+        component library, choose <strong className="text-white">Radix</strong>: the IQ components are
+        built on Radix UI, like the CRM.
       </P>
       <CodeBlock lang="bash" code="npx shadcn@latest init" />
 
