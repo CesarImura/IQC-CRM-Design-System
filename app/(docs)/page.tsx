@@ -78,8 +78,9 @@ export default function IntroductionPage() {
       <H2>Status</H2>
       <P>
         Available now: Badge, Breadcrumb, Button, Checkbox, Data Table, Flag, Form Field (Input, Password, Textarea, Currency,
-        Phone, Radio group, Checkbox group), Pagination, Pill, Radio Group, Stat Card, Status Dot and Value Slot. Next up: Select,
-        Autocomplete and Date (with the Option Panel and Date Picker), then the Toolbar pieces and the charts.
+        Phone, Radio group, Checkbox group), Line Chart, Pagination, Pill, Radio Group, Skeleton, Stat Card, Status Dot, Tabs (Pill) and Value
+        Slot. Next up: Select, Autocomplete and Date (with the Option Panel and Date Picker), the Toolbar pieces, and the
+        other charts.
       </P>
     </>
   )

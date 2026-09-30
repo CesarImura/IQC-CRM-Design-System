@@ -146,6 +146,35 @@
   --chart-baseline: #ffffff4d;
   --chart-split-lead: #12f0b4;
   --chart-split-trail: #d73a3c;
+  --chart-series-1: #12f0b4;
+  --chart-series-2: #fde05b;
+  --chart-series-3: #ffa07e;
+  --chart-series-4: #b071fa;
+  --chart-series-5: #bff271;
+  --chart-series-6: #7486fa;
+  --chart-series-7: #fdd1e5;
+  --chart-series-8: #414d4a;
+  --chart-line-width: 2px;
+  --chart-area-opacity: 0.1;
+  --chart-gridline: #ffffff1a;
+  --chart-axis-line: #ffffff26;
+  --chart-axis-tick: #ffffff1a;
+  --chart-axis-label: #ffffff80;
+  --chart-point-fill: #0d100f;
+  --chart-point-size: 13px;
+  --chart-tooltip-bg: #0d100f;
+  --chart-tooltip-radius: 4px;
+  --chart-tooltip-date: #ffffffcc;
+  --chart-tooltip-label: #ffffff52;
+  --chart-tooltip-value: #ffffffcc;
+  --chart-legend-label: #ffffff52;
+  --chart-card-border: #25282780;
+  --chart-card-radius: 4px;
+  --chart-padding: 24px;
+  --chart-title: #ffffff80;
+  --chart-value: #ffffff;
+  --chart-status-error-bg: #d73a3c0f;
+  --chart-status-error-border: #d73a3c14;
   /* Status Dot */
   --status-dot-neutral: #ffffff33;
   --status-dot-positive: #12f0b4;
@@ -256,6 +285,19 @@
   --form-field-divider: #ffffff14;
   --form-field-icon: #ffffff80;
   --form-field-resize-handle: #ffffff1a;
+  /* Tabs */
+  --tabs-pill-track-bg: #121514;
+  --tabs-pill-track-border: #ffffff14;
+  --tabs-pill-track-padding: 4px;
+  --tabs-pill-gap: 4px;
+  --tabs-pill-radius: 2px;
+  --tabs-pill-item-px: 12px;
+  --tabs-pill-item-py: 6px;
+  --tabs-pill-item-gap: 8px;
+  --tabs-pill-item-bg-selected: #191c1b;
+  --tabs-pill-item-bg-selected-hover: #1e2120;
+  --tabs-pill-item-bg-hover: #141716;
+  --tabs-pill-item-content-hover: #ffffffcc;
   /* Skeleton */
   --skeleton-bone: #ffffff14;
   --skeleton-bone-pulse: #ffffff29;

@@ -12,6 +12,10 @@ import CheckboxStates from "./checkbox-states"
 import DataTableCompact from "./data-table-compact"
 import DataTableDemo from "./data-table-demo"
 import DataTableStates from "./data-table-states"
+import LineChartDemo from "./line-chart-demo"
+import LineChartSizes from "./line-chart-sizes"
+import LineChartStates from "./line-chart-states"
+import LineChartTypes from "./line-chart-types"
 import PaginationDemo from "./pagination-demo"
 import PaginationLayouts from "./pagination-layouts"
 import PaginationPositions from "./pagination-positions"
@@ -30,6 +34,7 @@ import SkeletonCard from "./skeleton-card"
 import SkeletonDemo from "./skeleton-demo"
 import SkeletonRecipes from "./skeleton-recipes"
 import StatusDotDemo from "./status-dot-demo"
+import TabsPillDemo from "./tabs-pill-demo"
 import StatusDotMarkOnly from "./status-dot-mark-only"
 import ValueSlotDemo from "./value-slot-demo"
 import BreadcrumbDemo from "./breadcrumb-demo"
@@ -88,6 +93,11 @@ export const examples = {
   "skeleton-demo": SkeletonDemo,
   "skeleton-recipes": SkeletonRecipes,
   "status-dot-demo": StatusDotDemo,
+  "tabs-pill-demo": TabsPillDemo,
+  "line-chart-demo": LineChartDemo,
+  "line-chart-sizes": LineChartSizes,
+  "line-chart-states": LineChartStates,
+  "line-chart-types": LineChartTypes,
   "status-dot-mark-only": StatusDotMarkOnly,
   "value-slot-demo": ValueSlotDemo,
   "breadcrumb-demo": BreadcrumbDemo,
