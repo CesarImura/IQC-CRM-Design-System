@@ -87,6 +87,25 @@
   --option-item-content: #ffffffe6;
   --option-item-bg-hover: #ffffff08;
   --option-item-bg-selected: #ffffff1a;
+  --option-panel-gap: 12px;
+  --option-panel-blur: 100px;
+  --option-item-gap: 4px;
+  --option-item-secondary: #ffffff99;
+  --option-item-label: #ffffff80;
+  --option-item-warning: #ffc045;
+  --option-item-danger: #fd9581;
+  --option-item-bg-hover-warning: #ffc0450d;
+  --option-item-bg-hover-danger: #d73a3c0d;
+  --option-item-match-highlight: #ffc045;
+  --option-item-match-content: #000000;
+  --option-item-checkbox-border: #ffffff66;
+  /* Combobox */
+  --combobox-value: #ffffffb3;
+  --combobox-value-active: #ffffffcc;
+  --combobox-label: #ffffff;
+  --combobox-label-gap: 4px;
+  --combobox-panel-offset: 8px;
+  --combobox-blur: 16px;
   /* Badge */
   --badge-radius-default: 2px;
   --badge-stroke-width: 1px;

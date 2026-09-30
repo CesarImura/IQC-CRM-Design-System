@@ -85,6 +85,24 @@
           "option-item-content": "#ffffffe6",
           "option-item-bg-hover": "#ffffff08",
           "option-item-bg-selected": "#ffffff1a",
+          "option-panel-gap": "12px",
+          "option-panel-blur": "100px",
+          "option-item-gap": "4px",
+          "option-item-secondary": "#ffffff99",
+          "option-item-label": "#ffffff80",
+          "option-item-warning": "#ffc045",
+          "option-item-danger": "#fd9581",
+          "option-item-bg-hover-warning": "#ffc0450d",
+          "option-item-bg-hover-danger": "#d73a3c0d",
+          "option-item-match-highlight": "#ffc045",
+          "option-item-match-content": "#000000",
+          "option-item-checkbox-border": "#ffffff66",
+          "combobox-value": "#ffffffb3",
+          "combobox-value-active": "#ffffffcc",
+          "combobox-label": "#ffffff",
+          "combobox-label-gap": "4px",
+          "combobox-panel-offset": "8px",
+          "combobox-blur": "16px",
           "badge-radius-default": "2px",
           "badge-stroke-width": "1px",
           "badge-px-sm": "4px",
@@ -707,6 +725,48 @@
       "files": [
         {
           "path": "registry/iq/ui/phone-field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "option-panel",
+      "type": "registry:ui",
+      "title": "Option Panel",
+      "description": "Option list with search, group labels, tones, checkmark/checkbox selection and empty/loading/error states (cmdk).",
+      "dependencies": [
+        "cmdk",
+        "@carbon/icons-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/option-panel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Select (single or multiple) and Autocomplete built on the Option Panel.",
+      "dependencies": [
+        "cmdk",
+        "@radix-ui/react-popover",
+        "@carbon/icons-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/option-panel"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/combobox.tsx",
           "type": "registry:ui"
         }
       ]

@@ -1,6 +1,13 @@
 import type { ComponentType } from "react"
 
 import ChoiceFieldDemo from "./choice-field-demo"
+import ComboboxAutocompleteDemo from "./combobox-autocomplete-demo"
+import ComboboxSelectDemo from "./combobox-select-demo"
+import ComboboxSelectMultiple from "./combobox-select-multiple"
+import ComboboxSizes from "./combobox-sizes"
+import ComboboxStates from "./combobox-states"
+import OptionPanelDemo from "./option-panel-demo"
+import OptionPanelStates from "./option-panel-states"
 import PhoneFieldDemo from "./phone-field-demo"
 import RadioGroupDemo from "./radio-group-demo"
 import FormFieldDemo from "./form-field-demo"
@@ -102,6 +109,13 @@ export const examples = {
   "skeleton-demo": SkeletonDemo,
   "skeleton-recipes": SkeletonRecipes,
   "status-dot-demo": StatusDotDemo,
+  "combobox-autocomplete-demo": ComboboxAutocompleteDemo,
+  "combobox-select-demo": ComboboxSelectDemo,
+  "combobox-select-multiple": ComboboxSelectMultiple,
+  "combobox-sizes": ComboboxSizes,
+  "combobox-states": ComboboxStates,
+  "option-panel-demo": OptionPanelDemo,
+  "option-panel-states": OptionPanelStates,
   "tabs-pill-demo": TabsPillDemo,
   "line-chart-colors": LineChartColors,
   "line-chart-demo": LineChartDemo,
