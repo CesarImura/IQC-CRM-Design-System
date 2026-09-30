@@ -63,6 +63,9 @@
           "button-danger-bg-subtle-pressed": "#d73a3c29",
           "content-disabled": "#ffffff52",
           "content-muted": "#ffffff80",
+          "content-default": "#ffffff",
+          "danger": "#ff4951",
+          "warning": "#ffc045",
           "breadcrumb-text-link-default": "#ffffff80",
           "breadcrumb-text-link-hover": "#ffffff",
           "breadcrumb-text-current": "#ffffffcc",
@@ -218,7 +221,28 @@
           "pagination-item-radius": "2px",
           "pagination-item-bg-hover": "#141716",
           "pagination-item-bg-current": "#0d221c",
-          "pagination-item-content-current": "#12f0b4"
+          "pagination-item-content-current": "#12f0b4",
+          "form-field-radius": "2px",
+          "form-field-px": "12px",
+          "form-field-py-sm": "8px",
+          "form-field-py-md": "10px",
+          "form-field-gap": "8px",
+          "form-field-label-tracking": "0.96px",
+          "form-field-bg": "#ffffff00",
+          "form-field-bg-hover": "#ffffff05",
+          "form-field-bg-focus": "#ffffff0a",
+          "form-field-bg-readonly": "#ffffff0a",
+          "form-field-border": "#ffffff14",
+          "form-field-border-hover": "#ffffff1f",
+          "form-field-border-disabled": "#ffffff0a",
+          "form-field-border-active": "#ffffff33",
+          "form-field-ring-active": "#ffffff1f",
+          "form-field-error-border": "#ff4951",
+          "form-field-warning-border": "#ffc045",
+          "focus-warning": "#ffc04580",
+          "form-field-divider": "#ffffff14",
+          "form-field-icon": "#ffffff80",
+          "form-field-resize-handle": "#ffffff1a"
         }
       }
     },
@@ -447,6 +471,25 @@
       "files": [
         {
           "path": "registry/iq/ui/flag.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "form-field",
+      "type": "registry:ui",
+      "title": "Form Field",
+      "description": "Stacked form fields with the label inside the control: TextField, PasswordField, TextareaField and CurrencyField, plus the FormField frame for custom controls. Sizes sm/md; warning, error, disabled and read-only states; helper text.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/form-field.tsx",
           "type": "registry:ui"
         }
       ]

@@ -1,5 +1,8 @@
 import type { ComponentType } from "react"
 
+import FormFieldDemo from "./form-field-demo"
+import FormFieldSizes from "./form-field-sizes"
+import FormFieldStatus from "./form-field-status"
 import CheckboxDemo from "./checkbox-demo"
 import CheckboxGroup from "./checkbox-group"
 import CheckboxStates from "./checkbox-states"
@@ -48,6 +51,9 @@ import StatCardTones from "./stat-card-tones"
 
 // Each key must match a file name in this folder: the docs read the source from disk.
 export const examples = {
+  "form-field-demo": FormFieldDemo,
+  "form-field-sizes": FormFieldSizes,
+  "form-field-status": FormFieldStatus,
   "checkbox-demo": CheckboxDemo,
   "checkbox-group": CheckboxGroup,
   "checkbox-states": CheckboxStates,

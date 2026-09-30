@@ -29,6 +29,7 @@ export const nav: NavSection[] = [
       { title: "Checkbox", href: "/docs/components/checkbox" },
       { title: "Data Table", href: "/docs/components/data-table" },
       { title: "Flag", href: "/docs/components/flag" },
+      { title: "Form Field", href: "/docs/components/form-field" },
       { title: "Pagination", href: "/docs/components/pagination" },
       { title: "Pill", href: "/docs/components/pill" },
       { title: "Stat Card", href: "/docs/components/stat-card" },
