@@ -175,6 +175,16 @@
   --chart-value: #ffffff;
   --chart-status-error-bg: #d73a3c0f;
   --chart-status-error-border: #d73a3c14;
+  --chart-ring-size: 140px;
+  --chart-ring-thickness: 9.8px;
+  --chart-ring-gap: 3px;
+  --chart-ring-track: #ffffff0d;
+  --chart-ring-stripe: #ffffff1a;
+  --chart-ring-positive: #12f0b4;
+  --chart-ring-warning: #fde05b;
+  --chart-ring-negative: #d73a3c;
+  --chart-ring-value: #ffffff;
+  --chart-ring-label: #ffffff;
   /* Status Dot */
   --status-dot-neutral: #ffffff33;
   --status-dot-positive: #12f0b4;

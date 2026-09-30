@@ -170,6 +170,16 @@
           "chart-value": "#ffffff",
           "chart-status-error-bg": "#d73a3c0f",
           "chart-status-error-border": "#d73a3c14",
+          "chart-ring-size": "140px",
+          "chart-ring-thickness": "9.8px",
+          "chart-ring-gap": "3px",
+          "chart-ring-track": "#ffffff0d",
+          "chart-ring-stripe": "#ffffff1a",
+          "chart-ring-positive": "#12f0b4",
+          "chart-ring-warning": "#fde05b",
+          "chart-ring-negative": "#d73a3c",
+          "chart-ring-value": "#ffffff",
+          "chart-ring-label": "#ffffff",
           "status-dot-neutral": "#ffffff33",
           "status-dot-positive": "#12f0b4",
           "status-dot-negative": "#fd9581",
@@ -493,10 +503,10 @@
       ]
     },
     {
-      "name": "line-chart",
+      "name": "chart",
       "type": "registry:ui",
-      "title": "Line Chart",
-      "description": "Line chart card: Single, Comparison or Multi series; sm, md, lg; hover tooltip, empty and error states.",
+      "title": "Chart parts",
+      "description": "Shared chart card, header and empty/error body.",
       "registryDependencies": [
         "utils",
         "@iq/tokens",
@@ -505,7 +515,42 @@
       ],
       "files": [
         {
+          "path": "registry/iq/ui/chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "line-chart",
+      "type": "registry:ui",
+      "title": "Line Chart",
+      "description": "Line chart card: Single, Comparison or Multi series; sm, md, lg; hover tooltip, empty and error states.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/badge",
+        "@iq/chart"
+      ],
+      "files": [
+        {
           "path": "registry/iq/ui/line-chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "ring-chart",
+      "type": "registry:ui",
+      "title": "Ring Chart",
+      "description": "Progress rings (Figma Meter) with positive, warning and negative tones.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/chart"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/ring-chart.tsx",
           "type": "registry:ui"
         }
       ]

@@ -30,6 +30,10 @@ import PillClickable from "./pill-clickable"
 import PillColors from "./pill-colors"
 import PillDisabled from "./pill-disabled"
 import PillSizes from "./pill-sizes"
+import RingChartDemo from "./ring-chart-demo"
+import RingChartItems from "./ring-chart-items"
+import RingChartStates from "./ring-chart-states"
+import RingChartValues from "./ring-chart-values"
 import SkeletonBones from "./skeleton-bones"
 import SkeletonCard from "./skeleton-card"
 import SkeletonDemo from "./skeleton-demo"
@@ -89,6 +93,10 @@ export const examples = {
   "pill-colors": PillColors,
   "pill-disabled": PillDisabled,
   "pill-sizes": PillSizes,
+  "ring-chart-demo": RingChartDemo,
+  "ring-chart-items": RingChartItems,
+  "ring-chart-states": RingChartStates,
+  "ring-chart-values": RingChartValues,
   "skeleton-bones": SkeletonBones,
   "skeleton-card": SkeletonCard,
   "skeleton-demo": SkeletonDemo,
