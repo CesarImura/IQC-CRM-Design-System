@@ -14,6 +14,7 @@
           "border-grid": "#1e2120",
           "form-field-surface-transparent": "#ffffff00",
           "surface-raised": "#121514",
+          "border-panel": "#2b2828",
           "focus-ring": "#76ffda",
           "focus-danger": "#ff495180",
           "focus-stroke-on-fill": "#000000",
@@ -112,6 +113,11 @@
           "search-bar-cell-px": "8px",
           "search-bar-error-border-width": "2px",
           "search-bar-border-disabled": "#ffffff29",
+          "selection-bar-px": "24px",
+          "selection-bar-py": "16px",
+          "selection-bar-gap": "12px",
+          "selection-bar-label": "#ffffff",
+          "selection-bar-motion": "180ms",
           "dropdown-panel-width": "303px",
           "dropdown-panel-width-icon": "242px",
           "badge-radius-default": "2px",
@@ -934,6 +940,45 @@
       "files": [
         {
           "path": "registry/iq/ui/search-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "selection-bar",
+      "type": "registry:ui",
+      "title": "Selection Bar",
+      "description": "Count, bulk actions and Clear shown while rows are selected; slides in and out.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/button"
+      ],
+      "css": {
+        "@keyframes selection-bar-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(8px)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          }
+        },
+        "@keyframes selection-bar-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "translateY(0)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(8px)"
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "registry/iq/ui/selection-bar.tsx",
           "type": "registry:ui"
         }
       ]

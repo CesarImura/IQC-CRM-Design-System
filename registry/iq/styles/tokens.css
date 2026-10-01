@@ -6,6 +6,7 @@
   --border-grid: #1e2120;
   --form-field-surface-transparent: #ffffff00;
   --surface-raised: #121514;
+  --border-panel: #2b2828;
   /* Focus */
   --focus-ring: #76ffda;
   --focus-danger: #ff495180;
@@ -118,6 +119,12 @@
   --search-bar-cell-px: 8px;
   --search-bar-error-border-width: 2px;
   --search-bar-border-disabled: #ffffff29;
+  /* Selection Bar */
+  --selection-bar-px: 24px;
+  --selection-bar-py: 16px;
+  --selection-bar-gap: 12px;
+  --selection-bar-label: #ffffff;
+  --selection-bar-motion: 180ms;
   /* Dropdown */
   --dropdown-panel-width: 303px;
   --dropdown-panel-width-icon: 242px;

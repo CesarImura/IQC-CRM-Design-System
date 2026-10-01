@@ -42,6 +42,7 @@ export const nav: NavSection[] = [
       { title: "Radio Group", href: "/docs/components/radio-group" },
       { title: "Ring Chart", href: "/docs/components/ring-chart" },
       { title: "Search Bar", href: "/docs/components/search-bar" },
+      { title: "Selection Bar", href: "/docs/components/selection-bar" },
       { title: "Skeleton", href: "/docs/components/skeleton" },
       { title: "Stat Card", href: "/docs/components/stat-card" },
       { title: "Status Dot", href: "/docs/components/status-dot" },

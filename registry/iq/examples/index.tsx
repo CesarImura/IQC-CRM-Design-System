@@ -55,6 +55,8 @@ import DropdownDemo from "./dropdown-demo"
 import LabelBlockDemo from "./label-block-demo"
 import SearchBarDemo from "./search-bar-demo"
 import SearchBarStates from "./search-bar-states"
+import SelectionBarDemo from "./selection-bar-demo"
+import SelectionBarTable from "./selection-bar-table"
 import TabsLineDemo from "./tabs-line-demo"
 import TooltipDemo from "./tooltip-demo"
 import TriggerDemo from "./trigger-demo"
@@ -131,6 +133,8 @@ export const examples = {
   "label-block-demo": LabelBlockDemo,
   "search-bar-demo": SearchBarDemo,
   "search-bar-states": SearchBarStates,
+  "selection-bar-demo": SelectionBarDemo,
+  "selection-bar-table": SelectionBarTable,
   "tabs-line-demo": TabsLineDemo,
   "tooltip-demo": TooltipDemo,
   "trigger-demo": TriggerDemo,
