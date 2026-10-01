@@ -301,6 +301,34 @@
           "form-field-divider": "#ffffff14",
           "form-field-icon": "#ffffff80",
           "form-field-resize-handle": "#ffffff1a",
+          "toast-surface": "#1e2120",
+          "toast-border": "#ffffff0d",
+          "toast-stroke": "1px",
+          "toast-radius": "4px",
+          "toast-radius-icon": "2px",
+          "toast-padding-x": "16px",
+          "toast-padding-inset": "12px",
+          "toast-gap": "16px",
+          "toast-gap-tight": "8px",
+          "toast-font-title": "16px",
+          "toast-font-description": "14px",
+          "toast-content-title": "#ffffff",
+          "toast-content-body": "#ffffffb2",
+          "toast-content-description": "#ffffff80",
+          "toast-opacity-leading": "0.7",
+          "toast-opacity-icon": "0.6",
+          "toast-icon-well-neutral": "#ffffff0d",
+          "toast-icon-well-success": "#12f0b41a",
+          "toast-icon-well-warning": "#ffc0451a",
+          "toast-icon-well-error": "#d73a3c1a",
+          "toast-icon-success": "#12f0b4",
+          "toast-icon-warning": "#ffc045",
+          "toast-icon-error": "#ff4951",
+          "toast-progress-neutral": "#ffffff",
+          "toast-progress-success": "#12f0b4",
+          "toast-progress-warning": "#ffc045",
+          "toast-progress-error": "#ff4951",
+          "toast-width": "409px",
           "tabs-pill-track-bg": "#121514",
           "tabs-pill-track-border": "#ffffff14",
           "tabs-pill-track-padding": "4px",
@@ -496,6 +524,44 @@
       "files": [
         {
           "path": "registry/iq/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Toasts in six tones with progress, built on sonner. Mount <Toaster /> once and call toast.success(...).",
+      "dependencies": [
+        "sonner"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/button"
+      ],
+      "css": {
+        "@keyframes toast-progress": {
+          "from": {
+            "transform": "scaleX(1)"
+          },
+          "to": {
+            "transform": "scaleX(0)"
+          }
+        },
+        "@keyframes toast-indeterminate": {
+          "0%": {
+            "transform": "translateX(-100%)"
+          },
+          "100%": {
+            "transform": "translateX(250%)"
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "registry/iq/ui/toast.tsx",
           "type": "registry:ui"
         }
       ]

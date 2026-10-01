@@ -3,6 +3,7 @@ import { Launch } from "@carbon/icons-react"
 
 import { FIGMA_FILE } from "@/lib/docs"
 import { Button } from "@/registry/iq/ui/button"
+import { Toaster } from "@/registry/iq/ui/toast"
 import { MobileNav } from "@/components/docs/mobile-nav"
 import { SidebarNav } from "@/components/docs/sidebar"
 
@@ -45,6 +46,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           <div className="mx-auto max-w-4xl">{children}</div>
         </main>
       </div>
+      <Toaster />
     </div>
   )
 }

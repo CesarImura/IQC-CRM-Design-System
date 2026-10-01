@@ -46,6 +46,9 @@ import SkeletonCard from "./skeleton-card"
 import SkeletonDemo from "./skeleton-demo"
 import SkeletonRecipes from "./skeleton-recipes"
 import StatusDotDemo from "./status-dot-demo"
+import ToastDemo from "./toast-demo"
+import ToastOptionsExample from "./toast-options"
+import ToastTones from "./toast-tones"
 import TabsPillDemo from "./tabs-pill-demo"
 import StatusDotMarkOnly from "./status-dot-mark-only"
 import ValueSlotDemo from "./value-slot-demo"
@@ -109,6 +112,9 @@ export const examples = {
   "skeleton-demo": SkeletonDemo,
   "skeleton-recipes": SkeletonRecipes,
   "status-dot-demo": StatusDotDemo,
+  "toast-demo": ToastDemo,
+  "toast-options": ToastOptionsExample,
+  "toast-tones": ToastTones,
   "combobox-autocomplete-demo": ComboboxAutocompleteDemo,
   "combobox-select-demo": ComboboxSelectDemo,
   "combobox-select-multiple": ComboboxSelectMultiple,

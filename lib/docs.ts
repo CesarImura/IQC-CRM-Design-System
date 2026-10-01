@@ -40,6 +40,7 @@ export const nav: NavSection[] = [
       { title: "Stat Card", href: "/docs/components/stat-card" },
       { title: "Status Dot", href: "/docs/components/status-dot" },
       { title: "Tabs", href: "/docs/components/tabs" },
+      { title: "Toast", href: "/docs/components/toast" },
       { title: "Value Slot", href: "/docs/components/value-slot" },
     ],
   },
