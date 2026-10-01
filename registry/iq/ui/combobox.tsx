@@ -3,7 +3,7 @@
 import * as React from "react"
 import * as Popover from "@radix-ui/react-popover"
 import { Command } from "cmdk"
-import { ChevronDown, Search } from "@carbon/icons-react"
+import { Search } from "@carbon/icons-react"
 
 import { cn } from "@/lib/utils"
 import {
@@ -15,6 +15,7 @@ import {
   optionPanelClass,
   type OptionTone,
 } from "@/registry/iq/ui/option-panel"
+import { TriggerContent, TriggerErrorIcon, triggerClasses } from "@/registry/iq/ui/trigger"
 
 // Figma: IQ Capital CRM Design System → Combo Box → Combo Box / Select (1542:24942) and
 // Combo Box / Autocomplete (1542:4716): State Default | Focus | Error | Disabled × Open × Hover × Size Small | Medium.
@@ -35,45 +36,9 @@ type ComboboxOption = {
 
 type VisualState = "hover" | "focus"
 
-// Figma "Error Icon" (filled circle with a slash), same path as Form Field.
-function ErrorIcon() {
-  return (
-    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" className="text-(color:--button-danger-content-default)">
-      <path d="M7.99999 0.999988C7.07914 0.994279 6.16632 1.17144 5.31446 1.5212C4.46261 1.87096 3.68866 2.38636 3.03751 3.03751C2.38636 3.68866 1.87096 4.46261 1.5212 5.31446C1.17144 6.16632 0.994279 7.07914 0.999988 7.99999C0.994279 8.92084 1.17144 9.83365 1.5212 10.6855C1.87096 11.5374 2.38636 12.3113 3.03751 12.9625C3.68866 13.6136 4.46261 14.129 5.31446 14.4788C6.16632 14.8285 7.07914 15.0057 7.99999 15C8.92084 15.0057 9.83365 14.8285 10.6855 14.4788C11.5374 14.129 12.3113 13.6136 12.9625 12.9625C13.6136 12.3113 14.129 11.5374 14.4788 10.6855C14.8285 9.83365 15.0057 8.92084 15 7.99999C15.0057 7.07914 14.8285 6.16632 14.4788 5.31446C14.129 4.46261 13.6136 3.68866 12.9625 3.03751C12.3113 2.38636 11.5374 1.87096 10.6855 1.5212C9.83365 1.17144 8.92084 0.994279 7.99999 0.999988ZM10.7224 11.5L4.49999 5.27784L5.27784 4.49999L11.5 10.7224L10.7224 11.5Z" />
-    </svg>
-  )
-}
-
 /* -------------------------------------------------------------------------------------------------
- * Trigger surface (Figma Trigger)
+ * Label
  * -----------------------------------------------------------------------------------------------*/
-
-const triggerSize: Record<ComboboxSize, string> = {
-  sm: "h-(--button-size-sm-height) px-(--button-size-sm-padding-x) text-sm leading-[21px]",
-  md: "h-(--button-size-md-height) px-(--button-size-md-padding-x) text-base leading-6",
-}
-
-function triggerClasses(size: ComboboxSize, error: boolean) {
-  return cn(
-    "group/trigger flex w-full min-w-0 items-center gap-(--button-spacing-gap) rounded-(--button-radius-control) border font-medium backdrop-blur-(--combobox-blur) outline-none",
-    "[&_svg]:size-4 [&_svg]:shrink-0",
-    triggerSize[size],
-    error
-      ? // Error: no fill, red border, red 3px ring, red text.
-        "border-(--form-field-error-border) bg-(--button-secondary-bg-disabled) text-(color:--button-danger-content-default) shadow-[0_0_0_var(--focus-spread)_var(--focus-danger)]"
-      : cn(
-          "border-(--button-secondary-border-default) bg-(--button-secondary-bg-default) text-(color:--button-neutral-content-default)",
-          // Hover
-          "hover:border-(--button-secondary-border-active) data-[visual=hover]:border-(--button-secondary-border-active)",
-          // Open (Figma Active), and Open + Hover
-          "data-[open=true]:border-(--button-secondary-border-active) data-[open=true]:bg-(--button-secondary-bg-hover)",
-          "data-[open=true]:hover:bg-(--button-secondary-bg-pressed) data-[open=true]:data-[visual=hover]:bg-(--button-secondary-bg-pressed)",
-          // Focus (keyboard)
-          "focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)] data-[visual=focus]:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]"
-        ),
-    "data-[disabled=true]:pointer-events-none data-[disabled=true]:border-(--button-secondary-border-disabled) data-[disabled=true]:bg-(--button-secondary-bg-disabled) data-[disabled=true]:text-(color:--button-neutral-content-disabled) data-[disabled=true]:shadow-none"
-  )
-}
 
 function ComboboxLabel({
   size,
@@ -178,6 +143,16 @@ type SelectBaseProps = {
   open?: boolean
   defaultOpen?: boolean
   onOpenChange?: (open: boolean) => void
+  /** full: the trigger fills its container (forms). auto: it hugs its content (Dropdown). */
+  width?: "full" | "auto"
+  /** Panel alignment to the trigger: start (left edge) or end (right edge). */
+  align?: "start" | "end"
+  /** Fixed panel width; defaults to the trigger's width. */
+  panelWidth?: number | string
+  /** Icon-only square trigger (Dropdown / Icon Only). `label` becomes its accessible name. */
+  iconOnly?: React.ReactNode
+  /** Hide the visible label (still used as the accessible name). */
+  hideLabel?: boolean
   /** Documentation only: force Hover or Focus, and draw the panel in place instead of a popover. */
   visualState?: VisualState
   inlinePanel?: boolean
@@ -234,6 +209,11 @@ function Select(props: SelectProps) {
     inlinePanel,
     className,
     name,
+    width = "full",
+    align = "start",
+    panelWidth,
+    iconOnly,
+    hideLabel,
   } = props
   const autoId = React.useId()
   const id = props.id ?? autoId
@@ -263,22 +243,10 @@ function Select(props: SelectProps) {
     }
   }
 
-  const trigger = (
-    <>
-      {icon && <span className="flex [&_svg]:size-4">{icon}</span>}
-      <span
-        className={cn(
-          "min-w-0 flex-1 truncate text-left",
-          !error && (open ? "text-(color:--combobox-value-active)" : "text-(color:--combobox-value)"),
-          error && (open ? "opacity-80" : "opacity-70"),
-          disabled && "text-(color:--button-neutral-content-disabled) opacity-100"
-        )}
-      >
-        {display ?? placeholder}
-      </span>
-      {error && !disabled && <ErrorIcon />}
-      <ChevronDown aria-hidden="true" className={cn(!disabled && "text-white")} />
-    </>
+  const trigger = iconOnly ? (
+    <span className={cn("flex", !disabled && "text-white")}>{iconOnly}</span>
+  ) : (
+    <TriggerContent icon={icon} placeholder={placeholder} value={display} open={open} error={error} disabled={disabled} fill={width === "full"} />
   )
 
   const panel = (
@@ -307,23 +275,29 @@ function Select(props: SelectProps) {
     "data-disabled": disabled,
     "data-visual": visualState,
     "aria-invalid": error || undefined,
+    "aria-label": iconOnly && typeof label === "string" ? label : undefined,
     disabled,
-    className: triggerClasses(size, error),
+    className: cn(triggerClasses(size, error, Boolean(iconOnly)), width === "full" && !iconOnly && "w-full justify-start"),
   }
+  const panelStyle = panelWidth !== undefined ? { width: panelWidth } : undefined
 
   return (
-    <div data-slot="combobox-select" data-size={size} className={cn("flex w-full flex-col gap-(--combobox-label-gap)", className)}>
-      {label && (
+    <div
+      data-slot="combobox-select"
+      data-size={size}
+      className={cn("flex flex-col gap-(--combobox-label-gap)", width === "full" ? "w-full" : "w-fit", align === "end" && width === "auto" && "items-end", className)}
+    >
+      {label && !hideLabel && !iconOnly && (
         <ComboboxLabel size={size} disabled={disabled} htmlFor={id}>
           {label}
         </ComboboxLabel>
       )}
       {inlinePanel ? (
-        <div className="flex flex-col gap-(--combobox-panel-offset)">
+        <div className={cn("flex flex-col gap-(--combobox-panel-offset)", align === "end" ? "items-end" : "items-start")}>
           <button type="button" {...triggerProps} tabIndex={-1}>
             {trigger}
           </button>
-          {open && panel}
+          {open && <div style={panelStyle ?? { width: "100%" }}>{panel}</div>}
         </div>
       ) : (
         <Popover.Root open={open} onOpenChange={(o) => { setOpen(o); if (!o) setQuery("") }}>
@@ -332,9 +306,10 @@ function Select(props: SelectProps) {
           </Popover.Trigger>
           <Popover.Portal>
             <Popover.Content
-              align="start"
+              align={align}
               sideOffset={8}
-              className="z-50 w-(--radix-popper-anchor-width) min-w-56 outline-none"
+              style={panelStyle}
+              className={cn("z-50 outline-none", !panelStyle && "w-(--radix-popper-anchor-width) min-w-56")}
             >
               {panel}
             </Popover.Content>
@@ -428,7 +403,7 @@ function Autocomplete({
       data-visual={visualState}
       className={cn(
         triggerClasses(size, error),
-        "cursor-text",
+        "w-full cursor-text justify-start",
         !error && "has-[input:focus-visible]:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]"
       )}
       onClick={() => inputRef.current?.focus()}
@@ -455,7 +430,7 @@ function Autocomplete({
           disabled && "text-(color:--button-neutral-content-disabled) placeholder:text-(color:--button-neutral-content-disabled)"
         )}
       />
-      {error && !disabled && <ErrorIcon />}
+      {error && !disabled && <TriggerErrorIcon />}
     </div>
   )
 
@@ -500,5 +475,24 @@ function Autocomplete({
   )
 }
 
-export { Select, Autocomplete }
-export type { SelectProps, AutocompleteProps, ComboboxOption, ComboboxSize }
+/* -------------------------------------------------------------------------------------------------
+ * Dropdown
+ * -----------------------------------------------------------------------------------------------*/
+
+// Figma: Dropdown (1541:7655) and Dropdown / Icon Only (1284:4339): the Trigger hugs its content and the
+// Option Panel opens at a fixed width, aligned to the trigger's left or right edge.
+type DropdownProps = SelectProps & { align?: "start" | "end" }
+
+/** Dropdown: a compact Select for toolbars and filters. Pass `iconOnly` for the square ⋮ version. */
+function Dropdown(props: DropdownProps) {
+  return (
+    <Select
+      width="auto"
+      panelWidth={props.iconOnly ? "var(--dropdown-panel-width-icon)" : "var(--dropdown-panel-width)"}
+      {...props}
+    />
+  )
+}
+
+export { Select, Autocomplete, Dropdown }
+export type { SelectProps, AutocompleteProps, DropdownProps, ComboboxOption, ComboboxSize }

@@ -66,6 +66,11 @@
   --content-default: #ffffff;
   --danger: #ff4951;
   --warning: #ffc045;
+  /* Label Block */
+  --label-block-label: #ffffffcc;
+  --label-block-description: #ffffff80;
+  --label-block-gap: 2px;
+  --label-block-control-gap: 4px;
   /* Breadcrumb */
   --breadcrumb-text-link-default: #ffffff80;
   --breadcrumb-text-link-hover: #ffffff;
@@ -106,6 +111,17 @@
   --combobox-label-gap: 4px;
   --combobox-panel-offset: 8px;
   --combobox-blur: 16px;
+  /* Trigger */
+  --trigger-value: #ffffffb3;
+  --trigger-value-active: #ffffffcc;
+  --trigger-blur: 16px;
+  /* Search Bar */
+  --search-bar-cell-px: 8px;
+  --search-bar-error-border-width: 2px;
+  --search-bar-border-disabled: #ffffff29;
+  /* Dropdown */
+  --dropdown-panel-width: 303px;
+  --dropdown-panel-width-icon: 242px;
   /* Badge */
   --badge-radius-default: 2px;
   --badge-stroke-width: 1px;
@@ -375,6 +391,50 @@
   --tabs-pill-item-bg-selected-hover: #1e2120;
   --tabs-pill-item-bg-hover: #141716;
   --tabs-pill-item-content-hover: #ffffffcc;
+  /* Tabs / Line */
+  --tabs-line-divider: #2b2828;
+  --tabs-line-bar-px: 24px;
+  --tabs-line-gap: 10px;
+  --tabs-line-item-px: 8px;
+  --tabs-line-item-py: 16px;
+  --tabs-line-stroke: 1px;
+  --tabs-line-stroke-hover: 2px;
+  --tabs-line-hover-bg: #ffffff0d;
+  --tabs-line-label: #ffffff;
+  --tabs-line-label-inactive: #ffffff66;
+  --tabs-line-label-hover: #ffffffcc;
+  --tabs-line-tone-neutral: #ffffff80;
+  --tabs-line-tone-accent: #12f0b4;
+  --tabs-line-tone-danger: #ff4951;
+  --tabs-line-tone-warning: #ffc045;
+  --tabs-line-tone-info: #86b5ff;
+  /* Calendar */
+  --calendar-popup-surface: #141716;
+  --calendar-popup-border: #2b2828;
+  --calendar-popup-padding: 4px;
+  --calendar-popup-gap: 8px;
+  --calendar-popup-blur: 16px;
+  --calendar-radius-control: 2px;
+  --calendar-grid-gap: 2px;
+  --calendar-day-size: 32px;
+  --calendar-day-hit-area: 44px;
+  --calendar-month-content: #ffffffb8;
+  --calendar-weekday-content: #ffffff52;
+  --calendar-day-content-default: #ffffffb8;
+  --calendar-day-content-active: #ffffff;
+  --calendar-day-content-muted: #ffffff52;
+  --calendar-day-content-on-selected: #000000;
+  --calendar-day-bg-hover: #191c1b;
+  --calendar-day-bg-pressed: #1e2120;
+  --calendar-day-bg-today: #141716;
+  --calendar-day-bg-today-hover: #191c1b;
+  --calendar-day-bg-today-pressed: #1e2120;
+  --calendar-day-bg-selected: #12f0b4;
+  --calendar-day-bg-selected-hover: #36f3c0;
+  --calendar-day-bg-selected-pressed: #0cd6a1;
+  --calendar-day-bg-range: #12f0b414;
+  --calendar-day-bg-range-hover: #12f0b429;
+  --calendar-day-bg-range-pressed: #12f0b43d;
   /* Skeleton */
   --skeleton-bone: #ffffff14;
   --skeleton-bone-pulse: #ffffff29;

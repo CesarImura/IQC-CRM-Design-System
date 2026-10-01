@@ -49,6 +49,14 @@ import SkeletonBones from "./skeleton-bones"
 import SkeletonCard from "./skeleton-card"
 import SkeletonDemo from "./skeleton-demo"
 import SkeletonRecipes from "./skeleton-recipes"
+import CalendarDemo from "./calendar-demo"
+import DatePickerDemo from "./date-picker-demo"
+import DropdownDemo from "./dropdown-demo"
+import LabelBlockDemo from "./label-block-demo"
+import SearchBarDemo from "./search-bar-demo"
+import SearchBarStates from "./search-bar-states"
+import TabsLineDemo from "./tabs-line-demo"
+import TriggerDemo from "./trigger-demo"
 import StatusDotDemo from "./status-dot-demo"
 import ToastDemo from "./toast-demo"
 import ToastOptionsExample from "./toast-options"
@@ -116,6 +124,14 @@ export const examples = {
   "skeleton-demo": SkeletonDemo,
   "skeleton-recipes": SkeletonRecipes,
   "status-dot-demo": StatusDotDemo,
+  "calendar-demo": CalendarDemo,
+  "date-picker-demo": DatePickerDemo,
+  "dropdown-demo": DropdownDemo,
+  "label-block-demo": LabelBlockDemo,
+  "search-bar-demo": SearchBarDemo,
+  "search-bar-states": SearchBarStates,
+  "tabs-line-demo": TabsLineDemo,
+  "trigger-demo": TriggerDemo,
   "input-demo": InputDemo,
   "input-states": InputStates,
   "partner-logo-demo": PartnerLogoDemo,

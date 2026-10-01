@@ -66,6 +66,10 @@
           "content-default": "#ffffff",
           "danger": "#ff4951",
           "warning": "#ffc045",
+          "label-block-label": "#ffffffcc",
+          "label-block-description": "#ffffff80",
+          "label-block-gap": "2px",
+          "label-block-control-gap": "4px",
           "breadcrumb-text-link-default": "#ffffff80",
           "breadcrumb-text-link-hover": "#ffffff",
           "breadcrumb-text-current": "#ffffffcc",
@@ -103,6 +107,14 @@
           "combobox-label-gap": "4px",
           "combobox-panel-offset": "8px",
           "combobox-blur": "16px",
+          "trigger-value": "#ffffffb3",
+          "trigger-value-active": "#ffffffcc",
+          "trigger-blur": "16px",
+          "search-bar-cell-px": "8px",
+          "search-bar-error-border-width": "2px",
+          "search-bar-border-disabled": "#ffffff29",
+          "dropdown-panel-width": "303px",
+          "dropdown-panel-width-icon": "242px",
           "badge-radius-default": "2px",
           "badge-stroke-width": "1px",
           "badge-px-sm": "4px",
@@ -358,6 +370,48 @@
           "tabs-pill-item-bg-selected-hover": "#1e2120",
           "tabs-pill-item-bg-hover": "#141716",
           "tabs-pill-item-content-hover": "#ffffffcc",
+          "tabs-line-divider": "#2b2828",
+          "tabs-line-bar-px": "24px",
+          "tabs-line-gap": "10px",
+          "tabs-line-item-px": "8px",
+          "tabs-line-item-py": "16px",
+          "tabs-line-stroke": "1px",
+          "tabs-line-stroke-hover": "2px",
+          "tabs-line-hover-bg": "#ffffff0d",
+          "tabs-line-label": "#ffffff",
+          "tabs-line-label-inactive": "#ffffff66",
+          "tabs-line-label-hover": "#ffffffcc",
+          "tabs-line-tone-neutral": "#ffffff80",
+          "tabs-line-tone-accent": "#12f0b4",
+          "tabs-line-tone-danger": "#ff4951",
+          "tabs-line-tone-warning": "#ffc045",
+          "tabs-line-tone-info": "#86b5ff",
+          "calendar-popup-surface": "#141716",
+          "calendar-popup-border": "#2b2828",
+          "calendar-popup-padding": "4px",
+          "calendar-popup-gap": "8px",
+          "calendar-popup-blur": "16px",
+          "calendar-radius-control": "2px",
+          "calendar-grid-gap": "2px",
+          "calendar-day-size": "32px",
+          "calendar-day-hit-area": "44px",
+          "calendar-month-content": "#ffffffb8",
+          "calendar-weekday-content": "#ffffff52",
+          "calendar-day-content-default": "#ffffffb8",
+          "calendar-day-content-active": "#ffffff",
+          "calendar-day-content-muted": "#ffffff52",
+          "calendar-day-content-on-selected": "#000000",
+          "calendar-day-bg-hover": "#191c1b",
+          "calendar-day-bg-pressed": "#1e2120",
+          "calendar-day-bg-today": "#141716",
+          "calendar-day-bg-today-hover": "#191c1b",
+          "calendar-day-bg-today-pressed": "#1e2120",
+          "calendar-day-bg-selected": "#12f0b4",
+          "calendar-day-bg-selected-hover": "#36f3c0",
+          "calendar-day-bg-selected-pressed": "#0cd6a1",
+          "calendar-day-bg-range": "#12f0b414",
+          "calendar-day-bg-range-hover": "#12f0b429",
+          "calendar-day-bg-range-pressed": "#12f0b43d",
           "skeleton-bone": "#ffffff14",
           "skeleton-bone-pulse": "#ffffff29",
           "skeleton-radius-bar": "2px",
@@ -768,6 +822,84 @@
       ]
     },
     {
+      "name": "label-block",
+      "type": "registry:ui",
+      "title": "Label Block",
+      "description": "Label and optional description above a control.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/label-block.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "trigger",
+      "type": "registry:ui",
+      "title": "Trigger",
+      "description": "Dropdown trigger: Small/Medium/Large; Default, Focus, Error, Disabled; open and hover.",
+      "dependencies": [
+        "@carbon/icons-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/trigger.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "search-bar",
+      "type": "registry:ui",
+      "title": "Search Bar",
+      "description": "Search field with optional scope dropdown and clear.",
+      "dependencies": [
+        "@radix-ui/react-popover",
+        "@carbon/icons-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/option-panel"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/search-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Calendar and Date Picker: single or range, Monday or Sunday weeks, keyboard navigation.",
+      "dependencies": [
+        "@radix-ui/react-popover",
+        "@carbon/icons-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/label-block",
+        "@iq/trigger"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/date-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "form-field",
       "type": "registry:ui",
       "title": "Form Field",
@@ -871,7 +1003,7 @@
       "name": "combobox",
       "type": "registry:ui",
       "title": "Combobox",
-      "description": "Select (single or multiple) and Autocomplete built on the Option Panel.",
+      "description": "Select (single or multiple), Autocomplete and Dropdown built on the Option Panel and Trigger.",
       "dependencies": [
         "cmdk",
         "@radix-ui/react-popover",
@@ -880,7 +1012,8 @@
       "registryDependencies": [
         "utils",
         "@iq/tokens",
-        "@iq/option-panel"
+        "@iq/option-panel",
+        "@iq/trigger"
       ],
       "files": [
         {
