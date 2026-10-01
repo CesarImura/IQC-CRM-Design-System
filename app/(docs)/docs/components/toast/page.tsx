@@ -63,7 +63,7 @@ export default function ToastDocsPage() {
       <H3>Content</H3>
       <UL>
         <li>Icon tile: 40px, 2px radius, tinted at 10% (Info 5% white), with a 24px filled icon.</li>
-        <li>Title 16px medium white, 1.3 line height. Description 14px at 50%. Neutral / Loading text 16px regular at 70%.</li>
+        <li>Title 14px medium white, 1.3 line height. Description 14px at 50%. Neutral / Loading text 14px regular at 70%.</li>
         <li>Action: Small Secondary button. Close: 32px icon button with a 16px × at 50%. 8px apart.</li>
       </UL>
       <H3>Progress</H3>
