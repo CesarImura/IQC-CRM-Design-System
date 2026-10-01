@@ -56,6 +56,7 @@ import LabelBlockDemo from "./label-block-demo"
 import SearchBarDemo from "./search-bar-demo"
 import SearchBarStates from "./search-bar-states"
 import TabsLineDemo from "./tabs-line-demo"
+import TooltipDemo from "./tooltip-demo"
 import TriggerDemo from "./trigger-demo"
 import StatusDotDemo from "./status-dot-demo"
 import ToastDemo from "./toast-demo"
@@ -131,6 +132,7 @@ export const examples = {
   "search-bar-demo": SearchBarDemo,
   "search-bar-states": SearchBarStates,
   "tabs-line-demo": TabsLineDemo,
+  "tooltip-demo": TooltipDemo,
   "trigger-demo": TriggerDemo,
   "input-demo": InputDemo,
   "input-states": InputStates,

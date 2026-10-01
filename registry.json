@@ -359,6 +359,18 @@
           "toast-progress-warning": "#ffc045",
           "toast-progress-error": "#ff4951",
           "toast-width": "409px",
+          "tooltip-bg": "#ffffff",
+          "tooltip-content": "#000000",
+          "tooltip-icon": "#161616",
+          "tooltip-px": "10px",
+          "tooltip-py": "6px",
+          "tooltip-gap": "6px",
+          "tooltip-radius": "4px",
+          "tooltip-font": "14px",
+          "tooltip-line-height": "18px",
+          "tooltip-caret-width": "12px",
+          "tooltip-caret-height": "7px",
+          "tooltip-offset": "4px",
           "tabs-pill-track-bg": "#121514",
           "tabs-pill-track-border": "#ffffff14",
           "tabs-pill-track-padding": "4px",
@@ -639,6 +651,26 @@
       ]
     },
     {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "White tooltip with caret; top/bottom/left/right, optional icon; closable toggletip.",
+      "dependencies": [
+        "@radix-ui/react-tooltip",
+        "@radix-ui/react-popover"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "tabs",
       "type": "registry:ui",
       "title": "Tabs",
@@ -667,7 +699,8 @@
         "utils",
         "@iq/tokens",
         "@iq/badge",
-        "@iq/tabs"
+        "@iq/tabs",
+        "@iq/tooltip"
       ],
       "files": [
         {
@@ -774,7 +807,8 @@
         "utils",
         "@iq/tokens",
         "@iq/badge",
-        "@iq/status-dot"
+        "@iq/status-dot",
+        "@iq/tooltip"
       ],
       "files": [
         {

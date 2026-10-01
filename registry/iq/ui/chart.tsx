@@ -5,6 +5,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { DeltaBadge, type DeltaTone } from "@/registry/iq/ui/badge"
 import { Tabs, TabsPillList, TabsPillTrigger } from "@/registry/iq/ui/tabs"
+import { Tooltip } from "@/registry/iq/ui/tooltip"
 
 // Shared chart card parts. Figma: _Chart Components (2155:14755) → _Chart / Header, and the chart Empty / Error bodies.
 
@@ -24,7 +25,7 @@ function InfoIcon() {
 type ChartHeaderProps = {
   titleId: string
   title: React.ReactNode
-  /** Adds the info icon after the title. A string also becomes its tooltip and accessible name. */
+  /** Adds the info icon after the title. A string shows in a Tooltip on hover / focus and names the icon. */
   info?: React.ReactNode
   /** Formatted headline value, e.g. "2,300". */
   value?: React.ReactNode
@@ -65,9 +66,11 @@ function ChartHeader({
           </h3>
           {info &&
             (typeof info === "string" ? (
-              <span role="img" aria-label={info} title={info}>
-                <InfoIcon />
-              </span>
+<Tooltip content={info}>
+                <button type="button" aria-label={info} className="inline-flex cursor-help rounded-[2px] outline-none focus-visible:shadow-[0_0_0_2px_var(--focus-ring)]">
+                  <InfoIcon />
+                </button>
+              </Tooltip>
             ) : (
               info
             ))}

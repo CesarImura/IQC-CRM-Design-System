@@ -4,6 +4,7 @@ import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { DeltaBadge, inferDeltaTone } from "@/registry/iq/ui/badge"
 import { StatusDot } from "@/registry/iq/ui/status-dot"
+import { Tooltip } from "@/registry/iq/ui/tooltip"
 
 // Figma: IQ Capital CRM Design System → Stat Card (2089:3440), _Chart / Sparkline (2088:3122),
 // _Stat / Split Bar (2088:3125). Uses Badge / Delta and Status Dot.
@@ -191,7 +192,7 @@ type StatCardProps = Omit<React.ComponentProps<"section">, "title"> & {
   delta?: React.ReactNode
   /** Text after the delta, e.g. "last 30d" or "vs average at timeframe". */
   caption?: React.ReactNode
-  /** Adds the info icon after the title. A string also becomes its tooltip and accessible name. */
+  /** Adds the info icon after the title. A string shows in a Tooltip on hover / focus and names the icon. */
   info?: React.ReactNode
   /** Series for the compact, spark and compare layouts. */
   data?: number[]
@@ -228,9 +229,11 @@ function StatCard({
       </h3>
       {info !== undefined && info !== false && (
         typeof info === "string" ? (
-          <span role="img" aria-label={info} title={info} className="inline-flex">
-            <InfoIcon />
-          </span>
+<Tooltip content={info}>
+            <button type="button" aria-label={info} className="inline-flex cursor-help rounded-[2px] outline-none focus-visible:shadow-[0_0_0_2px_var(--focus-ring)]">
+              <InfoIcon />
+            </button>
+          </Tooltip>
         ) : (
           info === true ? <InfoIcon /> : info
         )

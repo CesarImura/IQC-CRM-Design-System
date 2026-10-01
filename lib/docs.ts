@@ -47,6 +47,7 @@ export const nav: NavSection[] = [
       { title: "Status Dot", href: "/docs/components/status-dot" },
       { title: "Tabs", href: "/docs/components/tabs" },
       { title: "Toast", href: "/docs/components/toast" },
+      { title: "Tooltip", href: "/docs/components/tooltip" },
       { title: "Trigger", href: "/docs/components/trigger" },
       { title: "Value Slot", href: "/docs/components/value-slot" },
     ],

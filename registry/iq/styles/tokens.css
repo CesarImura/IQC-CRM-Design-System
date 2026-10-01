@@ -379,6 +379,19 @@
   --toast-progress-warning: #ffc045;
   --toast-progress-error: #ff4951;
   --toast-width: 409px;
+  /* Tooltip */
+  --tooltip-bg: #ffffff;
+  --tooltip-content: #000000;
+  --tooltip-icon: #161616;
+  --tooltip-px: 10px;
+  --tooltip-py: 6px;
+  --tooltip-gap: 6px;
+  --tooltip-radius: 4px;
+  --tooltip-font: 14px;
+  --tooltip-line-height: 18px;
+  --tooltip-caret-width: 12px;
+  --tooltip-caret-height: 7px;
+  --tooltip-offset: 4px;
   /* Tabs */
   --tabs-pill-track-bg: #121514;
   --tabs-pill-track-border: #ffffff14;
