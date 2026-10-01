@@ -106,8 +106,10 @@ export default function OptionPanelDocsPage() {
           ["Selected", "option-item-bg-selected"],
           ["Match highlight", "option-item-match-highlight"],
           ["Match text", "option-item-match-content"],
-          ["Checkbox border", "option-item-checkbox-border"],
+          ["Checkbox border", "checkbox-border-default"],
+          ["Checkbox border, highlighted", "checkbox-border-hover"],
           ["Checkbox checked", "checkbox-fill-selected"],
+          ["Checkbox disabled (checked)", "checkbox-fill-disabled"],
           ["Disabled", "content-disabled"],
         ]}
       />
@@ -122,7 +124,7 @@ export default function OptionPanelDocsPage() {
         <strong className="text-white">Figma notes:</strong>
         <ul className="mt-2 ml-4 list-disc space-y-1">
           <li>The description mentions a Loading state, but the set has no Loading variant. The build adds one with the loading indicator.</li>
-          <li>Selected Checkbox items still show an empty checkbox. The build checks it.</li>
+          <li>Selected Checkbox items still show an empty checkbox. The build checks it, using the same mark and colors as Checkbox.</li>
           <li>The checkbox inside items is the 20px Checkbox scaled to 16.67px, so its border and radius land on fractions (0.83px, 3.33px).</li>
           <li>Selected items drop the Warning / Danger label color.</li>
           <li>Panel fill, border, hover fills and the Danger label color are raw values; option-item-match-highlight is the only variable.</li>

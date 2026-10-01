@@ -5,6 +5,7 @@ import { Command } from "cmdk"
 import { Checkmark, ErrorFilled, Search, SearchLocateMirror } from "@carbon/icons-react"
 
 import { cn } from "@/lib/utils"
+import { CheckboxMark } from "@/registry/iq/ui/checkbox"
 
 // Figma: IQ Capital CRM Design System → Option Panel (527:29045) and _Option Panel / Item (338:17523).
 // Item: Type Option | Label × Tone Neutral | Warning | Danger × Size Small | Medium × State Default | Hover | Disabled
@@ -104,23 +105,6 @@ const toneHover: Record<OptionTone, string> = {
   danger: "data-[selected=true]:bg-(--option-item-bg-hover-danger) data-[visual=hover]:bg-(--option-item-bg-hover-danger)",
 }
 
-function CheckboxMark({ checked, disabled }: { checked: boolean; disabled?: boolean }) {
-  return (
-    <span
-      aria-hidden="true"
-      className={cn(
-        "flex size-4 shrink-0 items-center justify-center rounded-[3px] border",
-        checked
-          ? "border-transparent bg-(--checkbox-fill-selected) text-(color:--checkbox-icon-on-selected)"
-          : "border-(--option-item-checkbox-border) bg-(--canvas)",
-        disabled && (checked ? "bg-(--checkbox-fill-disabled) text-(color:--checkbox-icon-disabled)" : "border-(--checkbox-border-disabled)")
-      )}
-    >
-      {checked && <Checkmark size={14} />}
-    </span>
-  )
-}
-
 type OptionItemProps = Omit<React.ComponentProps<typeof Command.Item>, "children"> & {
   size?: OptionSize
   tone?: OptionTone
@@ -161,7 +145,7 @@ function OptionItem({
       disabled={disabled}
       value={props.value ?? label}
       className={cn(
-        "flex cursor-pointer items-center gap-2 rounded-(--option-panel-radius) leading-normal outline-none select-none",
+        "group/option flex cursor-pointer items-center gap-2 rounded-(--option-panel-radius) leading-normal outline-none select-none",
         size === "sm" ? "p-2 text-sm leading-normal" : "px-3 py-2 text-base leading-normal",
         "[&_svg]:shrink-0",
         toneText[tone],
@@ -178,7 +162,18 @@ function OptionItem({
           {checked && <Checkmark size={16} />}
         </span>
       )}
-      {selection === "checkbox" && <CheckboxMark checked={checked} disabled={disabled} />}
+      {selection === "checkbox" && (
+        <CheckboxMark
+          size={16}
+          checked={checked}
+          disabled={disabled}
+          // Highlighted row (hover / arrow keys) or pressed: 64% border, like Checkbox hover.
+          className={cn(
+            !disabled &&
+              "group-data-[selected=true]/option:border-(--checkbox-border-hover) group-data-[visual=hover]/option:border-(--checkbox-border-hover) group-active/option:border-(--checkbox-border-hover)"
+          )}
+        />
+      )}
       {icon && <span className="flex size-4 shrink-0 items-center justify-center [&_svg]:size-4">{icon}</span>}
       <span className="shrink-0 whitespace-nowrap">
         <Highlight text={label} query={query} />

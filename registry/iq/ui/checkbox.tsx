@@ -74,5 +74,60 @@ function Checkbox({ children, className, rowClassName, disabled, ...props }: Che
   )
 }
 
-export { Checkbox }
-export type { CheckboxProps }
+/* -------------------------------------------------------------------------------------------------
+ * Checkbox mark (static visual)
+ * -----------------------------------------------------------------------------------------------*/
+
+type CheckboxMarkProps = Omit<React.ComponentProps<"span">, "children"> & {
+  checked?: boolean
+  indeterminate?: boolean
+  disabled?: boolean
+  /** Hover / pressed look (64% border), driven by the parent row, e.g. a highlighted option. */
+  highlighted?: boolean
+  /** 20px (default, the Checkbox control) or 16px (inside Option Panel items). */
+  size?: 16 | 20
+}
+
+/**
+ * The Checkbox control as a static mark, for rows that handle selection themselves (Option Panel items, menus).
+ * Same colors as <Checkbox>: 40% border (64% highlighted), green fill when checked, neutral fill when disabled.
+ */
+function CheckboxMark({ checked = false, indeterminate = false, disabled = false, highlighted = false, size = 20, className, ...props }: CheckboxMarkProps) {
+  const on = checked || indeterminate
+  return (
+    <span
+      aria-hidden="true"
+      data-slot="checkbox-mark"
+      data-state={indeterminate ? "indeterminate" : checked ? "checked" : "unchecked"}
+      className={cn(
+        "inline-flex shrink-0 items-center justify-center border-(length:--checkbox-stroke-default)",
+        size === 20 ? "size-5 rounded-(--checkbox-radius-control)" : "size-4 rounded-[3px]",
+        on ? "border-transparent bg-(--checkbox-fill-selected) text-(color:--checkbox-icon-on-selected)" : "border-(--checkbox-border-default)",
+        highlighted && !disabled && "border-(--checkbox-border-hover)",
+        disabled && (on ? "bg-(--checkbox-fill-disabled) text-(color:--checkbox-icon-disabled)" : "border-(--checkbox-border-disabled)"),
+        className
+      )}
+      {...props}
+    >
+      {checked && !indeterminate && <CheckIcon className={size === 20 ? "size-[18px]" : "size-[14px]"} />}
+      {indeterminate && <span className={cn("rounded-[1px] bg-current", size === 20 ? "h-0.5 w-3" : "h-0.5 w-2.5")} />}
+    </span>
+  )
+}
+
+// Figma "Checkmark" (18px in the 20px control).
+function CheckIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 18 18" aria-hidden="true" className={className}>
+      <path
+        d="M16.1035 5.06205L7.48926 13.6763L7.3125 13.854L7.13574 13.6763L1.89648 8.43705L3.04492 7.28861L7.31152 11.5552L14.7783 4.09037L14.9551 3.91361L16.1035 5.06205Z"
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth="0.5"
+      />
+    </svg>
+  )
+}
+
+export { Checkbox, CheckboxMark }
+export type { CheckboxProps, CheckboxMarkProps }
