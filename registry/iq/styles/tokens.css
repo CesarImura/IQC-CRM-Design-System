@@ -270,6 +270,8 @@
   --checkbox-fill-selected-disabled: #12f0b452;
   --checkbox-fill-neutral-pressed: #ffffff14;
   --checkbox-icon-on-selected: #0d100f;
+  --checkbox-fill-disabled: #ffffff0a;
+  --checkbox-icon-disabled: #ffffff80;
   /* Table */
   --table-header-bg: #ffffff05;
   --table-row-hover: #ffffff05;

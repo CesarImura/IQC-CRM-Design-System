@@ -43,7 +43,14 @@ export default function CheckboxDocsPage() {
         <li>Control: 20×20, 4px radius, 1px border.</li>
         <li>Checkmark 18px in the canvas color; indeterminate mark 12×2 with 1px radius.</li>
         <li>Label: 16/24 regular at 80% white, 12px after the control; the row has 8px vertical hit padding.</li>
+      </UL>
+
+      <H2>States</H2>
+      <UL>
+        <li>Unchecked: 40% white border. Hover, pressed and focus: 64% border (no fill).</li>
+        <li>Checked / indeterminate: green fill. Hover and pressed keep the fill and add a 64% border.</li>
         <li>Focus: teal ring around the whole row; on checked controls the border turns black.</li>
+        <li>Disabled: unchecked gets a 16% border; checked / indeterminate get a neutral white 4% fill with a 50% white mark. Label at 32%.</li>
       </UL>
 
       <H2>Tokens</H2>
@@ -54,14 +61,13 @@ export default function CheckboxDocsPage() {
           ["Label gap", "checkbox-label-gap"],
           ["Row hit padding", "checkbox-hit-padding"],
           ["Border", "checkbox-border-default"],
-          ["Border hover / pressed", "checkbox-border-hover"],
+          ["Border hover / pressed / focus", "checkbox-border-hover"],
           ["Border disabled", "checkbox-border-disabled"],
-          ["Pressed fill (unchecked)", "checkbox-fill-neutral-pressed"],
-          ["Checked fill", "checkbox-fill-selected"],
-          ["Checked hover", "checkbox-fill-selected-hover"],
-          ["Checked pressed", "checkbox-fill-selected-pressed"],
-          ["Checked disabled", "checkbox-fill-selected-disabled"],
+          ["Checked fill (all interactions)", "checkbox-fill-selected"],
+          ["Checked disabled fill", "checkbox-fill-disabled"],
           ["Checkmark", "checkbox-icon-on-selected"],
+          ["Checkmark disabled", "checkbox-icon-disabled"],
+          ["Focus border on fill", "focus-stroke-on-fill"],
           ["Label", "checkbox-label-default"],
           ["Label disabled", "content-disabled"],
           ["Focus ring", "focus-ring"],

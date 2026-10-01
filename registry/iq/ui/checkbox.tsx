@@ -35,26 +35,24 @@ function Checkbox({ children, className, rowClassName, disabled, ...props }: Che
         disabled={disabled}
         className={cn(
           "peer relative inline-flex size-5 shrink-0 items-center justify-center rounded-(--checkbox-radius-control) border-(length:--checkbox-stroke-default) outline-none transition-colors duration-100",
-          // Unchecked
+          // Unchecked: 40% border; 64% on hover, pressed and focus
           "data-[state=unchecked]:border-(--checkbox-border-default)",
-          "data-[state=unchecked]:group-hover/checkbox:border-(--checkbox-border-hover)",
-          "data-[state=unchecked]:group-active/checkbox:border-(--checkbox-border-hover) data-[state=unchecked]:group-active/checkbox:bg-(--checkbox-fill-neutral-pressed)",
+          "data-[state=unchecked]:group-hover/checkbox:border-(--checkbox-border-hover) data-[state=unchecked]:group-active/checkbox:border-(--checkbox-border-hover)",
           "data-[state=unchecked]:focus-visible:border-(--checkbox-border-hover)",
-          // Checked + indeterminate
+          // Checked + indeterminate: green fill stays the same; hover and pressed add a 64% border
           "data-[state=checked]:border-transparent data-[state=checked]:bg-(--checkbox-fill-selected)",
           "data-[state=indeterminate]:border-transparent data-[state=indeterminate]:bg-(--checkbox-fill-selected)",
-          "data-[state=checked]:group-hover/checkbox:border-(--checkbox-border-hover) data-[state=checked]:group-hover/checkbox:bg-(--checkbox-fill-selected-hover)",
-          "data-[state=indeterminate]:group-hover/checkbox:border-(--checkbox-border-hover) data-[state=indeterminate]:group-hover/checkbox:bg-(--checkbox-fill-selected-hover)",
-          "data-[state=checked]:group-active/checkbox:bg-(--checkbox-fill-selected-pressed) data-[state=indeterminate]:group-active/checkbox:bg-(--checkbox-fill-selected-pressed)",
+          "data-[state=checked]:group-hover/checkbox:border-(--checkbox-border-hover) data-[state=indeterminate]:group-hover/checkbox:border-(--checkbox-border-hover)",
+          "data-[state=checked]:group-active/checkbox:border-(--checkbox-border-hover) data-[state=indeterminate]:group-active/checkbox:border-(--checkbox-border-hover)",
           "data-[state=checked]:focus-visible:border-(--focus-stroke-on-fill) data-[state=indeterminate]:focus-visible:border-(--focus-stroke-on-fill)",
-          // Disabled
+          // Disabled: unchecked 16% border; checked / indeterminate neutral 4% fill with a 50% white mark
           "disabled:pointer-events-none data-[state=unchecked]:disabled:border-(--checkbox-border-disabled)",
-          "data-[state=checked]:disabled:bg-(--checkbox-fill-selected-disabled) data-[state=indeterminate]:disabled:bg-(--checkbox-fill-selected-disabled)",
+          "data-[state=checked]:disabled:bg-(--checkbox-fill-disabled) data-[state=indeterminate]:disabled:bg-(--checkbox-fill-disabled)",
           className
         )}
         {...props}
       >
-        <CheckboxPrimitive.Indicator className="group/indicator flex items-center justify-center text-(color:--checkbox-icon-on-selected) data-disabled:opacity-50">
+        <CheckboxPrimitive.Indicator className="group/indicator flex items-center justify-center text-(color:--checkbox-icon-on-selected) data-disabled:text-(color:--checkbox-icon-disabled)">
           {/* Figma "Checkmark" (checked) and "Indeterminate Mark" (12×2, 1px radius) */}
           <svg viewBox="0 0 18 18" aria-hidden="true" className="size-[18px] group-data-[state=indeterminate]/indicator:hidden">
             <path

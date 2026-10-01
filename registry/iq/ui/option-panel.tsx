@@ -113,7 +113,7 @@ function CheckboxMark({ checked, disabled }: { checked: boolean; disabled?: bool
         checked
           ? "border-transparent bg-(--checkbox-fill-selected) text-(color:--checkbox-icon-on-selected)"
           : "border-(--option-item-checkbox-border) bg-(--canvas)",
-        disabled && (checked ? "bg-(--checkbox-fill-selected-disabled)" : "border-(--checkbox-border-disabled)")
+        disabled && (checked ? "bg-(--checkbox-fill-disabled) text-(color:--checkbox-icon-disabled)" : "border-(--checkbox-border-disabled)")
       )}
     >
       {checked && <Checkmark size={14} />}
