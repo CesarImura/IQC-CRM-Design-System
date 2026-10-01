@@ -283,6 +283,20 @@
           "pagination-item-bg-hover": "#141716",
           "pagination-item-bg-current": "#0d221c",
           "pagination-item-content-current": "#12f0b4",
+          "input-bg": "#ffffff0d",
+          "input-bg-active": "#ffffff05",
+          "input-border-hover": "#ffffff33",
+          "input-border-disabled": "#ffffff29",
+          "input-border-error-width": "1.5px",
+          "input-ring-active": "#ffffff1f",
+          "input-placeholder": "#ffffff80",
+          "input-placeholder-hover": "#ffffffb3",
+          "input-text": "#ffffffe6",
+          "input-text-active": "#ffffff",
+          "input-px": "12px",
+          "input-height-sm": "32px",
+          "input-height-md": "40px",
+          "input-icon": "#ffffffb3",
           "form-field-radius": "2px",
           "form-field-px": "12px",
           "form-field-py-sm": "8px",
@@ -730,6 +744,25 @@
       "files": [
         {
           "path": "registry/iq/ui/flag.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Single-line text input (32/40px) with Focus vs Active, Error, Disabled, Read-only and icons.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/input.tsx",
           "type": "registry:ui"
         }
       ]

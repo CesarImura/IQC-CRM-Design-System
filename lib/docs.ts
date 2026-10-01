@@ -30,6 +30,7 @@ export const nav: NavSection[] = [
       { title: "Data Table", href: "/docs/components/data-table" },
       { title: "Flag", href: "/docs/components/flag" },
       { title: "Form Field", href: "/docs/components/form-field" },
+      { title: "Input", href: "/docs/components/input" },
       { title: "Line Chart", href: "/docs/components/line-chart" },
       { title: "Option Panel", href: "/docs/components/option-panel" },
       { title: "Pagination", href: "/docs/components/pagination" },

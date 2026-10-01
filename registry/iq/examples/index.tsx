@@ -24,6 +24,8 @@ import LineChartDemo from "./line-chart-demo"
 import LineChartSizes from "./line-chart-sizes"
 import LineChartStates from "./line-chart-states"
 import LineChartTypes from "./line-chart-types"
+import InputDemo from "./input-demo"
+import InputStates from "./input-states"
 import PaginationDemo from "./pagination-demo"
 import PartnerLogoDemo from "./partner-logo-demo"
 import PartnerLogoInTable from "./partner-logo-in-table"
@@ -114,6 +116,8 @@ export const examples = {
   "skeleton-demo": SkeletonDemo,
   "skeleton-recipes": SkeletonRecipes,
   "status-dot-demo": StatusDotDemo,
+  "input-demo": InputDemo,
+  "input-states": InputStates,
   "partner-logo-demo": PartnerLogoDemo,
   "partner-logo-in-table": PartnerLogoInTable,
   "toast-demo": ToastDemo,
