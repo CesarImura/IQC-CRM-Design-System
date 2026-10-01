@@ -371,6 +371,10 @@
           "tooltip-caret-width": "12px",
           "tooltip-caret-height": "7px",
           "tooltip-offset": "4px",
+          "tooltip-motion-in": "160ms",
+          "tooltip-motion-out": "100ms",
+          "tooltip-motion-ease": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "tooltip-motion-distance": "4px",
           "tabs-pill-track-bg": "#121514",
           "tabs-pill-track-border": "#ffffff14",
           "tabs-pill-track-padding": "4px",
@@ -668,7 +672,29 @@
           "path": "registry/iq/ui/tooltip.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "css": {
+        "@keyframes tooltip-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translate(var(--tooltip-slide-x, 0), var(--tooltip-slide-y, 0)) scale(0.96)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "translate(0, 0) scale(1)"
+          }
+        },
+        "@keyframes tooltip-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "translate(0, 0) scale(1)"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translate(var(--tooltip-slide-x, 0), var(--tooltip-slide-y, 0)) scale(0.96)"
+          }
+        }
+      }
     },
     {
       "name": "tabs",

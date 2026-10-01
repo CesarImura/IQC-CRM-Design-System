@@ -46,6 +46,12 @@ export default function TooltipDocsPage() {
         <li>12×7 triangle in the bubble color, centered on the side facing the trigger.</li>
         <li>4px between the caret tip and the trigger.</li>
       </UL>
+      <H3>Motion</H3>
+      <UL>
+        <li>In: 160ms, fades in while sliding 4px toward the trigger and scaling from 96% to 100%, anchored at the caret (ease-out).</li>
+        <li>Out: 100ms, the reverse (ease-in). Moving between tooltips quickly skips the delay and uses the short timing.</li>
+        <li>Off when the system’s reduced-motion setting is on.</li>
+      </UL>
 
       <H2>Where it’s used</H2>
       <UL>
@@ -67,6 +73,10 @@ export default function TooltipDocsPage() {
           ["Caret width / height", "tooltip-caret-width"],
           ["", "tooltip-caret-height"],
           ["Offset from trigger", "tooltip-offset"],
+          ["Motion in", "tooltip-motion-in"],
+          ["Motion out", "tooltip-motion-out"],
+          ["Motion easing", "tooltip-motion-ease"],
+          ["Slide distance", "tooltip-motion-distance"],
         ]}
       />
 
@@ -86,6 +96,7 @@ export default function TooltipDocsPage() {
           <li>The icon and close are #161616 (not a variable) while the text uses the black variable.</li>
           <li>A tooltip with a close button can’t open on hover; the build turns it into a click-to-open toggletip.</li>
           <li>The text size borrows badge-font-md (14px) instead of a typography variable.</li>
+          <li>There’s no motion spec; the build’s timings and easing are listed under Motion.</li>
         </ul>
       </Callout>
     </>

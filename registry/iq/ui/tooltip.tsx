@@ -13,6 +13,15 @@ import { cn } from "@/lib/utils"
 
 type TooltipSide = "top" | "bottom" | "left" | "right"
 
+// Enter: fade + 4px slide from the trigger side + scale from the caret. Exit is shorter. Off with reduced motion.
+const motionClass = [
+  "data-[side=top]:[--tooltip-slide-y:var(--tooltip-motion-distance)] data-[side=bottom]:[--tooltip-slide-y:calc(-1*var(--tooltip-motion-distance))]",
+  "data-[side=left]:[--tooltip-slide-x:var(--tooltip-motion-distance)] data-[side=right]:[--tooltip-slide-x:calc(-1*var(--tooltip-motion-distance))]",
+  "data-[state=delayed-open]:animate-[tooltip-in_var(--tooltip-motion-in)_var(--tooltip-motion-ease)] data-[state=instant-open]:animate-[tooltip-in_var(--tooltip-motion-out)_var(--tooltip-motion-ease)] data-[state=open]:animate-[tooltip-in_var(--tooltip-motion-in)_var(--tooltip-motion-ease)]",
+  "data-[state=closed]:animate-[tooltip-out_var(--tooltip-motion-out)_ease-in_forwards]",
+  "motion-reduce:animate-none",
+].join(" ")
+
 const bubbleClass =
   "z-50 flex max-w-xs items-center gap-(--tooltip-gap) rounded-(--tooltip-radius) bg-(--tooltip-bg) px-(--tooltip-px) py-(--tooltip-py) text-(length:--tooltip-font) leading-(--tooltip-line-height) text-(color:--tooltip-content)"
 
@@ -102,7 +111,7 @@ function Tooltip({ children, content, side = "top", align = "center", icon, clos
       <Popover.Root open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
         <Popover.Trigger asChild>{children}</Popover.Trigger>
         <Popover.Portal>
-          <Popover.Content side={side} align={align} sideOffset={4} collisionPadding={8} className={bubbleClass} onOpenAutoFocus={(e) => e.preventDefault()}>
+          <Popover.Content side={side} align={align} sideOffset={4} collisionPadding={8} className={cn(bubbleClass, motionClass, "origin-(--radix-popover-content-transform-origin)")} onOpenAutoFocus={(e) => e.preventDefault()}>
             {icon && <span className="flex text-(color:--tooltip-icon) [&_svg]:size-4">{icon}</span>}
             <span>{content}</span>
             <Popover.Close aria-label="Close" className="flex cursor-pointer rounded-[2px] text-(color:--tooltip-icon) outline-none focus-visible:shadow-[0_0_0_2px_var(--focus-ring)] [&_svg]:size-4">
@@ -119,7 +128,7 @@ function Tooltip({ children, content, side = "top", align = "center", icon, clos
       <TooltipPrimitive.Root open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
         <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
         <TooltipPrimitive.Portal>
-          <TooltipPrimitive.Content side={side} align={align} sideOffset={4} collisionPadding={8} className={bubbleClass}>
+          <TooltipPrimitive.Content side={side} align={align} sideOffset={4} collisionPadding={8} className={cn(bubbleClass, motionClass, "origin-(--radix-tooltip-content-transform-origin)")}>
             {icon && <span className="flex text-(color:--tooltip-icon) [&_svg]:size-4">{icon}</span>}
             <span>{content}</span>
             <Caret as={TooltipPrimitive.Arrow} />

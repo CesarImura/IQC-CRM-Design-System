@@ -392,6 +392,10 @@
   --tooltip-caret-width: 12px;
   --tooltip-caret-height: 7px;
   --tooltip-offset: 4px;
+  --tooltip-motion-in: 160ms;
+  --tooltip-motion-out: 100ms;
+  --tooltip-motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --tooltip-motion-distance: 4px;
   /* Tabs */
   --tabs-pill-track-bg: #121514;
   --tabs-pill-track-border: #ffffff14;
