@@ -15,6 +15,14 @@
           "form-field-surface-transparent": "#ffffff00",
           "surface-raised": "#121514",
           "border-panel": "#2b2828",
+          "page-grid-width-track": "1616px",
+          "page-grid-width-reduced": "1120px",
+          "page-grid-width-narrow": "688px",
+          "page-grid-padding-default": "56px",
+          "page-grid-padding-y": "48px",
+          "page-grid-padding-none": "0px",
+          "page-grid-gap": "48px",
+          "page-grid-margin-min": "24px",
           "focus-ring": "#76ffda",
           "focus-danger": "#ff495180",
           "focus-stroke-on-fill": "#000000",
@@ -478,6 +486,25 @@
       "files": [
         {
           "path": "registry/iq/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "page-grid",
+      "type": "registry:ui",
+      "title": "Page Grid",
+      "description": "Content widths: Full 1616, Default 1504, Reduced 1120, Narrow 688 (max-widths).",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/page-grid.tsx",
           "type": "registry:ui"
         }
       ]

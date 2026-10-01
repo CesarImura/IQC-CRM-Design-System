@@ -26,6 +26,7 @@ import LineChartStates from "./line-chart-states"
 import LineChartTypes from "./line-chart-types"
 import InputDemo from "./input-demo"
 import InputStates from "./input-states"
+import PageGridDemo from "./page-grid-demo"
 import PaginationDemo from "./pagination-demo"
 import PartnerLogoDemo from "./partner-logo-demo"
 import PartnerLogoInTable from "./partner-logo-in-table"
@@ -127,6 +128,7 @@ export const examples = {
   "skeleton-demo": SkeletonDemo,
   "skeleton-recipes": SkeletonRecipes,
   "status-dot-demo": StatusDotDemo,
+  "page-grid-demo": PageGridDemo,
   "calendar-demo": CalendarDemo,
   "date-picker-demo": DatePickerDemo,
   "dropdown-demo": DropdownDemo,

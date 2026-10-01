@@ -7,6 +7,15 @@
   --form-field-surface-transparent: #ffffff00;
   --surface-raised: #121514;
   --border-panel: #2b2828;
+  /* Page Grid */
+  --page-grid-width-track: 1616px;
+  --page-grid-width-reduced: 1120px;
+  --page-grid-width-narrow: 688px;
+  --page-grid-padding-default: 56px;
+  --page-grid-padding-y: 48px;
+  --page-grid-padding-none: 0px;
+  --page-grid-gap: 48px;
+  --page-grid-margin-min: 24px;
   /* Focus */
   --focus-ring: #76ffda;
   --focus-danger: #ff495180;
