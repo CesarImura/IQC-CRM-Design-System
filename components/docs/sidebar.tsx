@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { nav } from "@/lib/docs"
 
-export function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
+export function SidebarNav({ onNavigate, touch = false }: { onNavigate?: () => void; touch?: boolean }) {
   const pathname = usePathname()
 
   return (
@@ -27,6 +27,7 @@ export function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
                     aria-current={active ? "page" : undefined}
                     className={cn(
                       "flex items-center rounded-[2px] px-2 py-1.5 text-sm text-white/60 outline-none transition-colors hover:bg-white/[0.04] hover:text-white focus-visible:shadow-[0_0_0_2px_var(--focus-ring)]",
+                      touch && "min-h-10 py-2",
                       active && "bg-white/[0.06] text-white"
                     )}
                   >

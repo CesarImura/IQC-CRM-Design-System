@@ -20,11 +20,11 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             <span aria-hidden className="grid size-6 place-items-center rounded-[2px] bg-brand text-[11px] font-bold text-black">
               IQ
             </span>
-            <span className="text-sm font-medium text-white">
+            <span className="text-sm font-medium whitespace-nowrap text-white">
               CRM Design System
             </span>
           </Link>
-          <span className="rounded-full border border-grid px-2 py-0.5 font-mono text-[11px] text-white/50">
+          <span className="hidden rounded-full border border-grid px-2 py-0.5 font-mono text-[11px] text-white/50 sm:inline">
             v0.1
           </span>
           <div className="ml-auto">
