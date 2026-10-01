@@ -204,6 +204,9 @@
           "status-dot-warning": "#ffc045",
           "status-dot-info": "#86b5ff",
           "status-dot-label": "#ffffff80",
+          "partner-logo-gap-sm": "6px",
+          "partner-logo-gap-md": "8px",
+          "partner-logo-label": "#ffffff",
           "pill-px-sm": "4px",
           "pill-py-sm": "1px",
           "pill-gap-sm": "4px",
@@ -635,6 +638,22 @@
       "files": [
         {
           "path": "registry/iq/ui/ring-chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "partner-logo",
+      "type": "registry:ui",
+      "title": "Partner Logo",
+      "description": "Integration partner lockups (mark + name) in sm and md, and the mark alone.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/partner-logo.tsx",
           "type": "registry:ui"
         }
       ]

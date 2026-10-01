@@ -211,6 +211,10 @@
   --status-dot-warning: #ffc045;
   --status-dot-info: #86b5ff;
   --status-dot-label: #ffffff80;
+  /* Partner Logo */
+  --partner-logo-gap-sm: 6px;
+  --partner-logo-gap-md: 8px;
+  --partner-logo-label: #ffffff;
   /* Pill */
   --pill-px-sm: 4px;
   --pill-py-sm: 1px;

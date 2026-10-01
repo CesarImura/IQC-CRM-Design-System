@@ -25,6 +25,8 @@ import LineChartSizes from "./line-chart-sizes"
 import LineChartStates from "./line-chart-states"
 import LineChartTypes from "./line-chart-types"
 import PaginationDemo from "./pagination-demo"
+import PartnerLogoDemo from "./partner-logo-demo"
+import PartnerLogoInTable from "./partner-logo-in-table"
 import PaginationLayouts from "./pagination-layouts"
 import PaginationPositions from "./pagination-positions"
 import BadgeAnatomy from "./badge-anatomy"
@@ -112,6 +114,8 @@ export const examples = {
   "skeleton-demo": SkeletonDemo,
   "skeleton-recipes": SkeletonRecipes,
   "status-dot-demo": StatusDotDemo,
+  "partner-logo-demo": PartnerLogoDemo,
+  "partner-logo-in-table": PartnerLogoInTable,
   "toast-demo": ToastDemo,
   "toast-options": ToastOptionsExample,
   "toast-tones": ToastTones,

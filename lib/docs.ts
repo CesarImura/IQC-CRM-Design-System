@@ -33,6 +33,7 @@ export const nav: NavSection[] = [
       { title: "Line Chart", href: "/docs/components/line-chart" },
       { title: "Option Panel", href: "/docs/components/option-panel" },
       { title: "Pagination", href: "/docs/components/pagination" },
+      { title: "Partner Logo", href: "/docs/components/partner-logo" },
       { title: "Pill", href: "/docs/components/pill" },
       { title: "Radio Group", href: "/docs/components/radio-group" },
       { title: "Ring Chart", href: "/docs/components/ring-chart" },
