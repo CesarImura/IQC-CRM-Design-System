@@ -341,8 +341,8 @@ type AutocompleteProps = {
   icon?: React.ReactNode
   status?: "ready" | "loading" | "error"
   onRetry?: () => void
-  /** Documentation only. */
-  visualState?: VisualState
+  /** Documentation only. Active is the editing look (pointer focus or typing). */
+  visualState?: VisualState | "active"
   open?: boolean
   inlinePanel?: boolean
   className?: string
@@ -373,6 +373,10 @@ function Autocomplete({
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [value, setValue] = useControllable(valueProp, defaultValue, onValueChange)
   const [openState, setOpen] = React.useState(false)
+  // Focus (teal ring) is keyboard focus; Active (neutral ring) is editing: focused with the pointer, or typing. Same model as Input.
+  const pointerRef = React.useRef(false)
+  const [interactionState, setInteraction] = React.useState<"focus" | "active" | null>(null)
+  const interaction = error || disabled ? undefined : visualState === "focus" || visualState === "active" ? visualState : (interactionState ?? undefined)
   const matches = options.filter((o) => o.label.toLowerCase().includes(value.trim().toLowerCase()))
   const open = openProp ?? (openState && value.trim().length > 0 && (matches.length > 0 || status !== "ready"))
 
@@ -383,6 +387,14 @@ function Autocomplete({
     onSelectOption?.(option)
     setOpen(false)
   }
+
+  // Value and icon: 70% at rest, 80% open, white while editing (Active) or keyboard-focused with the panel open.
+  const valueColor =
+    interaction === "active" || (interaction === "focus" && open)
+      ? "text-(color:--content-default)"
+      : open
+        ? "text-(color:--combobox-value-active)"
+        : "text-(color:--combobox-value)"
 
   const body = (
     <PanelBody
@@ -400,15 +412,22 @@ function Autocomplete({
     <div
       data-open={open}
       data-disabled={disabled}
-      data-visual={visualState}
+      data-visual={visualState === "hover" ? "hover" : undefined}
+      data-interaction={interaction}
       className={cn(
         triggerClasses(size, error),
         "w-full cursor-text justify-start",
-        !error && "has-[input:focus-visible]:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]"
+        "data-[interaction=focus]:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]",
+        // Active: 2% fill, neutral-500 border, white 12% ring, open or not.
+        "data-[interaction=active]:border-(--button-secondary-border-active) data-[interaction=active]:bg-(--input-bg-active) data-[interaction=active]:shadow-[0_0_0_var(--focus-spread)_var(--input-ring-active)]",
+        "data-[interaction=active]:data-[open=true]:bg-(--input-bg-active) data-[interaction=active]:data-[open=true]:hover:bg-(--input-bg-active)"
       )}
+      onPointerDownCapture={() => {
+        pointerRef.current = true
+      }}
       onClick={() => inputRef.current?.focus()}
     >
-      {icon && <span className="flex [&_svg]:size-4">{icon}</span>}
+      {icon && <span className={cn("flex [&_svg]:size-4", !error && !disabled && valueColor)}>{icon}</span>}
       <Command.Input
         ref={inputRef}
         value={value}
@@ -416,17 +435,26 @@ function Autocomplete({
           setValue(v)
           setOpen(true)
         }}
-        onFocus={() => setOpen(true)}
-        onBlur={() => setOpen(false)}
+        onFocus={() => {
+          setInteraction(pointerRef.current ? "active" : "focus")
+          pointerRef.current = false
+          setOpen(true)
+        }}
+        onBlur={() => {
+          setInteraction(null)
+          setOpen(false)
+        }}
         onKeyDown={(e) => {
           if (e.key === "Escape") setOpen(false)
+          const navigation = ["Tab", "Shift", "Escape", "Meta", "Control", "Alt", "CapsLock", "ArrowUp", "ArrowDown", "Enter"]
+          if (interactionState === "focus" && !navigation.includes(e.key)) setInteraction("active")
         }}
         disabled={disabled}
         placeholder={placeholder}
         aria-invalid={error || undefined}
         className={cn(
           "h-full min-w-0 flex-1 bg-transparent outline-none placeholder:text-(color:--content-muted)",
-          !error && (open ? "text-(color:--combobox-value-active)" : "text-(color:--combobox-value)"),
+          !error && valueColor,
           disabled && "text-(color:--button-neutral-content-disabled) placeholder:text-(color:--button-neutral-content-disabled)"
         )}
       />

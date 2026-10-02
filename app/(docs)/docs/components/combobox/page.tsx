@@ -19,7 +19,7 @@ export default function ComboboxDocsPage() {
       <PageHeader
         eyebrow="Components"
         title="Combobox"
-        description="Two ways to choose from a list. Select opens the Option Panel from a trigger, with search. Autocomplete is a text field that suggests matches as you type. Small or Medium; Default, Focus, Error and Disabled."
+        description="Two ways to choose from a list. Select opens the Option Panel from a trigger, with search. Autocomplete is a text field that suggests matches as you type. Small or Medium; Default, Focus, Error and Disabled, plus Active (editing) on Autocomplete."
       >
         <Button asChild variant="secondary" size="sm">
           <a href={figmaNode("584:58512")} target="_blank" rel="noreferrer">
@@ -68,10 +68,14 @@ export default function ComboboxDocsPage() {
       <H3>Trigger</H3>
       <UL>
         <li>Secondary button surface: white 4% fill, 8% border, 2px radius, 16px background blur.</li>
-        <li>Value at 70%; 80% while open. Optional 16px leading icon; chevron on Select.</li>
-        <li>Hover: border 12%. Open: border 12%. Open + Hover: fill 8%.</li>
+        <li>Value and leading icon at 70%; 80% while open. Optional 16px leading icon; chevron on Select.</li>
+        <li>Hover: neutral-500 border. Open: neutral-500 border. Open + Hover: fill 8%.</li>
         <li>Focus: 3px teal ring. Error: no fill, red border, red 3px ring at 50%, red text and a red error icon.</li>
         <li>Disabled: no fill, border 4%, text 32%.</li>
+        <li>
+          Autocomplete Active (editing): 2% fill, neutral-500 border, 3px white ring at 12%, white text and icon, open or closed. Same as the
+          Input’s Active state.
+        </li>
       </UL>
       <H3>Panel</H3>
       <UL>
@@ -98,6 +102,8 @@ export default function ComboboxDocsPage() {
           ["Value open", "combobox-value-active"],
           ["Disabled text", "button-neutral-content-disabled"],
           ["Focus ring", "focus-ring"],
+          ["Active fill (Autocomplete)", "input-bg-active"],
+          ["Active ring (Autocomplete)", "input-ring-active"],
           ["Error border", "form-field-error-border"],
           ["Error ring", "focus-danger"],
           ["Error text / icon", "button-danger-content-default"],
@@ -117,7 +123,11 @@ export default function ComboboxDocsPage() {
       <UL>
         <li>Select: Enter, Space or ↓ opens; type to search; ↑ ↓ move, Enter picks, Esc closes and returns focus.</li>
         <li>Autocomplete: suggestions open as you type; ↑ ↓ move, Enter picks, Esc closes. Your typed text is kept if you don’t pick.</li>
-        <li>Disabled options are skipped. Keyboard focus shows the ring; clicks don’t.</li>
+        <li>Disabled options are skipped. Keyboard focus shows the teal ring; clicks don’t.</li>
+        <li>
+          Autocomplete: clicking into the field, or typing after tabbing in, switches to Active. Arrow keys and Enter keep keyboard Focus while
+          you browse the suggestions.
+        </li>
       </UL>
 
       <Callout tone="warning">
@@ -127,6 +137,7 @@ export default function ComboboxDocsPage() {
           <li>Some Autocomplete variants (Small Disabled, Medium Open + Hover) lose the 8px gap between the icon and the text.</li>
           <li>In Select Medium Error Open, “Placeholder Text” wraps to two lines inside the 40px trigger.</li>
           <li>Medium comboboxes still use Small (14px) panel items.</li>
+          <li>Active + Hover dims the text to 80% and the icon to 70% while you type; the build keeps them white while editing.</li>
           <li>Select Open examples show the panel inline under the trigger; in the build it floats 8px below.</li>
         </ul>
       </Callout>

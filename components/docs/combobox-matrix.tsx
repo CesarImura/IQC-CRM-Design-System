@@ -12,7 +12,8 @@ const domainOptions: ComboboxOption[] = [
   { value: "gmail.com.br", label: "gmail.com.br", secondary: "Personal", group: "Option label" },
 ]
 
-const states = ["Default", "Focus", "Error", "Disabled"] as const
+const selectStates = ["Default", "Focus", "Error", "Disabled"] as const
+const autocompleteStates = ["Default", "Focus", "Active", "Error", "Disabled"] as const
 const columns = [
   { label: "Closed", open: false, hover: false },
   { label: "Closed + Hover", open: false, hover: true },
@@ -20,7 +21,7 @@ const columns = [
   { label: "Open + Hover", open: true, hover: true },
 ]
 
-/** Mirrors the Figma Combo Box matrix: Size × State by Closed / Hover / Open. Panels are drawn in place. */
+/** Mirrors the Figma Combo Box matrix: Size × State by Closed / Hover / Open (Autocomplete adds Active). Panels are drawn in place. */
 export function ComboboxMatrix({ type }: { type: "select" | "autocomplete" }) {
   return (
     <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
@@ -39,7 +40,7 @@ export function ComboboxMatrix({ type }: { type: "select" | "autocomplete" }) {
         </thead>
         <tbody>
           {(["sm", "md"] as ComboboxSize[]).flatMap((size) =>
-            states.map((state) => (
+            (type === "select" ? selectStates : autocompleteStates).map((state) => (
               <tr key={`${size}-${state}`} className="border-t border-grid">
                 <th scope="row" className="px-4 py-3 text-left align-top text-xs font-medium text-white/50">
                   {size === "sm" ? "Small" : "Medium"} · {state}
@@ -54,7 +55,7 @@ export function ComboboxMatrix({ type }: { type: "select" | "autocomplete" }) {
                     options,
                     error: state === "Error",
                     disabled: state === "Disabled",
-                    visualState: state === "Focus" ? ("focus" as const) : c.hover ? ("hover" as const) : undefined,
+                    visualState: state === "Focus" ? ("focus" as const) : state === "Active" ? ("active" as const) : c.hover ? ("hover" as const) : undefined,
                     open: c.open,
                     inlinePanel: true,
                   }
@@ -62,9 +63,9 @@ export function ComboboxMatrix({ type }: { type: "select" | "autocomplete" }) {
                     <td key={c.label} className="w-[368px] border-l border-grid px-6 py-5 align-top">
                       <div className="w-80">
                         {type === "select" ? (
-                          <Select {...common} placeholder="Placeholder Text" defaultValue="a" searchPlaceholder="Placeholder text" />
+                          <Select {...common} visualState={common.visualState === "active" ? undefined : common.visualState} placeholder="Placeholder Text" defaultValue="a" searchPlaceholder="Placeholder text" />
                         ) : (
-                          <Autocomplete {...common} defaultValue="gmail.com" options={domainOptions} />
+                          <Autocomplete {...common} defaultValue={state === "Active" ? "gma" : "gmail.com"} options={domainOptions} />
                         )}
                       </div>
                     </td>

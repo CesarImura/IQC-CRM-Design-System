@@ -64,11 +64,23 @@ type TriggerContentProps = {
   chevron?: boolean
 }
 
-/** The inside of a Trigger: icon, value at 70% (80% open), error icon, chevron. */
+/** The inside of a Trigger: icon and value at 70% (80% open), error icon, chevron. */
 function TriggerContent({ icon, placeholder, value, open, error, disabled, fill, chevron = true }: TriggerContentProps) {
   return (
     <>
-      {icon && <span className="flex">{icon}</span>}
+      {/* The leading icon follows the value: 70% at rest, 80% open (Figma layer opacity). */}
+      {icon && (
+        <span
+          className={cn(
+            "flex",
+            !error && (open ? "text-(color:--trigger-value-active)" : "text-(color:--trigger-value)"),
+            error && (open ? "opacity-80" : "opacity-70"),
+            disabled && "text-(color:--button-neutral-content-disabled) opacity-100"
+          )}
+        >
+          {icon}
+        </span>
+      )}
       <span
         className={cn(
           fill && "min-w-0 flex-1 truncate text-left",
