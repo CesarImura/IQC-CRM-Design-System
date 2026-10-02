@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { Empty } from "@/registry/iq/ui/empty"
 import { DeltaBadge, type DeltaTone } from "@/registry/iq/ui/badge"
 import { Tabs, TabsPillList, TabsPillTrigger } from "@/registry/iq/ui/tabs"
 import { Tooltip } from "@/registry/iq/ui/tooltip"
@@ -111,42 +112,17 @@ function ChartCard({ className, ...props }: React.ComponentProps<"section">) {
   )
 }
 
-/** Empty / Error body: dashed box with icon tile, title and description. */
+/** Empty / Error body: the Empty component (Page, Outline), as tall as the plot it replaces. */
 function ChartStatus({ status, content, height }: { status: "empty" | "error"; content?: ChartStatusContent; height?: number }) {
-  const error = status === "error"
   return (
-    <div
-      role={error ? "alert" : "status"}
+    <Empty
+      status={status}
+      surface="outline"
+      title={content?.title}
+      description={content?.description}
+      action={content?.action}
       style={{ minHeight: height }}
-      className="flex flex-col items-center justify-center gap-6 rounded-(--table-status-radius) border border-dashed border-(--table-status-border) p-6 text-center"
-    >
-      <div className="flex w-full flex-col items-center gap-2">
-        <div
-          className={cn(
-            "flex size-10 items-center justify-center rounded-(--chart-tooltip-radius) border",
-            error
-              ? "border-(--chart-status-error-border) bg-(--chart-status-error-bg) text-(color:--table-status-title-error)"
-              : "border-(--table-status-border) bg-(--table-status-media-bg) text-(color:--content-muted)"
-          )}
-        >
-          <InfoIcon />
-        </div>
-        <div className="flex w-full flex-col items-center gap-2 pt-2">
-          <p
-            className={cn(
-              "w-full text-base leading-6 font-medium",
-              error ? "text-(color:--table-status-title-error)" : "text-(color:--table-status-title)"
-            )}
-          >
-            {content?.title ?? (error ? "Couldn’t load" : "No data")}
-          </p>
-          <p className="w-full text-sm leading-normal text-(color:--content-muted)">
-            {content?.description ?? (error ? "Something went wrong. Try again." : "Nothing to show yet.")}
-          </p>
-        </div>
-      </div>
-      {content?.action && <div className="flex items-center gap-2">{content.action}</div>}
-    </div>
+    />
   )
 }
 

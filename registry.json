@@ -555,6 +555,22 @@
           "modal-close-opacity": "0.4",
           "modal-motion-in": "180ms",
           "modal-motion-out": "120ms",
+          "empty-padding": "var(--primitive-space-24)",
+          "empty-gap": "var(--primitive-space-24)",
+          "empty-radius": "var(--radius-surface)",
+          "empty-outline": "var(--border-subtle)",
+          "empty-background": "var(--surface-muted)",
+          "empty-media-size": "40px",
+          "empty-media-radius": "var(--radius-modal)",
+          "empty-media-bg": "var(--primitive-white-6)",
+          "empty-media-border": "var(--border-subtle)",
+          "empty-media-icon": "var(--content-muted)",
+          "empty-media-bg-error": "#d73a3c0f",
+          "empty-media-border-error": "var(--primitive-error-8)",
+          "empty-title": "var(--content-default)",
+          "empty-title-error": "var(--error)",
+          "empty-title-compact": "var(--primitive-white-80)",
+          "empty-description": "var(--content-muted)",
           "toast-surface": "var(--surface-raised)",
           "toast-border": "var(--border-panel)",
           "toast-stroke": "1px",
@@ -749,7 +765,8 @@
       "description": "Table primitives in Grid and Compact variants with sortable headers, row states and Empty / Loading / Error bodies.",
       "registryDependencies": [
         "utils",
-        "@iq/tokens"
+        "@iq/tokens",
+        "@iq/empty"
       ],
       "files": [
         {
@@ -972,7 +989,8 @@
         "@iq/tokens",
         "@iq/badge",
         "@iq/tabs",
-        "@iq/tooltip"
+        "@iq/tooltip",
+        "@iq/empty"
       ],
       "files": [
         {
@@ -1375,6 +1393,22 @@
           }
         }
       }
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "Empty and error placeholders: Compact or Page; Default, Outline or Background surface; up to two actions.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ]
     },
     {
       "name": "choice-field",
