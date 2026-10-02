@@ -16,6 +16,8 @@ import ToolbarDemo from "./toolbar-demo"
 import ScrollAreaDemo from "./scroll-area-demo"
 import PageHeaderDemo from "./page-header-demo"
 import FieldGridDemo from "./field-grid-demo"
+import TrayDemo from "./tray-demo"
+import NavigationDemo from "./navigation-demo"
 import RadioGroupDemo from "./radio-group-demo"
 import FormFieldDemo from "./form-field-demo"
 import FormFieldSizes from "./form-field-sizes"
@@ -110,6 +112,8 @@ export const examples = {
   "scroll-area-demo": ScrollAreaDemo,
   "page-header-demo": PageHeaderDemo,
   "field-grid-demo": FieldGridDemo,
+  "tray-demo": TrayDemo,
+  "navigation-demo": NavigationDemo,
   "radio-group-demo": RadioGroupDemo,
   "form-field-demo": FormFieldDemo,
   "form-field-sizes": FormFieldSizes,

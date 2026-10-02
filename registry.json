@@ -627,6 +627,37 @@
           "field-grid-value": "var(--content-default)",
           "field-grid-action-hit": "44px",
           "field-grid-state-padding": "var(--space-inset-control-x-lg)",
+          "nav-surface": "var(--surface-canvas)",
+          "nav-border": "#ffffff1a",
+          "nav-width": "320px",
+          "nav-width-collapsed": "56px",
+          "nav-padding-x": "var(--space-gap-control-default)",
+          "nav-padding-y": "16px",
+          "nav-gap": "var(--space-gap-control-default)",
+          "nav-section-gap": "var(--space-gap-control-tight)",
+          "nav-link-px": "var(--space-stack-md)",
+          "nav-link-py": "var(--primitive-space-6)",
+          "nav-link-gap": "var(--space-stack-md)",
+          "nav-link-hit": "44px",
+          "nav-link-radius": "var(--radius-control)",
+          "nav-link-icon": "24px",
+          "nav-link-bg-hover": "var(--surface-hover)",
+          "nav-link-bg-active": "var(--surface-active)",
+          "nav-link-content": "#ffffffe6",
+          "nav-link-content-active": "var(--accent)",
+          "nav-link-content-disabled": "var(--content-disabled)",
+          "nav-title": "var(--primitive-white-70)",
+          "nav-section-label": "var(--content-muted)",
+          "top-menu-height": "56px",
+          "tray-width": "564px",
+          "tray-surface": "var(--surface-raised)",
+          "tray-border": "var(--border-panel)",
+          "tray-padding-x": "var(--space-inset-control-x-lg)",
+          "tray-padding-y": "var(--space-inset-control-x-lg)",
+          "tray-title": "var(--content-default)",
+          "tray-description": "var(--content-muted)",
+          "tray-motion-in": "220ms",
+          "tray-motion-out": "160ms",
           "toast-surface": "var(--surface-raised)",
           "toast-border": "var(--border-panel)",
           "toast-stroke": "1px",
@@ -1569,6 +1600,78 @@
       "files": [
         {
           "path": "registry/iq/ui/field-grid.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tray",
+      "type": "registry:ui",
+      "title": "Tray",
+      "description": "Right-docked detail panel: header (title, status, actions, tabs), sections, backdrop. Built on Radix Dialog.",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "@carbon/icons-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/backdrop",
+        "@iq/button"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/tray.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@keyframes overlay-in": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        },
+        "@keyframes overlay-out": {
+          "from": {
+            "opacity": "1"
+          },
+          "to": {
+            "opacity": "0"
+          }
+        },
+        "@keyframes tray-in": {
+          "from": {
+            "transform": "translateX(100%)"
+          },
+          "to": {
+            "transform": "translateX(0)"
+          }
+        },
+        "@keyframes tray-out": {
+          "from": {
+            "transform": "translateX(0)"
+          },
+          "to": {
+            "transform": "translateX(100%)"
+          }
+        }
+      }
+    },
+    {
+      "name": "navigation",
+      "type": "registry:ui",
+      "title": "Navigation",
+      "description": "Side Menu (expanded / collapsed rail), Side Menu Link, Sub Menu and Top Menu.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/navigation.tsx",
           "type": "registry:ui"
         }
       ]
