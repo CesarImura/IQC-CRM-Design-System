@@ -522,5 +522,5 @@ function Dropdown(props: DropdownProps) {
   )
 }
 
-export { Select, Autocomplete, Dropdown }
+export { Select, Autocomplete, Dropdown, PanelBody as ComboboxPanelBody }
 export type { SelectProps, AutocompleteProps, DropdownProps, ComboboxOption, ComboboxSize }

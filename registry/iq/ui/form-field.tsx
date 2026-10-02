@@ -80,7 +80,7 @@ function ViewOffIcon() {
  * -----------------------------------------------------------------------------------------------*/
 
 type FormFieldProps = Omit<React.ComponentProps<"div">, "children" | "prefix"> & {
-  /** Caption shown inside the control, uppercase. */
+  /** Caption shown inside the control (sentence case). */
   label: React.ReactNode
   /** Text under the control. Its tone follows `status`. */
   helper?: React.ReactNode
@@ -127,8 +127,8 @@ const frameVariants = cva(
   {
     variants: {
       size: {
-        sm: "py-(--form-field-py-sm) [--field-icon:16px] [--field-text:14px] [--field-gap:6px]",
-        md: "py-(--form-field-py-md) [--field-icon:20px] [--field-text:16px] [--field-gap:8px]",
+        sm: "py-(--form-field-py-sm) [--field-icon:16px] [--field-text:14px] [--field-leading:21px] [--field-gap:6px]",
+        md: "py-(--form-field-py-md) [--field-icon:20px] [--field-text:16px] [--field-leading:20px] [--field-gap:8px]",
       },
     },
   }
@@ -207,20 +207,20 @@ function FormField({
             <label
               htmlFor={id}
               className={cn(
-                "flex min-w-0 items-center gap-1 text-xs leading-4 font-medium tracking-(--form-field-label-tracking) whitespace-nowrap uppercase text-(color:--content-muted)",
+                "flex min-h-[18px] min-w-0 items-center gap-1 text-xs leading-4 font-medium whitespace-nowrap text-(color:--content-muted)",
                 disabled && "text-(color:--content-disabled)"
               )}
             >
               <span className="truncate">{label}</span>
               {required && (
-                <span aria-hidden="true" className={cn("font-semibold", disabled ? "text-(color:--content-disabled)" : "text-(color:--danger)")}>
+                <span aria-hidden="true" className={cn("leading-[18px] font-semibold", disabled ? "text-(color:--content-disabled)" : "text-(color:--danger)")}>
                   *
                 </span>
               )}
             </label>
             <div className="flex min-w-0 items-start gap-2 pt-(--field-gap)">
               {prefix && (
-                <span className="flex shrink-0 items-center gap-2 text-(length:--field-text) leading-5 font-medium text-(color:--content-default) group-data-disabled/field:text-(color:--content-disabled)">
+                <span className="flex shrink-0 items-center gap-2 text-(length:--field-text) leading-(--field-leading) font-medium text-(color:--content-default) group-data-disabled/field:text-(color:--content-disabled)">
                   {prefix}
                   <span aria-hidden="true" className="h-4 w-px bg-(--form-field-divider)" />
                 </span>
@@ -288,7 +288,7 @@ function FieldHelper({
  * -----------------------------------------------------------------------------------------------*/
 
 const valueClasses =
-  "w-full min-w-0 flex-1 bg-transparent p-0 text-(length:--field-text) leading-5 font-medium text-(color:--content-default) outline-none placeholder:font-normal placeholder:text-(color:--content-muted) read-only:text-(color:--content-muted) disabled:text-(color:--content-disabled) disabled:placeholder:text-(color:--content-disabled)"
+  "w-full min-w-0 flex-1 bg-transparent p-0 text-(length:--field-text) leading-(--field-leading) font-medium text-(color:--content-default) outline-none placeholder:font-normal placeholder:text-(color:--content-muted) read-only:text-(color:--content-muted) disabled:text-(color:--content-disabled) disabled:placeholder:text-(color:--content-disabled)"
 
 function useInputA11y() {
   const field = useField()

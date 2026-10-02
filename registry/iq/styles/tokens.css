@@ -465,6 +465,28 @@
   --radio-dot-selected: var(--checkbox-fill-selected);
   --radio-selected-disabled: var(--primitive-accent-16);
   --radio-dot-size: 10px;
+  /* Toggle */
+  --toggle-track-width: 32px;
+  --toggle-track-height: 18px;
+  --toggle-track-padding: 2px;
+  --toggle-thumb-size: 12px;
+  --toggle-row-gap: 8px;
+  --toggle-copy-gap: 2px;
+  --toggle-track-off-border: var(--primitive-white-40);
+  --toggle-track-off-border-hover: var(--primitive-white-64);
+  --toggle-track-off-border-disabled: var(--primitive-white-16);
+  --toggle-track-off-bg-hover: var(--surface-hover);
+  --toggle-track-off-bg-focus: var(--surface-canvas);
+  --toggle-track-on-border: var(--accent);
+  --toggle-track-on-fill: var(--primitive-accent-8);
+  --toggle-track-on-fill-hover: var(--primitive-accent-16);
+  --toggle-track-on-fill-pressed: var(--primitive-accent-24);
+  --toggle-track-on-fill-disabled: var(--primitive-accent-32);
+  --toggle-thumb-off: var(--content-default);
+  --toggle-thumb-on: var(--accent);
+  --toggle-thumb-disabled: var(--content-disabled);
+  --toggle-label: var(--primitive-white-80);
+  --toggle-description: var(--content-muted);
   /* Table */
   --table-header-bg: var(--primitive-white-2);
   --table-row-hover: var(--primitive-white-2);
@@ -530,7 +552,6 @@
   --form-field-py-sm: 8px;
   --form-field-py-md: 10px;
   --form-field-gap: var(--primitive-space-8);
-  --form-field-label-tracking: 0.96px;
   --form-field-bg: var(--surface-transparent);
   --form-field-bg-hover: var(--surface-hover);
   --form-field-bg-focus: var(--surface-active);

@@ -6,6 +6,7 @@ import { Button } from "@/registry/iq/ui/button"
 import { ChoiceFieldMatrix } from "@/components/docs/choice-field-matrix"
 import { ComponentPreview } from "@/components/docs/component-preview"
 import { FormFieldMatrix, FormFieldTypes } from "@/components/docs/form-field-matrix"
+import { PickerFieldMatrix } from "@/components/docs/picker-field-matrix"
 import { TokenTable } from "@/components/docs/token-table"
 import { Callout, H2, H3, P, PageHeader, UL } from "@/components/docs/typography"
 
@@ -38,11 +39,13 @@ export default function FormFieldDocsPage() {
         <li>Password: the eye button shows and hides the value.</li>
         <li>Textarea: grows with its content and can be resized from the corner.</li>
         <li>Currency: symbol prefix, locale formatting when you leave the field, and a +/− stepper (also ↑/↓ keys).</li>
+        <li>Select, Autocomplete and Date: pick from the Option Panel or a calendar that opens 8px below the control.</li>
+        <li>Phone, Radio group, Checkbox group and Toggle: see their sections below.</li>
       </UL>
       <FormFieldTypes />
 
       <H2>Sizes</H2>
-      <P>Small (60px, 14px value) is the default for dense CRM forms. Medium (66px, 16px value) suits standalone forms.</P>
+      <P>Small (63px, 14/21 value) is the default for dense CRM forms. Medium (68px, 16/20 value) suits standalone forms.</P>
       <ComponentPreview name="form-field-sizes" />
 
       <H2>States</H2>
@@ -68,6 +71,19 @@ export default function FormFieldDocsPage() {
       <P>The Figma matrix: size and content by all eight states, with Hover, Focus and Active forced for comparison.</P>
       <FormFieldMatrix />
 
+      <H2>Select, Autocomplete and Date</H2>
+      <P>
+        The same control with a panel underneath. Active is the open panel (and, for Autocomplete, typing). The chevron flips while
+        Select is open; Date opens a calendar as wide as the field.
+      </P>
+      <ComponentPreview name="select-field-demo" align="start" />
+      <H3>Select states</H3>
+      <PickerFieldMatrix type="select" />
+      <H3>Autocomplete states</H3>
+      <PickerFieldMatrix type="autocomplete" />
+      <H3>Date states</H3>
+      <PickerFieldMatrix type="date" />
+
       <H2>Radio group and Checkbox group</H2>
       <P>
         One choice or any number, with a caption above the options and the helper below. Warning and Error only change the
@@ -78,6 +94,14 @@ export default function FormFieldDocsPage() {
       <ChoiceFieldMatrix type="radio" />
       <H3>Checkbox group states</H3>
       <ChoiceFieldMatrix type="checkbox" />
+
+      <H2>Toggle</H2>
+      <P>
+        One on / off setting: caption, switch and helper. Warning and Error only change the helper; Disabled and Read-only show
+        the switch disabled. See Toggle for the switch itself.
+      </P>
+      <H3>Toggle states</H3>
+      <ChoiceFieldMatrix type="toggle" />
 
       <H2>Phone</H2>
       <P>
@@ -95,7 +119,6 @@ export default function FormFieldDocsPage() {
           ["Padding y, Small", "form-field-py-sm"],
           ["Padding y, Medium", "form-field-py-md"],
           ["Label → value gap", "form-field-gap"],
-          ["Label tracking", "form-field-label-tracking"],
         ]}
       />
       <TokenTable
@@ -136,12 +159,9 @@ export default function FormFieldDocsPage() {
         <li>Clicking anywhere in the frame focuses the input; helper and error text are read with the field.</li>
         <li>The password toggle is a button with a name that announces whether the value is shown.</li>
         <li>The currency stepper is mouse-only (skipped by Tab); keyboard users use ↑/↓.</li>
+        <li>Select and Date open on click, Enter or Space anywhere on the control; Esc closes and returns focus. Autocomplete opens as you type; ↑ ↓ move, Enter picks.</li>
       </UL>
 
-      <Callout tone="warning">
-        <strong className="text-white">Coming next:</strong> Select, Autocomplete and Date, which need the Option Panel and Date
-        Picker.
-      </Callout>
       <Callout tone="warning">
         <strong className="text-white">Figma notes:</strong>
         <ul className="mt-2 ml-4 list-disc space-y-1">
@@ -151,6 +171,10 @@ export default function FormFieldDocsPage() {
           <li>Radio group options use Radio (14px medium label), while Checkbox group uses Checkbox (16px regular label, 40px rows). The two groups look different side by side.</li>
           <li>Regions without a phone plan (EU, UN, CEFTA) are not in the country list.</li>
           <li>The Active ring and the icon and handle opacities are raw values.</li>
+          <li>Form Field / Date Active flips the calendar icon upside down (copied from the Select chevron); the build keeps it upright.</li>
+          <li>The open variants (Select, Autocomplete, Date) hide the helper text; the build keeps it, and the panel floats over it.</li>
+          <li>Form Field / Autocomplete has no trailing icon, unlike Select and Date.</li>
+          <li>Form Field / Toggle Read-only uses the Disabled switch, so it can’t be told apart from Disabled except by the helper color.</li>
         </ul>
       </Callout>
     </>

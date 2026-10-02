@@ -9,6 +9,8 @@ import ComboboxStates from "./combobox-states"
 import OptionPanelDemo from "./option-panel-demo"
 import OptionPanelStates from "./option-panel-states"
 import PhoneFieldDemo from "./phone-field-demo"
+import SelectFieldDemo from "./select-field-demo"
+import ToggleDemo from "./toggle-demo"
 import RadioGroupDemo from "./radio-group-demo"
 import FormFieldDemo from "./form-field-demo"
 import FormFieldSizes from "./form-field-sizes"
@@ -96,6 +98,8 @@ import StatCardTones from "./stat-card-tones"
 export const examples = {
   "choice-field-demo": ChoiceFieldDemo,
   "phone-field-demo": PhoneFieldDemo,
+  "select-field-demo": SelectFieldDemo,
+  "toggle-demo": ToggleDemo,
   "radio-group-demo": RadioGroupDemo,
   "form-field-demo": FormFieldDemo,
   "form-field-sizes": FormFieldSizes,

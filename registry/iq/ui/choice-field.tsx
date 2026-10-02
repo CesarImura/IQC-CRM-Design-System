@@ -6,9 +6,10 @@ import { cn } from "@/lib/utils"
 import { Checkbox } from "@/registry/iq/ui/checkbox"
 import { FieldHelper } from "@/registry/iq/ui/form-field"
 import { RadioGroup, RadioGroupItem } from "@/registry/iq/ui/radio-group"
+import { Toggle } from "@/registry/iq/ui/toggle"
 
 // Figma: IQ Capital CRM Design System → Form Field / Radio group (2539:9435) and
-// Form Field / Checkbox group (2540:9270). Caption above the options, helper below.
+// Form Field / Checkbox group (2540:9270) and Form Field / Toggle (2563:31775). Caption above the options, helper below.
 // Warning and Error only change the helper; Disabled and Read-only disable every option
 // (Read-only keeps a neutral helper).
 
@@ -46,10 +47,10 @@ function ChoiceFieldShell({
 }: Omit<ChoiceFieldBaseProps, "options"> & { captionId: string; helperId: string; children: React.ReactNode }) {
   return (
     <div data-slot="choice-field" className={cn("flex w-full flex-col gap-(--form-field-gap)", className)}>
-      <p id={captionId} className="flex items-start gap-1 text-xs leading-4 font-medium whitespace-nowrap text-(color:--content-muted)">
+      <p id={captionId} className="flex min-h-[18px] items-center gap-1 text-xs leading-4 font-medium whitespace-nowrap text-(color:--content-muted)">
         <span className="truncate">{label}</span>
         {required && (
-          <span aria-hidden="true" className="font-semibold text-(color:--danger)">
+          <span aria-hidden="true" className="leading-[18px] font-semibold text-(color:--danger)">
             *
           </span>
         )}
@@ -166,5 +167,42 @@ function CheckboxGroupField({
   )
 }
 
-export { RadioGroupField, CheckboxGroupField }
-export type { RadioGroupFieldProps, CheckboxGroupFieldProps, ChoiceOption }
+type ToggleFieldProps = Omit<ChoiceFieldBaseProps, "options"> & {
+  checked?: boolean
+  defaultChecked?: boolean
+  onCheckedChange?: (checked: boolean) => void
+  /** Optional text next to the switch (Figma shows the switch alone). */
+  toggleLabel?: React.ReactNode
+  name?: string
+  /** Documentation only: force the switch's Hover, Focus or Pressed (Figma State = Active) look. */
+  visualState?: "hover" | "focus" | "pressed"
+}
+
+/** Figma Form Field / Toggle: one on / off setting with a caption and helper. */
+function ToggleField({ checked, defaultChecked, onCheckedChange, toggleLabel, name, visualState, ...shell }: ToggleFieldProps) {
+  const id = React.useId()
+  return (
+    <ChoiceFieldShell {...shell} captionId={`${id}-caption`} helperId={`${id}-helper`}>
+      <Toggle
+        aria-labelledby={toggleLabel ? undefined : `${id}-caption`}
+        aria-describedby={shell.helper ? `${id}-helper` : undefined}
+        aria-invalid={shell.status === "error" || undefined}
+        aria-readonly={shell.readOnly || undefined}
+        aria-required={shell.required || undefined}
+        checked={checked}
+        defaultChecked={defaultChecked}
+        onCheckedChange={onCheckedChange}
+        name={name}
+        // Read-only shows the switch in its disabled look, like Figma.
+        disabled={shell.disabled || shell.readOnly}
+        visualState={visualState}
+        rowClassName="self-start"
+      >
+        {toggleLabel}
+      </Toggle>
+    </ChoiceFieldShell>
+  )
+}
+
+export { RadioGroupField, CheckboxGroupField, ToggleField }
+export type { RadioGroupFieldProps, CheckboxGroupFieldProps, ToggleFieldProps, ChoiceOption }
