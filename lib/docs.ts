@@ -35,6 +35,7 @@ export const nav: NavSection[] = [
       { title: "Combobox", href: "/docs/components/combobox" },
       { title: "Data Table", href: "/docs/components/data-table" },
       { title: "Date Picker", href: "/docs/components/date-picker" },
+      { title: "Donut Chart", href: "/docs/components/donut-chart" },
       { title: "Dropdown", href: "/docs/components/dropdown" },
       { title: "Empty", href: "/docs/components/empty" },
       { title: "Field Grid", href: "/docs/components/field-grid" },

@@ -1677,6 +1677,24 @@
       ]
     },
     {
+      "name": "donut-chart",
+      "type": "registry:ui",
+      "title": "Donut Chart",
+      "description": "Part-to-whole ring with labels, center total, legend, hover tooltip, and Empty / Error states.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/chart",
+        "@iq/empty"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/donut-chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "choice-field",
       "type": "registry:ui",
       "title": "Choice Field",

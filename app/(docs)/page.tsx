@@ -77,10 +77,12 @@ export default function IntroductionPage() {
 
       <H2>Status</H2>
       <P>
-        Available now: Badge, Breadcrumb, Button, Checkbox, Combobox (Select, Autocomplete), Data Table, Date Picker, Dropdown, Flag, Form Field
-        (Input, Password, Textarea, Currency, Select, Autocomplete, Date, Phone, Radio group, Checkbox group, Toggle), Input, Label Block, Line Chart, Option Panel, Pagination, Partner Logo,
-        Pill, Radio Group, Ring Chart, Search Bar, Selection Bar, Skeleton, Stat Card, Status Dot, Tabs (Pill, Line), Toast, Toggle, Tooltip, Trigger and Value Slot. Next up: Modal, Empty, Alert,
-        Toolbar, Navigation, Scroll Bar and the other charts.
+        Available now: Alert, Backdrop, Badge, Breadcrumb, Button, Checkbox, Combobox (Select, Autocomplete), Data Table, Date Picker,
+        Donut Chart, Dropdown, Empty, Field Grid, Flag, Form Field (Input, Password, Textarea, Currency, Select, Autocomplete, Date, Phone,
+        Radio group, Checkbox group, Toggle), Input, Item, Label Block, Line Chart, Modal, Navigation (Side Menu, Sub Menu, Top Menu),
+        Option Panel, Page Header, Pagination, Partner Logo, Pill, Radio Group, Ring Chart, Scroll Bar, Search Bar, Selection Bar, Skeleton,
+        Stat Card, Status Dot, Tabs (Pill, Line), Text Area, Toast, Toggle, Toolbar, Tooltip, Tray, Trigger and Value Slot. In Figma but not
+        marked ready yet: Chart / Area and Chart / Pizza.
       </P>
     </>
   )

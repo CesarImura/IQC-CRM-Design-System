@@ -18,6 +18,7 @@ import PageHeaderDemo from "./page-header-demo"
 import FieldGridDemo from "./field-grid-demo"
 import TrayDemo from "./tray-demo"
 import NavigationDemo from "./navigation-demo"
+import DonutChartDemo from "./donut-chart-demo"
 import RadioGroupDemo from "./radio-group-demo"
 import FormFieldDemo from "./form-field-demo"
 import FormFieldSizes from "./form-field-sizes"
@@ -114,6 +115,7 @@ export const examples = {
   "field-grid-demo": FieldGridDemo,
   "tray-demo": TrayDemo,
   "navigation-demo": NavigationDemo,
+  "donut-chart-demo": DonutChartDemo,
   "radio-group-demo": RadioGroupDemo,
   "form-field-demo": FormFieldDemo,
   "form-field-sizes": FormFieldSizes,
