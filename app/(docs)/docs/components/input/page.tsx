@@ -49,7 +49,7 @@ export default function InputDocsPage() {
       <H2>States</H2>
       <UL>
         <li>
-          <strong className="text-white">Default:</strong> white 5% fill, no border, placeholder at 50%.
+          <strong className="text-white">Default:</strong> white 5% fill, 1px border at white 8%, placeholder at 50%.
         </li>
         <li>
           <strong className="text-white">Hover:</strong> neutral-500 (#6e6f6f) border, placeholder at 70%.
@@ -96,6 +96,7 @@ export default function InputDocsPage() {
           ["Radius", "form-field-radius"],
           ["Fill", "input-bg"],
           ["Fill, Active", "input-bg-active"],
+          ["Border", "input-border"],
           ["Border hover / Active", "input-border-hover"],
           ["Border disabled", "input-border-disabled"],
           ["Ring, Focus", "focus-ring"],

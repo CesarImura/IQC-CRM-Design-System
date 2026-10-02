@@ -561,6 +561,7 @@
   /* Input */
   --input-bg: var(--primitive-white-5);
   --input-bg-active: var(--primitive-white-2);
+  --input-border: var(--button-secondary-border-default);
   --input-border-hover: var(--primitive-neutral-500);
   --input-border-disabled: var(--primitive-white-16);
   --input-border-error-width: 1.5px;

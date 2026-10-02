@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils"
 
 const frameVariants = cva(
   [
-    "group/input flex w-full min-w-0 items-center gap-(--button-spacing-gap) rounded-(--form-field-radius) border border-transparent px-(--input-px) outline-none",
+    "group/input flex w-full min-w-0 items-center gap-(--button-spacing-gap) rounded-(--form-field-radius) border border-(--input-border) px-(--input-px) outline-none",
     "bg-(--input-bg) text-(color:--input-text)",
     "[&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-(color:--input-icon)",
     // Hover
@@ -23,7 +23,7 @@ const frameVariants = cva(
     // Error keeps its red ring while focused (Focus / Active are off in Error)
     "data-[status=error]:border-(length:--input-border-error-width) data-[status=error]:border-(--form-field-error-border) data-[status=error]:hover:border-(--form-field-error-border) data-[status=error]:data-[visual=hover]:border-(--form-field-error-border) data-[status=error]:bg-(--form-field-surface-transparent) data-[status=error]:shadow-[0_0_0_var(--focus-spread)_var(--focus-danger)]",
     // Read-only: fill only, no hover
-    "data-readonly:border-transparent data-readonly:hover:border-transparent data-readonly:text-(color:--input-placeholder) data-readonly:shadow-none",
+    "data-readonly:border-(--input-border) data-readonly:hover:border-(--input-border) data-readonly:text-(color:--input-placeholder) data-readonly:shadow-none",
     // Disabled
     "data-disabled:pointer-events-none data-disabled:border-(--input-border-disabled) data-disabled:bg-(--input-bg) data-disabled:text-(color:--content-disabled) data-disabled:shadow-none data-disabled:[&_svg]:text-(color:--content-disabled)",
   ],
@@ -117,5 +117,94 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
   )
 })
 
-export { Input }
-export type { InputProps }
+/* -------------------------------------------------------------------------------------------------
+ * Text Area
+ * -----------------------------------------------------------------------------------------------*/
+
+// Figma: IQ Capital CRM Design System → Text Area (2545:31909). Same states and Focus / Active model as Input;
+// 60px text box (Figma draws the border inside, so 58px + border; Small 72px, Medium 80px overall), optional trailing icon and the resize handle (Expandable).
+
+type TextAreaProps = Omit<React.ComponentProps<"textarea">, "size"> & {
+  size?: "sm" | "md"
+  error?: boolean
+  trailingIcon?: React.ReactNode
+  /** Show the resize handle and let the user drag it taller (Figma Expandable). Default true. */
+  expandable?: boolean
+  visualState?: "hover" | "focus" | "active"
+  visualHover?: boolean
+  frameClassName?: string
+}
+
+/** Text Area: multi-line text with the Input chrome. Grows with its content and can be resized. */
+const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(function TextArea(
+  { size = "sm", error = false, trailingIcon, expandable = true, visualState, visualHover, disabled, readOnly, className, frameClassName, onFocus, onBlur, onKeyDown, rows = 3, ...props },
+  ref
+) {
+  const pointerRef = React.useRef(false)
+  const [interaction, setInteraction] = React.useState<"focus" | "active" | null>(null)
+  const resolved = visualState === "focus" || visualState === "active" ? visualState : (interaction ?? undefined)
+
+  return (
+    <div
+      data-slot="text-area"
+      data-size={size}
+      data-status={error ? "error" : undefined}
+      data-disabled={disabled || undefined}
+      data-readonly={readOnly || undefined}
+      data-interaction={readOnly || error ? undefined : resolved}
+      data-visual={visualState === "hover" || visualHover ? "hover" : undefined}
+      className={cn(
+        frameVariants({ size }),
+        "relative h-auto items-start",
+        size === "sm" ? "py-1.5" : "py-2.5",
+        frameClassName
+      )}
+      onPointerDownCapture={() => {
+        pointerRef.current = true
+      }}
+    >
+      <textarea
+        ref={ref}
+        data-slot="text-area-control"
+        rows={rows}
+        disabled={disabled}
+        readOnly={readOnly}
+        aria-invalid={error || undefined}
+        className={cn(
+          "min-h-[58px] min-w-0 flex-1 bg-transparent outline-none [field-sizing:content] [&::-webkit-resizer]:bg-transparent",
+          expandable && !readOnly && !disabled ? "resize-y" : "resize-none",
+          "placeholder:text-(color:--input-placeholder) group-[:not([data-interaction]):hover]/input:placeholder:text-(color:--input-placeholder-hover) group-[:not([data-interaction])[data-visual=hover]]/input:placeholder:text-(color:--input-placeholder-hover)",
+          "group-data-[interaction=focus]/input:placeholder:text-(color:--input-text) group-data-[interaction=active]/input:placeholder:text-(color:--input-text-active)",
+          "disabled:placeholder:text-(color:--content-disabled)",
+          className
+        )}
+        onFocus={(event) => {
+          const viaPointer = pointerRef.current
+          pointerRef.current = false
+          setInteraction(viaPointer ? "active" : "focus")
+          onFocus?.(event)
+        }}
+        onBlur={(event) => {
+          setInteraction(null)
+          onBlur?.(event)
+        }}
+        onKeyDown={(event) => {
+          const navigation = ["Tab", "Shift", "Escape", "Meta", "Control", "Alt", "CapsLock"]
+          if (interaction === "focus" && !navigation.includes(event.key)) setInteraction("active")
+          onKeyDown?.(event)
+        }}
+        {...props}
+      />
+      {trailingIcon && !readOnly && <span className="flex pt-0.5">{trailingIcon}</span>}
+      {expandable && (
+        // Figma _Resize: 12px triangle, 10% white, in the corner.
+        <svg viewBox="0 0 12 12" aria-hidden="true" className="pointer-events-none absolute right-[3px] bottom-[3px] size-3 text-(color:--form-field-resize-handle)">
+          <path d="M12 0V12H0L12 0Z" fill="currentColor" />
+        </svg>
+      )}
+    </div>
+  )
+})
+
+export { Input, TextArea }
+export type { InputProps, TextAreaProps }

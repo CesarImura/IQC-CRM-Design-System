@@ -56,6 +56,7 @@ export const nav: NavSection[] = [
       { title: "Stat Card", href: "/docs/components/stat-card" },
       { title: "Status Dot", href: "/docs/components/status-dot" },
       { title: "Tabs", href: "/docs/components/tabs" },
+      { title: "Text Area", href: "/docs/components/text-area" },
       { title: "Toast", href: "/docs/components/toast" },
       { title: "Toggle", href: "/docs/components/toggle" },
       { title: "Tooltip", href: "/docs/components/tooltip" },

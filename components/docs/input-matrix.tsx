@@ -1,11 +1,12 @@
 "use client"
 
-import { Input } from "@/registry/iq/ui/input"
+import { Input, TextArea } from "@/registry/iq/ui/input"
 
 const states = ["Default", "Focus", "Error", "Disabled", "Read-only", "Active"] as const
 
-/** Mirrors the Figma "Input" matrix: Size × State by Rest / Hover. */
-export function InputMatrix() {
+/** Mirrors the Figma "Input" (or "Text Area") matrix: Size × State by Rest / Hover. */
+export function InputMatrix({ kind = "input" }: { kind?: "input" | "textarea" }) {
+  const Field = kind === "textarea" ? TextArea : Input
   return (
     <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
       <table className="w-full min-w-[640px] border-collapse text-sm">
@@ -33,7 +34,7 @@ export function InputMatrix() {
                     {hover && (state === "Disabled" || state === "Read-only") ? (
                       <span className="text-xs text-white/30">—</span>
                     ) : (
-                      <Input
+                      <Field
                         size={size}
                         tabIndex={-1}
                         aria-label={`${state}${hover ? " hover" : ""}`}
