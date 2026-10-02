@@ -35,7 +35,7 @@ export default function ToastDocsPage() {
       <ComponentPreview name="toast-tones" />
       <UL>
         <li>
-          <strong className="text-white">Neutral:</strong> one line of text at 70%. For simple confirmations.
+          <strong className="text-white">Neutral:</strong> one line of text at 64%. For simple confirmations.
         </li>
         <li>
           <strong className="text-white">Loading:</strong> spinning icon and text; stays until it’s replaced by the result (usually
@@ -57,13 +57,13 @@ export default function ToastDocsPage() {
       <H2>Parts</H2>
       <H3>Surface</H3>
       <UL>
-        <li>409px wide, 4px radius, 1px border at white 5%, #1e2120 fill.</li>
+        <li>409px wide, 4px radius, 1px border-panel (white 8%), surface-raised (#121514) fill.</li>
         <li>Neutral and Loading: 16 / 12px padding. Info, Success, Warning, Error: 12px padding. 16px between parts.</li>
       </UL>
       <H3>Content</H3>
       <UL>
         <li>Icon tile: 40px, 2px radius, tinted at 10% (Info 5% white), with a 24px filled icon.</li>
-        <li>Title 14px medium white, 1.3 line height. Description 14px at 50%. Neutral / Loading text 14px regular at 70%.</li>
+        <li>Title 14px medium white, 1.3 line height. Description 14px at 50%. Neutral / Loading text 14px regular at 64% (content/body).</li>
         <li>Action: Small Secondary button. Close: 32px icon button with a 16px × at 50%. 8px apart.</li>
       </UL>
       <H3>Progress</H3>

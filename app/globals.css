@@ -4,7 +4,7 @@
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-canvas: var(--canvas);
+  --color-canvas: var(--surface-canvas);
   --color-grid: var(--border-grid);
   --color-brand: var(--button-primary-bg-default);
   --color-focus: var(--focus-ring);
@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  background: var(--canvas);
+  background: var(--surface-canvas);
   color: #ffffff;
 }
 

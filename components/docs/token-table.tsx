@@ -1,7 +1,6 @@
-import tokens from "@/registry/iq/tokens/tokens.json"
+import { aliasOf, byName, resolveToken } from "@/lib/tokens"
 import { CopyButton } from "./copy-button"
-
-const byName = new Map(tokens.groups.flatMap((g) => g.tokens.map((t) => [t.name, t] as const)))
+import { Swatch } from "./token-value"
 
 type Row = [property: string, token: string]
 
@@ -14,26 +13,20 @@ export function TokenTable({ rows, title }: { rows: Row[]; title?: string }) {
         <tbody className="divide-y divide-grid">
           {rows.map(([property, name]) => {
             const token = byName.get(name)
-            const isColor = token?.value.startsWith("#")
+            const alias = token && aliasOf(token.value)
             return (
               <tr key={`${property}-${name}`}>
                 <td className="w-48 px-4 py-2.5 text-white/70">{property}</td>
                 <td className="px-4 py-2.5">
                   <span className="flex items-center gap-3">
-                    {isColor ? (
-                      <span
-                        aria-hidden
-                        className="size-5 shrink-0 rounded-[2px] border border-white/10 bg-[linear-gradient(45deg,#1a1d1c_25%,transparent_25%,transparent_75%,#1a1d1c_75%),linear-gradient(45deg,#1a1d1c_25%,transparent_25%,transparent_75%,#1a1d1c_75%)] bg-size-[6px_6px] bg-position-[0_0,3px_3px]"
-                      >
-                        <span className="block size-full" style={{ background: token?.value }} />
-                      </span>
-                    ) : (
-                      <span aria-hidden className="size-5 shrink-0" />
-                    )}
+                    {token ? <Swatch value={token.value} /> : <span aria-hidden className="size-5 shrink-0" />}
                     <span className="font-mono text-[13px] text-white">--{name}</span>
                   </span>
                 </td>
-                <td className="px-4 py-2.5 font-mono text-xs text-white/60">{token?.value ?? "missing"}</td>
+                <td className="px-4 py-2.5 font-mono text-xs text-white/60">
+                  {token ? resolveToken(token.value) : "missing"}
+                  {alias && <span className="block text-white/35">→ {alias}</span>}
+                </td>
                 <td className="hidden px-4 py-2.5 text-xs text-white/40 lg:table-cell">{token?.figma}</td>
                 <td className="w-10 px-2 py-1.5">
                   <CopyButton value={`var(--${name})`} />

@@ -76,7 +76,7 @@ export default function PageGridDemo() {
         <span className="text-white">{current.label}</span> · {current.use} · {measure} on a {screen}px screen
       </p>
       <div ref={boxRef} className="w-full overflow-hidden rounded-[2px] border border-grid" style={{ height: height * scale }}>
-        <div className="origin-top-left bg-(--canvas)" style={{ width: screen, height, transform: `scale(${scale})` }}>
+        <div className="origin-top-left bg-(--surface-canvas)" style={{ width: screen, height, transform: `scale(${scale})` }}>
           <div className="border-b border-(--border-panel) bg-(--surface-raised)" style={{ height: SHELL_TOP }} />
           <div className="flex" style={{ height: height - SHELL_TOP }}>
             <div className="flex shrink-0 border-r border-(--border-panel)" style={{ width: SHELL_NAV }}>

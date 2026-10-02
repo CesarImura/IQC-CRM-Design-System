@@ -92,7 +92,7 @@ function CountryItem({
       className={cn(
         "flex cursor-pointer items-center gap-2 rounded-(--option-panel-radius) p-2 text-sm leading-normal outline-none select-none",
         "data-[selected=true]:bg-(--option-item-bg-hover)",
-        selected ? "bg-(--option-item-bg-selected) font-medium text-white" : "text-white/90"
+        selected ? "bg-(--option-item-bg-selected) font-medium text-(color:--content-default)" : "text-white/90"
       )}
     >
       <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" className={cn("size-4 shrink-0", !selected && "invisible")}>
@@ -205,11 +205,11 @@ function PhoneField({
               <Command.Input
                 autoFocus
                 placeholder={labels?.search ?? "Search country or code"}
-                className="h-full min-w-0 flex-1 bg-transparent pr-3 text-sm leading-[21px] text-white outline-none placeholder:text-white/50"
+                className="h-full min-w-0 flex-1 bg-transparent pr-3 text-sm leading-[21px] text-(color:--content-default) outline-none placeholder:text-(color:--content-muted)"
               />
             </div>
             <Command.List className="max-h-72 overflow-y-auto [scrollbar-color:var(--border-grid)_transparent] [scrollbar-width:thin]">
-              <Command.Empty className="px-2 py-6 text-center text-sm text-white/50">
+              <Command.Empty className="px-2 py-6 text-center text-sm text-(color:--content-muted)">
                 {labels?.empty ?? "No country found."}
               </Command.Empty>
               {[
@@ -219,7 +219,7 @@ function PhoneField({
                 <Command.Group
                   key={group.heading}
                   heading={group.heading}
-                  className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:pt-1 [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:leading-normal [&_[cmdk-group-heading]]:text-white/50 [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-items]]:flex [&_[cmdk-group-items]]:flex-col [&_[cmdk-group-items]]:gap-1"
+                  className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:pt-1 [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:leading-normal [&_[cmdk-group-heading]]:text-(color:--content-muted) [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-items]]:flex [&_[cmdk-group-items]]:flex-col [&_[cmdk-group-items]]:gap-1"
                 >
                   {group.items.map((c) => (
                     <CountryItem key={`${group.heading}-${c.code}`} group={group.heading} country={c} selected={c.code === country.code} onSelect={() => select(c)} />

@@ -36,7 +36,7 @@ export default function SelectionBarDocsPage() {
 
       <H2>Anatomy</H2>
       <UL>
-        <li>Raised surface, 1px #2b2828 border, 24 / 16px padding.</li>
+        <li>Raised surface, 1px border-panel (white 8%), 24 / 16px padding.</li>
         <li>Count: 14px medium white, e.g. “8 selected”.</li>
         <li>Actions: Small Buttons and Dropdowns, 8px apart. Destructive actions use Danger.</li>
         <li>A 1×16 divider, then Clear (Ghost button), 12px apart.</li>

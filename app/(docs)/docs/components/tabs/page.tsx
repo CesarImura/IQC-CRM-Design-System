@@ -86,7 +86,7 @@ export default function TabsDocsPage() {
       <ComponentPreview name="tabs-line-demo" className="block p-0 sm:p-0" />
       <TabsLineMatrix />
       <UL>
-        <li>Bar: 24px side padding, items 10px apart, #2b2828 divider on the bottom (or top and bottom).</li>
+        <li>Bar: 24px side padding, items 10px apart, border-divider (#252827) on the bottom (or top and bottom).</li>
         <li>Item: 8 / 16px padding, 14px medium; inactive label at 40%, hover at 80% with a soft fill.</li>
         <li>Active: white label, 1px underline in the tone color; 2px on hover.</li>
         <li>Tones: Neutral (50% white), Accent (green), Danger (red), Warning (yellow), Info (blue). Counts use the matching Badge.</li>
@@ -117,7 +117,6 @@ export default function TabsDocsPage() {
       <Callout tone="warning">
         <strong className="text-white">Figma notes (Line):</strong>
         <ul className="mt-2 ml-4 list-disc space-y-1">
-          <li>The bar divider uses #2b2828, a warm gray that doesn’t match border-grid (#1e2120) used everywhere else.</li>
           <li>The bar has spacing/bar-gap 20px, but the slot inside uses a raw 10px gap.</li>
           <li>Inactive labels are content/muted plus 80% layer opacity (≈40%) instead of a single variable.</li>
         </ul>

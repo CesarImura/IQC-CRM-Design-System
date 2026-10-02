@@ -262,7 +262,7 @@ function Pagination({
                 setDraft(null)
               }}
               onKeyDown={(e) => e.key === "Enter" && e.currentTarget.blur()}
-              className="h-8 w-14 rounded-[2px] bg-(--pagination-input-bg) px-3 font-sans text-sm leading-[21px] text-white/50 outline-none focus:text-white/90 focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)] disabled:text-(color:--content-disabled)"
+              className="h-8 w-14 rounded-[2px] bg-(--pagination-input-bg) px-3 font-sans text-sm leading-[21px] text-(color:--content-muted) outline-none focus:text-white/90 focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)] disabled:text-(color:--content-disabled)"
             />
             <span className="text-(color:--pagination-muted)">{labels.of}</span>
             <span className="text-(color:--pagination-muted)">{formatNumber(pageCount)}</span>

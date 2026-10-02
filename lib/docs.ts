@@ -19,6 +19,7 @@ export const nav: NavSection[] = [
     title: "Foundations",
     items: [
       { title: "Tokens", href: "/docs/tokens" },
+      { title: "Typography", href: "/docs/typography" },
       { title: "Page Grid", href: "/docs/page-grid" },
     ],
   },

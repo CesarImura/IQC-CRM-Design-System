@@ -244,7 +244,7 @@ function Select(props: SelectProps) {
   }
 
   const trigger = iconOnly ? (
-    <span className={cn("flex", !disabled && "text-white")}>{iconOnly}</span>
+    <span className={cn("flex", !disabled && "text-(color:--content-default)")}>{iconOnly}</span>
   ) : (
     <TriggerContent icon={icon} placeholder={placeholder} value={display} open={open} error={error} disabled={disabled} fill={width === "full"} />
   )
@@ -425,7 +425,7 @@ function Autocomplete({
         placeholder={placeholder}
         aria-invalid={error || undefined}
         className={cn(
-          "h-full min-w-0 flex-1 bg-transparent outline-none placeholder:text-white/50",
+          "h-full min-w-0 flex-1 bg-transparent outline-none placeholder:text-(color:--content-muted)",
           !error && (open ? "text-(color:--combobox-value-active)" : "text-(color:--combobox-value)"),
           disabled && "text-(color:--button-neutral-content-disabled) placeholder:text-(color:--button-neutral-content-disabled)"
         )}

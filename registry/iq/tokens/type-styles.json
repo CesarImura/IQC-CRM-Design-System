@@ -1,0 +1,374 @@
+{
+  "$description": "Text styles from the IQ Capital CRM Figma file (local text styles). Letter spacing is 0 for all.",
+  "styles": [
+    {
+      "name": "Heading / 3xl / Semibold",
+      "family": "Geist",
+      "weight": 600,
+      "size": 48,
+      "lineHeight": "130%",
+      "lineHeightPx": 62.4,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Heading / 2xl / Semibold",
+      "family": "Geist",
+      "weight": 600,
+      "size": 40,
+      "lineHeight": "130%",
+      "lineHeightPx": 52,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Heading / xl / Semibold",
+      "family": "Geist",
+      "weight": 600,
+      "size": 32,
+      "lineHeight": "130%",
+      "lineHeightPx": 41.6,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Heading / lg / Semibold",
+      "family": "Geist",
+      "weight": 600,
+      "size": 24,
+      "lineHeight": "130%",
+      "lineHeightPx": 31.2,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Heading / md / Semibold",
+      "family": "Geist",
+      "weight": 600,
+      "size": 20,
+      "lineHeight": "130%",
+      "lineHeightPx": 26,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Heading / md / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 20,
+      "lineHeight": "130%",
+      "lineHeightPx": 26,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Heading / md / Regular",
+      "family": "Geist",
+      "weight": 400,
+      "size": 20,
+      "lineHeight": "130%",
+      "lineHeightPx": 26,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Heading / sm / Semibold",
+      "family": "Geist",
+      "weight": 600,
+      "size": 18,
+      "lineHeight": "130%",
+      "lineHeightPx": 23.4,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Stat / lg / Semibold",
+      "family": "Geist",
+      "weight": 600,
+      "size": 32,
+      "lineHeight": "130%",
+      "lineHeightPx": 41.6,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Stat / lg / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 32,
+      "lineHeight": "130%",
+      "lineHeightPx": 41.6,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Stat / md / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 24,
+      "lineHeight": "130%",
+      "lineHeightPx": 31.2,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Stat / sm / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 20,
+      "lineHeight": "130%",
+      "lineHeightPx": 26,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Chart Title / sm / Regular",
+      "family": "Geist",
+      "weight": 400,
+      "size": 18,
+      "lineHeight": "130%",
+      "lineHeightPx": 23.4,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Chart Emphasis / lg / Semibold",
+      "family": "Geist",
+      "weight": 600,
+      "size": 16,
+      "lineHeight": "150%",
+      "lineHeightPx": 24,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Chart Emphasis / md / Semibold",
+      "family": "Geist",
+      "weight": 600,
+      "size": 14,
+      "lineHeight": "150%",
+      "lineHeightPx": 21,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Body / lg / Regular",
+      "family": "Geist",
+      "weight": 400,
+      "size": 16,
+      "lineHeight": "150%",
+      "lineHeightPx": 24,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Body / lg / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 16,
+      "lineHeight": "150%",
+      "lineHeightPx": 24,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Body / md / Regular",
+      "family": "Geist",
+      "weight": 400,
+      "size": 14,
+      "lineHeight": "150%",
+      "lineHeightPx": 21,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Body / md / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 14,
+      "lineHeight": "150%",
+      "lineHeightPx": 21,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Body / sm / Regular",
+      "family": "Geist",
+      "weight": 400,
+      "size": 12,
+      "lineHeight": "150%",
+      "lineHeightPx": 18,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Body / sm / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 12,
+      "lineHeight": "150%",
+      "lineHeightPx": 18,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Caption / sm / Regular",
+      "family": "Geist",
+      "weight": 400,
+      "size": 12,
+      "lineHeight": "150%",
+      "lineHeightPx": 18,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Label / xl / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 18,
+      "lineHeight": "150%",
+      "lineHeightPx": 27,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Label / lg / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 16,
+      "lineHeight": "150%",
+      "lineHeightPx": 24,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Label / md / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 14,
+      "lineHeight": "150%",
+      "lineHeightPx": 21,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Label / sm / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 12,
+      "lineHeight": "150%",
+      "lineHeightPx": 18,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Label / sm / Semibold",
+      "family": "Geist",
+      "weight": 600,
+      "size": 12,
+      "lineHeight": "150%",
+      "lineHeightPx": 18,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Link / lg / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 16,
+      "lineHeight": "150%",
+      "lineHeightPx": 24,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Link / md / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 14,
+      "lineHeight": "150%",
+      "lineHeightPx": 21,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Data / lg / Regular",
+      "family": "Geist",
+      "weight": 400,
+      "size": 16,
+      "lineHeight": "150%",
+      "lineHeightPx": 24,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Data / lg / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 16,
+      "lineHeight": "150%",
+      "lineHeightPx": 24,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Data / md / Regular",
+      "family": "Geist",
+      "weight": 400,
+      "size": 14,
+      "lineHeight": "150%",
+      "lineHeightPx": 21,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Data / md / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 14,
+      "lineHeight": "150%",
+      "lineHeightPx": 21,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Data / sm / Regular",
+      "family": "Geist",
+      "weight": 400,
+      "size": 12,
+      "lineHeight": "150%",
+      "lineHeightPx": 18,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Data / sm / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 12,
+      "lineHeight": "150%",
+      "lineHeightPx": 18,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Field Label / sm / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 12,
+      "lineHeight": "16px",
+      "lineHeightPx": 16,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Field Value / lg / Regular",
+      "family": "Geist",
+      "weight": 400,
+      "size": 16,
+      "lineHeight": "20px",
+      "lineHeightPx": 20,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Field Value / lg / Medium",
+      "family": "Geist",
+      "weight": 500,
+      "size": 16,
+      "lineHeight": "20px",
+      "lineHeightPx": 20,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Mono / lg / Regular",
+      "family": "Geist Mono",
+      "weight": 400,
+      "size": 16,
+      "lineHeight": "150%",
+      "lineHeightPx": 24,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Mono / md / Regular",
+      "family": "Geist Mono",
+      "weight": 400,
+      "size": 14,
+      "lineHeight": "150%",
+      "lineHeightPx": 21,
+      "letterSpacing": 0
+    },
+    {
+      "name": "Mono / sm / Regular",
+      "family": "Geist Mono",
+      "weight": 400,
+      "size": 12,
+      "lineHeight": "150%",
+      "lineHeightPx": 18,
+      "letterSpacing": 0
+    }
+  ]
+}

@@ -80,7 +80,7 @@ function TriggerContent({ icon, placeholder, value, open, error, disabled, fill,
         {value ?? placeholder}
       </span>
       {error && !disabled && <TriggerErrorIcon />}
-      {chevron && <ChevronDown aria-hidden="true" className={cn(!disabled && "text-white")} />}
+      {chevron && <ChevronDown aria-hidden="true" className={cn(!disabled && "text-(color:--content-default)")} />}
     </>
   )
 }
@@ -115,7 +115,7 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(function Trigg
     >
       {children ??
         (iconOnly ? (
-          <span className={cn("flex", !disabled && "text-white")}>{icon}</span>
+          <span className={cn("flex", !disabled && "text-(color:--content-default)")}>{icon}</span>
         ) : (
           <TriggerContent icon={icon} placeholder={placeholder} value={value} open={open} error={error} disabled={disabled} fill={fill} chevron={chevron} />
         ))}

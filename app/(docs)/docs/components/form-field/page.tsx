@@ -150,7 +150,7 @@ export default function FormFieldDocsPage() {
           <li>In Checkbox group, the checked Checkbox instances have their fill overridden to the canvas color, so the black checkmark is invisible. The build uses the real Checkbox (green).</li>
           <li>Radio group options use Radio (14px medium label), while Checkbox group uses Checkbox (16px regular label, 40px rows). The two groups look different side by side.</li>
           <li>Regions without a phone plan (EU, UN, CEFTA) are not in the country list.</li>
-          <li>Read-only background, the Active border and ring, and the icon and handle opacities are raw values.</li>
+          <li>The Active ring and the icon and handle opacities are raw values.</li>
         </ul>
       </Callout>
     </>

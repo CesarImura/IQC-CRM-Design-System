@@ -52,13 +52,13 @@ export default function InputDocsPage() {
           <strong className="text-white">Default:</strong> white 5% fill, no border, placeholder at 50%.
         </li>
         <li>
-          <strong className="text-white">Hover:</strong> 20% border, placeholder at 70%.
+          <strong className="text-white">Hover:</strong> neutral-500 (#6e6f6f) border, placeholder at 70%.
         </li>
         <li>
           <strong className="text-white">Focus</strong> (keyboard): no fill, 3px teal ring, text at 90%.
         </li>
         <li>
-          <strong className="text-white">Active</strong> (editing): 2% fill, 20% border, 3px white ring at 12%, white text. You’re
+          <strong className="text-white">Active</strong> (editing): 2% fill, neutral-500 (#6e6f6f) border, 3px white ring at 12%, white text. You’re
           in Active after clicking in, or as soon as you type after tabbing in.
         </li>
         <li>

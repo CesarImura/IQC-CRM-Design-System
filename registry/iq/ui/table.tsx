@@ -163,7 +163,7 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
     <td
       data-slot="table-cell"
       className={cn(
-        "h-(--table-cell-height) truncate px-(--table-cell-px) py-(--table-cell-py) align-middle text-sm leading-normal text-(color:--table-text) focus-within:text-white",
+        "h-(--table-cell-height) truncate px-(--table-cell-px) py-(--table-cell-py) align-middle text-sm leading-normal text-(color:--table-text) focus-within:text-(color:--content-default)",
         variant === "grid" ? "border border-(--border-grid)" : "border-y border-(--border-grid)",
         className
       )}
@@ -228,7 +228,7 @@ function TableStatus({ status, colSpan, title, description, action, className, .
         className="mx-auto flex min-h-[264px] w-full max-w-[441px] flex-col items-center justify-center gap-6 rounded-(--table-status-radius) border border-dashed border-(--table-status-border) p-6 text-center"
       >
         <div className="flex w-full flex-col items-center gap-2">
-          <div className="flex size-10 items-center justify-center rounded-(--table-status-radius) border border-(--table-status-border) bg-(--table-status-media-bg) text-white/50">
+          <div className="flex size-10 items-center justify-center rounded-(--table-status-radius) border border-(--table-status-border) bg-(--table-status-media-bg) text-(color:--content-muted)">
             {status === "loading" ? <LoadingIcon /> : <InfoIcon />}
           </div>
           <div className="flex w-full flex-col items-center gap-2 pt-2">

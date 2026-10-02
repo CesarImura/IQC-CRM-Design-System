@@ -111,7 +111,7 @@ function SearchBar({
             )}
           >
             {scope.options.find((o) => o.value === scopeValue)?.label}
-            <ChevronDown aria-hidden="true" className={disabled ? "" : "text-white"} />
+            <ChevronDown aria-hidden="true" className={disabled ? "" : "text-(color:--content-default)"} />
           </Popover.Trigger>
           <Popover.Portal>
             <Popover.Content align="start" sideOffset={8} className="z-50 w-56 outline-none">
@@ -171,7 +171,7 @@ function SearchBar({
             setValue("")
             inputRef.current?.focus()
           }}
-          className="flex cursor-pointer items-center px-(--search-bar-cell-px) text-white/50 outline-none hover:text-white focus-visible:text-white"
+          className="flex cursor-pointer items-center px-(--search-bar-cell-px) text-(color:--content-muted) outline-none hover:text-(color:--content-default) focus-visible:text-(color:--content-default)"
         >
           <Close aria-hidden="true" />
         </button>

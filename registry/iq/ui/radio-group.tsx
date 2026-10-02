@@ -36,7 +36,7 @@ function RadioGroupItem({ children, description, className, rowClassName, disabl
         "group/radio relative flex cursor-pointer items-center gap-3 py-2 select-none",
         // Row focus (Figma Radio · Focus): canvas surface, 4px radius and the teal ring. Drawn outside
         // the row so focusing doesn't shift the layout.
-        "before:pointer-events-none before:absolute before:inset-y-0 before:-inset-x-2 before:rounded-[4px] has-[:focus-visible]:before:bg-(--canvas) has-[:focus-visible]:before:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]",
+        "before:pointer-events-none before:absolute before:inset-y-0 before:-inset-x-2 before:rounded-[4px] has-[:focus-visible]:before:bg-(--surface-canvas) has-[:focus-visible]:before:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]",
         "data-disabled:cursor-not-allowed",
         rowClassName
       )}

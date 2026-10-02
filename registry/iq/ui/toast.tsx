@@ -23,7 +23,7 @@ const renewPath =
   "M19.4625 5.73746L19.466 5.73453C19.3972 5.65248 19.3183 5.57996 19.2467 5.50016C19.1086 5.34633 18.9713 5.19266 18.824 5.04791C18.7204 4.94606 18.6098 4.85193 18.5015 4.75488C18.3642 4.63151 18.2273 4.50843 18.083 4.39308C17.9636 4.29716 17.8397 4.20813 17.7158 4.11806C17.5718 4.01306 17.4267 3.91046 17.2768 3.81341C17.1461 3.72881 17.0126 3.64931 16.8776 3.57056C16.7236 3.48126 16.5673 3.39606 16.4087 3.31496C16.2702 3.24431 16.1312 3.17651 15.9887 3.11246C15.8219 3.03746 15.6519 2.96891 15.4802 2.90298C15.3381 2.84876 15.1969 2.79386 15.0517 2.74623C14.867 2.68511 14.6782 2.63418 14.4887 2.58401C14.3501 2.54703 14.2131 2.50713 14.0721 2.47668C13.8546 2.42913 13.6322 2.39613 13.4096 2.36358C13.2904 2.34633 13.1738 2.32218 13.0531 2.30898C11.4515 2.13115 9.83089 2.35512 8.33759 2.96066C6.8443 3.56619 5.52538 4.53422 4.5 5.77728V2.99996H3V8.99996H9V7.49996H5.10863C5.85379 6.3501 6.87455 5.40473 8.0781 4.74981C9.28165 4.09489 10.6298 3.75119 12 3.74996C12.2979 3.75073 12.5956 3.76748 12.8918 3.80013C12.9939 3.81108 13.0928 3.83163 13.1937 3.84626C13.3819 3.87371 13.5698 3.90191 13.7538 3.94188C13.8732 3.96783 13.9896 4.00188 14.1072 4.03301C14.267 4.07516 14.4266 4.11836 14.5823 4.16966C14.7056 4.21068 14.8261 4.25718 14.9468 4.30331C15.0912 4.35896 15.2344 4.41648 15.3746 4.47948C15.4955 4.53401 15.6141 4.59198 15.7319 4.65198C15.8657 4.72013 15.9973 4.79181 16.1265 4.86701C16.2413 4.93398 16.355 5.00201 16.4663 5.07386C16.5923 5.15553 16.7144 5.24201 16.8355 5.32983C16.9409 5.40678 17.0468 5.48261 17.1482 5.56421C17.2694 5.66126 17.3849 5.76491 17.5007 5.86893C17.5926 5.95143 17.6866 6.03153 17.7746 6.11793C17.8997 6.24063 18.0164 6.37136 18.1335 6.50171C19.026 7.49726 19.663 8.69493 19.9895 9.99148C20.3161 11.288 20.3224 12.6445 20.008 13.9441C19.6935 15.2436 19.0677 16.4472 18.1846 17.451C17.3014 18.4548 16.1873 19.2288 14.9384 19.7062C13.6895 20.1836 12.3433 20.3501 11.0157 20.1914C9.68812 20.0326 8.41906 19.5534 7.31794 18.795C6.21682 18.0365 5.31667 17.0217 4.6951 15.8379C4.07352 14.6542 3.74917 13.337 3.75 12H2.25C2.24802 13.5683 2.62441 15.114 3.34724 16.5059C4.07007 17.8977 5.11799 19.0947 6.4021 19.9951C7.6862 20.8956 9.16858 21.473 10.7234 21.6784C12.2783 21.8837 13.8598 21.7109 15.3336 21.1747C16.8074 20.6385 18.1302 19.7546 19.1895 18.5981C20.2489 17.4416 21.0137 16.0466 21.4189 14.5315C21.8241 13.0164 21.8579 11.4259 21.5173 9.89497C21.1767 8.36404 20.4719 6.93786 19.4625 5.73746V5.73746Z"
 
 const wellClass: Record<"info" | "success" | "warning" | "error", string> = {
-  info: "bg-(--toast-icon-well-neutral) text-white [&_svg]:opacity-(--toast-opacity-icon)",
+  info: "bg-(--toast-icon-well-neutral) text-(color:--content-default) [&_svg]:opacity-(--toast-opacity-icon)",
   success: "bg-(--toast-icon-well-success) text-(color:--toast-icon-success)",
   warning: "bg-(--toast-icon-well-warning) text-(color:--toast-icon-warning)",
   error: "bg-(--toast-icon-well-error) text-(color:--toast-icon-error)",
@@ -80,7 +80,7 @@ function Toast({ tone = "neutral", title, description, action, onClose, duration
           viewBox="0 0 24 24"
           fill="currentColor"
           aria-hidden="true"
-          className="size-6 shrink-0 animate-spin text-white opacity-(--toast-opacity-leading) [animation-direction:reverse] [animation-duration:1.5s] motion-reduce:animate-none"
+          className="size-6 shrink-0 animate-spin text-(color:--content-default) opacity-(--toast-opacity-leading) [animation-direction:reverse] [animation-duration:1.5s] motion-reduce:animate-none"
         >
           <path d={renewPath} />
         </svg>
@@ -112,7 +112,7 @@ function Toast({ tone = "neutral", title, description, action, onClose, duration
             </Button>
           )}
           {onClose && (
-            <Button variant="ghost" size="icon-sm" aria-label="Dismiss" onClick={onClose} className="text-white/50 hover:text-white">
+            <Button variant="ghost" size="icon-sm" aria-label="Dismiss" onClick={onClose} className="text-(color:--content-muted) hover:text-(color:--content-default)">
               <CloseIcon />
             </Button>
           )}

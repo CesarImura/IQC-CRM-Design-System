@@ -34,7 +34,7 @@ function OptionPanelSearch({ className, ...props }: React.ComponentProps<typeof 
       <Command.Input
         data-slot="option-panel-search"
         className={cn(
-          "h-full min-w-0 flex-1 bg-transparent pr-3 text-sm leading-[21px] text-white outline-none placeholder:text-white/50",
+          "h-full min-w-0 flex-1 bg-transparent pr-3 text-sm leading-[21px] text-(color:--content-default) outline-none placeholder:text-(color:--content-muted)",
           className
         )}
         {...props}
@@ -151,7 +151,7 @@ function OptionItem({
         toneText[tone],
         toneHover[tone],
         // Selected: 10% fill, medium weight, white (tone color drops).
-        "data-checked:bg-(--option-item-bg-selected) data-checked:font-medium data-checked:text-white",
+        "data-checked:bg-(--option-item-bg-selected) data-checked:font-medium data-checked:text-(color:--content-default)",
         "data-[disabled=true]:pointer-events-none data-[disabled=true]:text-(color:--content-disabled)",
         className
       )}
@@ -210,7 +210,7 @@ function OptionPanelStatus({ status, query, onRetry, labels }: OptionPanelStatus
       )}
       {status === "error" && <ErrorFilled size={16} aria-hidden="true" className="text-(color:--danger)" />}
       <div className="flex flex-col items-center">
-        <p className="text-white/50">
+        <p className="text-(color:--content-muted)">
           {status === "empty"
             ? (labels?.empty ?? "No Results for")
             : status === "loading"
@@ -220,7 +220,7 @@ function OptionPanelStatus({ status, query, onRetry, labels }: OptionPanelStatus
         {status === "empty" && query && <p className="text-white/90">”{query}”</p>}
         {status === "error" &&
           (onRetry ? (
-            <button type="button" onClick={onRetry} className="cursor-pointer rounded-[2px] text-white/90 outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-(--focus-ring)">
+            <button type="button" onClick={onRetry} className="cursor-pointer rounded-[2px] text-white/90 outline-none hover:text-(color:--content-default) focus-visible:ring-2 focus-visible:ring-(--focus-ring)">
               {labels?.retry ?? "Try again"}
             </button>
           ) : (

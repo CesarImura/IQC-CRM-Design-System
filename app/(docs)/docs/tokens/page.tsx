@@ -1,12 +1,58 @@
 import type { Metadata } from "next"
 
-import tokens from "@/registry/iq/tokens/tokens.json"
+import { groups, type TokenGroup } from "@/lib/tokens"
 import { CopyButton } from "@/components/docs/copy-button"
-import { H2, P, PageHeader } from "@/components/docs/typography"
+import { Swatch, TokenValue } from "@/components/docs/token-value"
+import { H2, H3, P, PageHeader } from "@/components/docs/typography"
 
 export const metadata: Metadata = { title: "Tokens" }
 
-const isColor = (value: string) => value.startsWith("#")
+const tiers: { id: string; title: string; description: string; groups: TokenGroup[] }[] = [
+  {
+    id: "semantic",
+    title: "Semantic",
+    description: "Tokens named by role (surface, content, border…). Components point at these, so a change here updates every component that uses the role.",
+    groups: groups.filter((g) => g.tier === "semantic"),
+  },
+  {
+    id: "primitive",
+    title: "Primitive",
+    description: "The raw palette and scales. Semantic and component tokens point here; components should not use primitives directly.",
+    groups: groups.filter((g) => g.tier === "primitive"),
+  },
+  {
+    id: "component",
+    title: "Component",
+    description: "One set per component, mirroring the Figma “Component /” collections. Most are aliases of a semantic token.",
+    groups: groups.filter((g) => !g.tier),
+  },
+]
+
+function Group({ group }: { group: TokenGroup }) {
+  return (
+    <section>
+      <H3 id={group.id}>{group.name}</H3>
+      <P className="-mt-2 text-sm">{group.description}</P>
+      <div className="overflow-hidden rounded-[2px] border border-grid">
+        <ul className="divide-y divide-grid">
+          {group.tokens.map((token) => (
+            <li key={token.name} className="flex items-center gap-4 px-4 py-2.5">
+              <Swatch value={token.value} size="lg" />
+              <div className="min-w-0 flex-1">
+                <p className="truncate font-mono text-[13px] text-white">--{token.name}</p>
+                <p className="truncate text-xs text-white/40">Figma: {token.figma}</p>
+              </div>
+              <span className="hidden sm:block">
+                <TokenValue value={token.value} />
+              </span>
+              <CopyButton value={`var(--${token.name})`} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
 
 export default function TokensPage() {
   return (
@@ -18,43 +64,37 @@ export default function TokensPage() {
       />
 
       <P>
-        Every token maps to a Figma variable, or names a raw Figma value that should become one. The system is dark-only, so
-        every token has a single value. Click a token to copy it.
+        Tokens come in three tiers, like the Figma collections: primitives hold raw values, semantic tokens name a role and point at a
+        primitive, and component tokens point at a semantic token (or, where Figma does, straight at a primitive). An arrow shows what a
+        token points to. The system is dark-only, so every token has a single value. Click a token to copy it.
       </P>
 
-      {tokens.groups.map((group) => (
-        <section key={group.id}>
-          <H2 id={group.id}>{group.name}</H2>
-          <P className="-mt-2 text-sm">{group.description}</P>
-          <div className="overflow-hidden rounded-[2px] border border-grid">
-            <ul className="divide-y divide-grid">
-              {group.tokens.map((token) => (
-                <li key={token.name} className="flex items-center gap-4 px-4 py-2.5">
-                  {isColor(token.value) ? (
-                    <span
-                      aria-hidden
-                      className="size-8 shrink-0 rounded-[2px] border border-white/10 bg-[linear-gradient(45deg,#1a1d1c_25%,transparent_25%,transparent_75%,#1a1d1c_75%),linear-gradient(45deg,#1a1d1c_25%,transparent_25%,transparent_75%,#1a1d1c_75%)] bg-size-[8px_8px] bg-position-[0_0,4px_4px]"
-                    >
-                      <span className="block size-full" style={{ background: token.value }} />
-                    </span>
-                  ) : (
-                    <span
-                      aria-hidden
-                      className="grid size-8 shrink-0 place-items-center rounded-[2px] border border-grid font-mono text-[10px] text-white/50"
-                    >
-                      {token.value.replace("px", "")}
-                    </span>
-                  )}
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate font-mono text-[13px] text-white">--{token.name}</p>
-                    <p className="truncate text-xs text-white/40">Figma: {token.figma}</p>
-                  </div>
-                  <span className="hidden font-mono text-xs text-white/60 sm:block">{token.value}</span>
-                  <CopyButton value={`var(--${token.name})`} />
+      <nav aria-label="Token groups" className="my-6 grid gap-4 text-sm sm:grid-cols-3">
+        {tiers.map((tier) => (
+          <div key={tier.id}>
+            <a href={`#${tier.id}`} className="font-medium text-white hover:underline">
+              {tier.title}
+            </a>
+            <ul className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-white/50">
+              {tier.groups.map((g) => (
+                <li key={g.id}>
+                  <a href={`#${g.id}`} className="hover:text-white">
+                    {g.name}
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
+        ))}
+      </nav>
+
+      {tiers.map((tier) => (
+        <section key={tier.id}>
+          <H2 id={tier.id}>{tier.title}</H2>
+          <P className="-mt-2">{tier.description}</P>
+          {tier.groups.map((group) => (
+            <Group key={group.id} group={group} />
+          ))}
         </section>
       ))}
     </>

@@ -53,7 +53,7 @@ export default function PaginationDocsPage() {
       <H3>Page item</H3>
       <UL>
         <li>32×32, 8px padding, 2px radius. Default text 80% white.</li>
-        <li>Hover and pressed: #141716 background. Current: #0d221c background with green text.</li>
+        <li>Hover and pressed: white 2% background (surface/hover). Current: #0d221c background with green text.</li>
         <li>Focus: teal ring. Disabled: 32% white. Ellipsis: 50% white; Go to: a 56px input with the teal ring.</li>
       </UL>
 

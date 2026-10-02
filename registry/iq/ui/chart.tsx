@@ -126,7 +126,7 @@ function ChartStatus({ status, content, height }: { status: "empty" | "error"; c
             "flex size-10 items-center justify-center rounded-(--chart-tooltip-radius) border",
             error
               ? "border-(--chart-status-error-border) bg-(--chart-status-error-bg) text-(color:--table-status-title-error)"
-              : "border-(--table-status-border) bg-(--table-status-media-bg) text-white/50"
+              : "border-(--table-status-border) bg-(--table-status-media-bg) text-(color:--content-muted)"
           )}
         >
           <InfoIcon />

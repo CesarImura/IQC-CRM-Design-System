@@ -205,7 +205,7 @@ function DataTable<TData extends RowData>({
   const bodyStatus = status === "loading" ? "loading" : status === "error" ? "error" : rows.length === 0 ? "empty" : null
 
   return (
-    <div data-slot="data-table" className={cn("flex flex-col bg-(--canvas)", className)}>
+    <div data-slot="data-table" className={cn("flex flex-col bg-(--surface-canvas)", className)}>
       {toolbar && (
         <div
           data-slot="data-table-toolbar"

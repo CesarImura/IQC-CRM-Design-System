@@ -230,7 +230,7 @@ function Calendar({
 
   const monthLabel = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric" }).format(month)
   const navButton =
-    "flex size-(--button-size-sm-height) shrink-0 cursor-pointer items-center justify-center rounded-(--button-radius-control) border border-(--button-secondary-border-default) bg-(--button-secondary-bg-default) text-white outline-none hover:border-(--button-secondary-border-active) focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)] disabled:pointer-events-none disabled:opacity-35 [&_svg]:size-4"
+    "flex size-(--button-size-sm-height) shrink-0 cursor-pointer items-center justify-center rounded-(--button-radius-control) border border-(--button-secondary-border-default) bg-(--button-secondary-bg-default) text-(color:--content-default) outline-none hover:border-(--button-secondary-border-active) focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)] disabled:pointer-events-none disabled:opacity-35 [&_svg]:size-4"
 
   return (
     <div

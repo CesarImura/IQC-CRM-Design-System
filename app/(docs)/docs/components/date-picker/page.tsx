@@ -51,7 +51,7 @@ export default function DatePickerDocsPage() {
       <H2>Anatomy</H2>
       <H3>Pop-up</H3>
       <UL>
-        <li>232px wide, #141716 fill, 1px #2b2828 border, 2px radius, 4px padding, 8px between header and grid.</li>
+        <li>232px wide, surface-subtle (#141716) fill, 1px border-panel (white 8%), 2px radius, 4px padding, 8px between header and grid.</li>
         <li>Month header: 32px previous / next buttons (Secondary), month label 12/18 at 72% in the middle.</li>
         <li>Weekday row: narrow names, 12/18 at 32% (row at 50%).</li>
       </UL>
