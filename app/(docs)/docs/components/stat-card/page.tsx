@@ -63,6 +63,7 @@ export default function StatCardDocsPage() {
           ["Background", "surface-raised"],
           ["Border", "border-grid"],
           ["Padding", "stat-card-padding"],
+          ["Border", "stat-card-border"],
           ["Title", "stat-card-title"],
           ["Value", "stat-card-value"],
           ["Value size", "stat-card-value-size"],

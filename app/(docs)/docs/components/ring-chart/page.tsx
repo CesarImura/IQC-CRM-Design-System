@@ -93,8 +93,8 @@ export default function RingChartDocsPage() {
         <ul className="mt-2 ml-4 list-disc space-y-1">
           <li>The arcs are static vectors, not tied to the value: the 99.94% ring is drawn at about 88%, so it looks less full than it is. The build draws the real value.</li>
           <li>The track stripes are a WebGPU shader, which only renders with experimental browser flags. The build draws the same stripes with an SVG pattern.</li>
-          <li>The Meter card has no border or radius and is 490.67px wide (a fraction). The build uses the shared chart card (1px border, 4px radius).</li>
-          <li>The ring tones, track and stripe colors are raw values. The positive green matches chart-series-1, but warning and negative don’t match series 2 and 3.</li>
+          <li>The Meter card has a border/panel stroke but no radius (the Line chart card has ≈2.8px), and is 490.67px wide (a fraction). The build uses the shared chart card (1px border/panel, 4px radius).</li>
+          <li>The ring tones borrow chart/series-1, chart/series-2 and the Button danger fill; the track and stripe colors are raw values.</li>
           <li>All three rings in the Figma examples say “Platform Uptime”.</li>
         </ul>
       </Callout>

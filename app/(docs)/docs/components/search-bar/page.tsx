@@ -37,7 +37,7 @@ export default function SearchBarDocsPage() {
       <H2>Anatomy</H2>
       <UL>
         <li>Frame: 32px (Small) or 40px (Medium), white 4% fill, 8% border, 2px radius.</li>
-        <li>Search icon in an 8px-padded cell. Scope: a transparent Trigger (value at 70% + chevron).</li>
+        <li>Search icon in an 8px-padded cell. Scope: a transparent Trigger (value at 70% + chevron) with 1px dividers on both sides.</li>
         <li>Input: 12px padding, placeholder at 50%. Clear: 16px × in an 8px-padded cell, while there’s text.</li>
         <li>Focus: no fill, 3px teal ring. Error: 2px red border, red ring. Disabled: border 16%, everything at 32%.</li>
       </UL>

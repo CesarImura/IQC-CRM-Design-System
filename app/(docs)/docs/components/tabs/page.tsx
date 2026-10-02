@@ -39,13 +39,14 @@ export default function TabsDocsPage() {
       <ComponentPreview name="tabs-pill-demo" />
 
       <H2>Pill item states</H2>
-      <P>Active × State, with and without the trailing count. Hover, Focus and Disabled are forced for comparison.</P>
+      <P>Size × Active × State, with and without the trailing count. Hover, Focus and Disabled are forced for comparison.</P>
       <TabsPillMatrix />
 
       <H2>Anatomy</H2>
       <UL>
-        <li>Track: 4px padding, 4px between items, 1px border at white 8%, 2px radius.</li>
-        <li>Item: 12 / 6px padding, 8px gap, 14px medium text, optional 16px leading icon, optional small gray Badge.</li>
+        <li>Sizes: Default (43px track) and Small (32px track) for denser headers like chart ranges.</li>
+        <li>Track: 4px padding, 4px between items (Small: 2px and 2px), 1px border at white 8%, 2px radius.</li>
+        <li>Item: 12 / 6px padding (Small: 12 / 2.5px), 8px gap, 14px medium text, optional 16px leading icon, optional small gray Badge.</li>
         <li>Active: filled chip, white text. Inactive: transparent, text at 50%.</li>
         <li>Hover: inactive gets the hover fill and 80% text; active gets a lighter fill.</li>
         <li>Focus: 3px teal ring. Disabled: text at 32%, the active fill stays.</li>
@@ -61,6 +62,9 @@ export default function TabsDocsPage() {
           ["Radius", "tabs-pill-radius"],
           ["Item padding x / y", "tabs-pill-item-px"],
           ["", "tabs-pill-item-py"],
+          ["Small: track padding", "tabs-pill-track-padding-sm"],
+          ["Small: gap", "tabs-pill-gap-sm"],
+          ["Small: item padding y", "tabs-pill-item-py-sm"],
           ["Item gap", "tabs-pill-item-gap"],
           ["Active", "tabs-pill-item-bg-selected"],
           ["Active hover", "tabs-pill-item-bg-selected-hover"],
@@ -117,6 +121,7 @@ export default function TabsDocsPage() {
       <Callout tone="warning">
         <strong className="text-white">Figma notes (Line):</strong>
         <ul className="mt-2 ml-4 list-disc space-y-1">
+          <li>Pill Small: with a trailing count the item grows to 28px, so the track is 34px instead of 32px. The Small padding values are raw.</li>
           <li>The bar has spacing/bar-gap 20px, but the slot inside uses a raw 10px gap.</li>
           <li>Inactive labels are content/muted plus 80% layer opacity (≈40%) instead of a single variable.</li>
         </ul>

@@ -24,16 +24,17 @@ const buttonVariants = cva(
           "disabled:bg-(--button-primary-bg-disabled) disabled:text-(color:--button-filled-content-disabled)",
         ],
         secondary: [
-          "border-(--button-secondary-border-default) bg-(--button-secondary-bg-default) text-(color:--button-neutral-content-default)",
-          "hover:border-(--button-secondary-border-active) hover:bg-(--button-secondary-bg-hover) hover:text-(color:--button-neutral-content-active)",
-          "active:border-(--button-secondary-border-active) active:bg-(--button-secondary-bg-pressed)",
-          "focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]",
+          // Label and icon sit at 70% in Default and Hover, full white when pressed or focused.
+          "border-(--button-secondary-border-default) bg-(--button-secondary-bg-default) text-[color-mix(in_srgb,var(--button-neutral-content-default)_calc(var(--button-neutral-content-rest-opacity)*100%),transparent)]",
+          "hover:border-(--button-secondary-border-active) hover:bg-(--button-secondary-bg-hover)",
+          "active:border-(--button-secondary-border-active) active:bg-(--button-secondary-bg-pressed) active:text-(color:--button-neutral-content-active)",
+          "focus-visible:text-(color:--button-neutral-content-default) focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]",
           "disabled:border-(--button-secondary-border-disabled) disabled:bg-(--button-secondary-bg-disabled) disabled:text-(color:--button-neutral-content-disabled)",
         ],
         ghost: [
-          "bg-(--form-field-surface-transparent) text-(color:--button-neutral-content-default)",
-          "hover:text-(color:--button-neutral-content-active) active:bg-(--button-ghost-bg-pressed)",
-          "focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]",
+          "bg-(--form-field-surface-transparent) text-[color-mix(in_srgb,var(--button-neutral-content-default)_calc(var(--button-neutral-content-rest-opacity)*100%),transparent)]",
+          "active:bg-(--button-ghost-bg-pressed) active:text-(color:--button-neutral-content-active)",
+          "focus-visible:text-(color:--button-neutral-content-default) focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]",
           "disabled:text-(color:--button-neutral-content-disabled)",
         ],
         danger: [
@@ -50,9 +51,11 @@ const buttonVariants = cva(
         ],
       },
       size: {
+        xs: "h-(--button-size-xs-height) px-(--button-size-xs-padding-x) text-(length:--font-size-xs) leading-(--line-height-xs) [&_svg:not([class*='size-'])]:size-(--button-size-xs-icon)",
         sm: "h-(--button-size-sm-height) px-(--button-size-sm-padding-x) text-(length:--font-size-sm) leading-(--line-height-sm) [&_svg:not([class*='size-'])]:size-(--button-size-sm-icon)",
         md: "h-(--button-size-md-height) px-(--button-size-md-padding-x) text-(length:--font-size-md) leading-(--line-height-md) [&_svg:not([class*='size-'])]:size-(--button-size-md-icon)",
         lg: "h-(--button-size-lg-height) px-(--button-size-lg-padding-x) text-(length:--font-size-lg) leading-(--line-height-lg) [&_svg:not([class*='size-'])]:size-(--button-size-lg-icon)",
+        "icon-xs": "size-(--button-size-xs-height) [&_svg:not([class*='size-'])]:size-(--button-size-xs-icon)",
         "icon-sm": "size-(--button-size-sm-height) [&_svg:not([class*='size-'])]:size-(--button-size-sm-icon)",
         icon: "size-(--button-size-md-height) [&_svg:not([class*='size-'])]:size-(--button-size-md-icon)",
         "icon-lg": "size-(--button-size-lg-height) [&_svg:not([class*='size-'])]:size-(--button-size-lg-icon)",

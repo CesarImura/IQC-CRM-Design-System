@@ -49,7 +49,7 @@ export default function ValueSlotDocsPage() {
               ["Number", "Quantities and amounts (tabular figures)"],
               ["Phone", "Phone numbers, optionally callable"],
               ["Link", "Emails and URLs, in the link color"],
-              ["Date", "Date with optional time below at 50%"],
+              ["Date", "Date with optional time below in content/tertiary"],
               ["Exchange", "Market data providers and exchanges, with logo"],
               ["Badge", "Roles, categories"],
               ["Delta", "Changes: +18%, -5%"],
@@ -92,7 +92,7 @@ export default function ValueSlotDocsPage() {
             </Link>{" "}
             (22px, 16%), so rows are 3px shorter than the Figma cell. Worth swapping the instances in Figma.
           </li>
-          <li>Text, date and link colors use layer opacity (80%, 50%) instead of variables; the link color #7affdb isn’t a variable either.</li>
+          <li>The link color #7affdb at 80% isn’t a variable.</li>
           <li>Number, Phone and Text are styled identically. Number might want right alignment in tables, which is common for amounts.</li>
         </ul>
       </Callout>

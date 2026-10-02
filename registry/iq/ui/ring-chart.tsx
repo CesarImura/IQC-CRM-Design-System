@@ -103,11 +103,11 @@ function RingChartItem({ label, value = 0, display, tone = "positive", empty = f
           )}
         </svg>
         {!empty && (
-          <span className="relative text-2xl leading-[normal] font-medium text-(color:--chart-ring-value) tabular-nums">{text}</span>
+          <span className="relative text-2xl leading-[1.3] font-medium text-(color:--chart-ring-value) tabular-nums">{text}</span>
         )}
       </div>
       {!empty && label && (
-        <p className="w-full text-center text-base leading-[normal] font-medium text-(color:--chart-ring-label)">{label}</p>
+        <p className="w-full text-center text-base leading-normal font-medium text-(color:--chart-ring-label)">{label}</p>
       )}
     </div>
   )
@@ -157,7 +157,7 @@ function RingChart({
         onRangeChange={onRangeChange}
       />
       {status === "ready" ? (
-        <div className="flex flex-1 items-center justify-center px-(--chart-padding) py-15">
+        <div className="flex min-h-77 flex-1 items-center justify-center px-(--chart-padding) py-15">
           <div className="flex flex-wrap items-start justify-center gap-4">
             {items.map((item, i) => (
               <RingChartItem key={i} {...item} />
@@ -166,7 +166,7 @@ function RingChart({
         </div>
       ) : (
         <div className="flex-1 px-(--chart-padding) pb-(--chart-padding)">
-          <ChartStatus status={status} content={status === "error" ? errorState : emptyState} height={294} />
+          <ChartStatus status={status} content={status === "error" ? errorState : emptyState} height={284} />
         </div>
       )}
     </ChartCard>

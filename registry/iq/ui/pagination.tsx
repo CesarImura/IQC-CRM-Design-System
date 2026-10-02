@@ -71,7 +71,7 @@ function getPageItems(page: number, pageCount: number): (number | "ellipsis-star
 }
 
 const itemClasses =
-  "relative inline-flex h-(--pagination-item-size) min-w-(--pagination-item-size) cursor-pointer items-center justify-center rounded-(--pagination-item-radius) px-(--pagination-item-padding) font-mono text-sm leading-[normal] text-(color:--pagination-content) outline-none transition-colors duration-100 hover:bg-(--pagination-item-bg-hover) active:bg-(--pagination-item-bg-hover) focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)] disabled:pointer-events-none disabled:text-(color:--content-disabled)"
+  "relative inline-flex h-(--pagination-item-size) min-w-(--pagination-item-size) cursor-pointer items-center justify-center rounded-(--pagination-item-radius) px-(--pagination-item-padding) font-mono text-sm leading-normal text-(color:--pagination-content) outline-none transition-colors duration-100 hover:bg-(--pagination-item-bg-hover) active:bg-(--pagination-item-bg-hover) focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)] disabled:pointer-events-none disabled:text-(color:--content-disabled)"
 
 /** Page number cell. The ellipsis turns into an input so the user can type a page (Figma "Go to"). */
 function PaginationEllipsis({
@@ -134,7 +134,7 @@ function PageSizeSelect({
     <DropdownMenu.Root>
       <DropdownMenu.Trigger
         aria-label={`${label} ${value}`}
-        className="inline-flex h-8 cursor-pointer items-center justify-center gap-2 rounded-[2px] border border-(--pagination-select-border) bg-(--pagination-select-bg) px-3 py-1 font-mono text-sm leading-[normal] text-(color:--pagination-content) outline-none hover:bg-(--pagination-item-bg-hover) focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)] data-[state=open]:bg-(--pagination-item-bg-hover) [&_svg]:size-4"
+        className="inline-flex h-8 cursor-pointer items-center justify-center gap-2 rounded-[2px] border border-(--pagination-select-border) bg-(--pagination-select-bg) px-3 py-1 font-mono text-sm leading-normal text-(color:--pagination-content) outline-none hover:bg-(--pagination-item-bg-hover) focus-visible:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)] data-[state=open]:bg-(--pagination-item-bg-hover) [&_svg]:size-4"
       >
         {value}
         <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" className="text-(color:--pagination-muted)">
@@ -199,7 +199,7 @@ function Pagination({
       data-slot="pagination"
       aria-label="Pagination"
       className={cn(
-        "flex min-h-(--pagination-min-height) flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-(--pagination-border) px-(--pagination-px) py-(--pagination-py) font-mono text-sm leading-[normal]",
+        "flex min-h-(--pagination-min-height) flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-(--pagination-border) px-(--pagination-px) py-(--pagination-py) font-mono text-sm leading-normal",
         className
       )}
       {...props}

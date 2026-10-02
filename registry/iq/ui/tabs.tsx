@@ -7,23 +7,36 @@ import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/iq/ui/badge"
 
 // Figma: IQ Capital CRM Design System → Tabs → Tabs / Pill (2518:4789), _Tabs / Pill Item (2518:4788).
-// Item: Active × State (Default, Hover, Focus, Disabled) × Trailing.
+// Tabs / Pill (3019:35112) Size Default | Small. Item: Active × State (Default, Hover, Focus, Disabled) × Trailing × Size.
 // Tabs / Line (288:12896) and _Tabs / Line Item (288:12874): Tone Neutral | Accent | Danger | Warning | Info × Active × State × Trailing.
 
 function Tabs({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Root>) {
   return <TabsPrimitive.Root data-slot="tabs" className={cn("flex flex-col gap-4", className)} {...props} />
 }
 
-function TabsPillList({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.List>) {
+type TabsPillSize = "default" | "sm"
+
+const PillSizeContext = React.createContext<TabsPillSize>("default")
+
+type TabsPillListProps = React.ComponentProps<typeof TabsPrimitive.List> & {
+  /** Figma Size: Default (43px track) or Small (32px track, tighter padding). */
+  size?: TabsPillSize
+}
+
+function TabsPillList({ size = "default", className, ...props }: TabsPillListProps) {
   return (
-    <TabsPrimitive.List
-      data-slot="tabs-pill-list"
-      className={cn(
-        "inline-flex w-fit items-center justify-center gap-(--tabs-pill-gap) rounded-(--tabs-pill-radius) border border-(--tabs-pill-track-border) bg-(--tabs-pill-track-bg) p-(--tabs-pill-track-padding)",
-        className
-      )}
-      {...props}
-    />
+    <PillSizeContext.Provider value={size}>
+      <TabsPrimitive.List
+        data-slot="tabs-pill-list"
+        data-size={size}
+        className={cn(
+          "inline-flex w-fit items-center justify-center rounded-(--tabs-pill-radius) border border-(--tabs-pill-track-border) bg-(--tabs-pill-track-bg)",
+          size === "sm" ? "gap-(--tabs-pill-gap-sm) p-(--tabs-pill-track-padding-sm)" : "gap-(--tabs-pill-gap) p-(--tabs-pill-track-padding)",
+          className
+        )}
+        {...props}
+      />
+    </PillSizeContext.Provider>
   )
 }
 
@@ -37,12 +50,14 @@ type TabsPillTriggerProps = React.ComponentProps<typeof TabsPrimitive.Trigger> &
 }
 
 function TabsPillTrigger({ icon, count, visualState, className, children, ...props }: TabsPillTriggerProps) {
+  const size = React.useContext(PillSizeContext)
   return (
     <TabsPrimitive.Trigger
       data-slot="tabs-pill-trigger"
       data-visual={visualState}
       className={cn(
-        "group/pill inline-flex shrink-0 cursor-pointer items-center justify-center gap-(--tabs-pill-item-gap) rounded-(--tabs-pill-radius) px-(--tabs-pill-item-px) py-(--tabs-pill-item-py) text-sm leading-normal font-medium whitespace-nowrap outline-none",
+        "group/pill inline-flex shrink-0 cursor-pointer items-center justify-center gap-(--tabs-pill-item-gap) rounded-(--tabs-pill-radius) px-(--tabs-pill-item-px) text-sm leading-normal font-medium whitespace-nowrap outline-none",
+        size === "sm" ? "py-(--tabs-pill-item-py-sm)" : "py-(--tabs-pill-item-py)",
         "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
         // Inactive
         "bg-transparent text-(color:--content-muted)",
@@ -162,4 +177,4 @@ function TabsContent({ className, ...props }: React.ComponentProps<typeof TabsPr
 }
 
 export { Tabs, TabsPillList, TabsPillTrigger, TabsLineList, TabsLineTrigger, TabsContent }
-export type { TabsPillTriggerProps, TabsLineTriggerProps, TabsLineTone }
+export type { TabsPillListProps, TabsPillSize, TabsPillTriggerProps, TabsLineTriggerProps, TabsLineTone }

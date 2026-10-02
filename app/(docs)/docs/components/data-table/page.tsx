@@ -46,13 +46,13 @@ export default function DataTableDocsPage() {
       <H3>Header items</H3>
       <UL>
         <li>Sizes: Small 26px (8 / 4 padding), Medium 34px (12 / 8), Large 42px (16 / 12).</li>
-        <li>Label 14px, 1.3 line height, 80% white; optional leading icon, sort icon and filter icon (16px, 30% white).</li>
+        <li>Label 14px, content/tertiary (#a8a9a9); optional leading icon, sort icon and filter icon (16px, 30% white).</li>
         <li>Sort: none, ascending, descending. Clicking cycles through them.</li>
         <li>The selection column header is the Empty variant.</li>
       </UL>
       <H3>Rows and cells</H3>
       <UL>
-        <li>Cells: 48px tall, 12px horizontal and 4px vertical padding, 14px text at 80% white.</li>
+        <li>Cells: 48px tall, 12px horizontal and 4px vertical padding, 14px white text.</li>
         <li>Grid: 1px border on every side; Compact: top and bottom only.</li>
         <li>Row hover and selected: 2% white. Keyboard focus: teal ring inside the row.</li>
         <li>Selection column: 96px with checkbox and a 32px avatar (3% white circle).</li>
@@ -67,7 +67,8 @@ export default function DataTableDocsPage() {
           ["Cell and header borders", "border-grid"],
           ["Header background", "table-header-bg"],
           ["Row hover / selected", "table-row-hover"],
-          ["Text", "table-text"],
+          ["Header label", "table-header-text"],
+          ["Cell text", "table-text"],
           ["Header icons", "table-icon"],
           ["Cell height", "table-cell-height"],
           ["Cell padding x", "table-cell-px"],

@@ -10,7 +10,7 @@ import { Callout, H2, H3, P, PageHeader, UL } from "@/components/docs/typography
 
 export const metadata: Metadata = {
   title: "Button",
-  description: "Triggers an action. Five styles, three sizes, icon-only and loading states.",
+  description: "Triggers an action. Five styles, four sizes, icon-only and loading states.",
 }
 
 export default function ButtonPage() {
@@ -56,11 +56,11 @@ export default function ButtonPage() {
       <ComponentPreview name="button-danger-outline" />
 
       <H2>Sizes</H2>
-      <P>Small (32px) for dense tables and toolbars, Medium (40px) as the default, Large (48px) for prominent calls to action.</P>
+      <P>XSmall (24px, 12px label) for inline actions in tight rows, Small (32px) for dense tables and toolbars, Medium (40px) as the default, Large (48px) for prominent calls to action.</P>
       <ComponentPreview name="button-sizes" />
 
       <H2>Icons</H2>
-      <P>A leading or trailing IBM Carbon icon: 16px on Small and Medium, 24px on Large.</P>
+      <P>A leading or trailing IBM Carbon icon: 16px on XSmall, Small and Medium, 24px on Large.</P>
       <ComponentPreview name="button-with-icon" />
       <H3>Icon only</H3>
       <P>Square, with the same styles and sizes. Always has an accessible name.</P>
@@ -85,6 +85,9 @@ export default function ButtonPage() {
           ["Corner radius", "button-radius-control"],
           ["Border width", "button-stroke-default"],
           ["Icon–label gap", "button-spacing-gap"],
+          ["XSmall height", "button-size-xs-height"],
+          ["XSmall padding", "button-size-xs-padding-x"],
+          ["XSmall icon", "button-size-xs-icon"],
           ["Small height", "button-size-sm-height"],
           ["Small padding", "button-size-sm-padding-x"],
           ["Small icon", "button-size-sm-icon"],
@@ -117,6 +120,7 @@ export default function ButtonPage() {
           ["Secondary border, disabled", "button-secondary-border-disabled"],
           ["Ghost pressed", "button-ghost-bg-pressed"],
           ["Label", "button-neutral-content-default"],
+          ["Label opacity, default and hover", "button-neutral-content-rest-opacity"],
           ["Label, disabled", "button-neutral-content-disabled"],
         ]}
       />
@@ -148,12 +152,13 @@ export default function ButtonPage() {
         <li>The focus ring only appears for keyboard focus, never on mouse click.</li>
         <li>Enter and Space activate it. Loading and disabled buttons ignore clicks and key presses.</li>
         <li>A button that navigates to another page is rendered as a link but keeps the same look.</li>
+        <li>Secondary and Ghost show their label and icons at 70% at rest and on hover, and at full white when pressed or focused.</li>
       </UL>
 
       <Callout tone="warning">
         <strong className="text-white">Figma notes:</strong> in the Loading variants the leading and trailing icons stay
         visible while the label is hidden; the build hides all content and shows only the indicator. Ghost Hover is identical
-        to Ghost Default.
+        to Ghost Default. The 70% label opacity is a raw layer opacity, not a variable.
       </Callout>
     </>
   )

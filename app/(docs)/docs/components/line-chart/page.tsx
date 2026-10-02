@@ -177,8 +177,8 @@ export default function LineChartDocsPage() {
       <Callout tone="warning">
         <strong className="text-white">Figma notes:</strong>
         <ul className="mt-2 ml-4 list-disc space-y-1">
-          <li>sm cards have no border or radius, while md and lg have a 1px border and 4px radius. The build uses the border on every size.</li>
-          <li>The md variants are scaled (0.7px border, 2.8px radius, 16.77px body padding) and the md header is fixed at 120px, clipping its content. The build uses 1px, 4px, 24px and the natural 129px header, same as lg.</li>
+          <li>sm cards have no border or radius, while md and lg have a 1px border/panel stroke. The build uses the border on every size.</li>
+          <li>The md variants are scaled (2.8px radius, 16.77px body padding). The build uses 4px and 24px, same as lg.</li>
           <li>sm Comparison and Multi show the date pill on the axis on hover, but sm Single doesn’t. The build always shows it on sm, since the compact tooltip has no date.</li>
           <li>The sm tooltip uses the Compact container with Default (16px) items; the Compact item (14px) isn’t used anywhere.</li>
           <li>X-axis labels are evenly spaced and not tied to data points, and the tooltip date (16 Sep) doesn’t match the axis (1–9 Jul).</li>

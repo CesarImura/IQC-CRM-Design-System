@@ -96,7 +96,7 @@ function seriesColor(series: LineSeries, index: number) {
 // _Chart / Tooltip Item: 4px tick, label at 32%, value at 80%.
 function ChartTooltipItem({ color, label, value }: { color: string; label: React.ReactNode; value: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-2 text-base leading-[normal] whitespace-nowrap">
+    <div className="flex items-center gap-2 text-base leading-normal whitespace-nowrap">
       <span aria-hidden="true" className="h-[21px] w-1 shrink-0 rounded-[2px]" style={{ background: color }} />
       <span className="text-(color:--chart-tooltip-label)">{label}</span>
       <span className="font-medium text-(color:--chart-tooltip-value)">{value}</span>
@@ -109,7 +109,7 @@ function ChartLegend({ series }: { series: LineSeries[] }) {
   return (
     <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 px-(--chart-padding) pb-(--chart-padding)">
       {series.map((s, i) => (
-        <li key={s.label} className="flex items-center gap-2 text-sm leading-[normal] text-(color:--chart-legend-label)">
+        <li key={s.label} className="flex items-center gap-2 text-sm leading-normal text-(color:--chart-legend-label)">
           <span aria-hidden="true" className="size-3.5 shrink-0 rounded-[2px]" style={{ background: seriesColor(s, i) }} />
           {s.label}
         </li>
@@ -362,7 +362,7 @@ function LineChart({
                   }}
                 >
                   {!small && (
-                    <p className="text-base leading-[normal] whitespace-nowrap text-(color:--chart-tooltip-date)">{categories[active]}</p>
+                    <p className="text-base leading-normal whitespace-nowrap text-(color:--chart-tooltip-date)">{categories[active]}</p>
                   )}
                   {series.map((s, i) => (
                     <ChartTooltipItem key={s.label} color={seriesColor(s, i)} label={s.label} value={formatValue(s.data[active])} />
@@ -371,7 +371,7 @@ function LineChart({
                 {small && (
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute z-10 -translate-x-1/2 rounded-(--chart-tooltip-radius) bg-(--chart-tooltip-bg) px-2 py-1 text-sm leading-[normal] whitespace-nowrap text-(color:--chart-tooltip-date)"
+                    className="pointer-events-none absolute z-10 -translate-x-1/2 rounded-(--chart-tooltip-radius) bg-(--chart-tooltip-bg) px-2 py-1 text-sm leading-normal whitespace-nowrap text-(color:--chart-tooltip-date)"
                     style={{ left: activeX, top: gridHeight + 7 }}
                   >
                     {categories[active]}

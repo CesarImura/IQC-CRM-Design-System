@@ -131,7 +131,7 @@ function TableHead({ sort, onSort, icon, action, className, children, ...props }
       scope="col"
       aria-sort={sort === "asc" ? "ascending" : sort === "desc" ? "descending" : undefined}
       className={cn(
-        "group/head bg-(--table-header-bg) text-left align-middle font-normal text-(color:--table-text)",
+        "group/head bg-(--table-header-bg) text-left align-middle font-normal text-(color:--table-header-text)",
         variant === "grid" ? "border border-(--border-grid)" : "border-y border-(--border-grid)",
         headPadding[size],
         onSort && "p-0",
@@ -139,7 +139,7 @@ function TableHead({ sort, onSort, icon, action, className, children, ...props }
       )}
       {...props}
     >
-      <div className={cn("flex items-center gap-(--table-header-gap) leading-[1.3]", onSort && headPadding[size])}>
+      <div className={cn("flex items-center gap-(--table-header-gap) leading-normal", onSort && headPadding[size])}>
         {onSort ? (
           <button
             type="button"
@@ -234,7 +234,7 @@ function TableStatus({ status, colSpan, title, description, action, className, .
           <div className="flex w-full flex-col items-center gap-2 pt-2">
             <p
               className={cn(
-                "w-full text-base leading-[normal] font-medium",
+                "w-full text-base leading-normal font-medium",
                 status === "error" ? "text-(color:--table-status-title-error)" : "text-(color:--table-status-title)"
               )}
             >

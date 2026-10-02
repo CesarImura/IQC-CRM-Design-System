@@ -49,7 +49,7 @@ function SelectionBar({ count, label, children, onClear, clearLabel = "Clear", o
       )}
       {...props}
     >
-      <p aria-live="polite" className="shrink-0 text-sm leading-[normal] font-medium whitespace-nowrap text-(color:--selection-bar-label) tabular-nums">
+      <p aria-live="polite" className="shrink-0 text-sm leading-normal font-medium whitespace-nowrap text-(color:--selection-bar-label) tabular-nums">
         {label ?? `${shown ?? 0} selected`}
       </p>
       <div className="flex min-w-0 items-center justify-end gap-(--selection-bar-gap)">

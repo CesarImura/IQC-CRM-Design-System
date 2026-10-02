@@ -62,9 +62,9 @@ const badgeVariants = cva(
         ghost: "",
       },
       size: {
-        sm: "gap-(--badge-gap-sm) px-(--badge-px-sm) py-(--badge-py-sm) text-(length:--badge-font-sm) leading-[normal] [&_svg:not([class*='size-'])]:size-(--badge-icon-sm)",
-        md: "gap-(--badge-gap-md) px-(--badge-px-md) py-(--badge-py-md) text-(length:--badge-font-md) leading-[normal] [&_svg:not([class*='size-'])]:size-(--badge-icon-md)",
-        lg: "gap-(--badge-gap-lg) px-(--badge-px-lg) py-(--badge-py-lg) text-(length:--badge-font-lg) leading-[normal] [&_svg:not([class*='size-'])]:size-(--badge-icon-lg)",
+        sm: "gap-(--badge-gap-sm) px-(--badge-px-sm) py-(--badge-py-sm) text-(length:--badge-font-sm) leading-normal [&_svg:not([class*='size-'])]:size-(--badge-icon-sm)",
+        md: "gap-(--badge-gap-md) px-(--badge-px-md) py-(--badge-py-md) text-(length:--badge-font-md) leading-normal [&_svg:not([class*='size-'])]:size-(--badge-icon-md)",
+        lg: "gap-(--badge-gap-lg) px-(--badge-px-lg) py-(--badge-py-lg) text-(length:--badge-font-lg) leading-normal [&_svg:not([class*='size-'])]:size-(--badge-icon-lg)",
       },
     },
     defaultVariants: {

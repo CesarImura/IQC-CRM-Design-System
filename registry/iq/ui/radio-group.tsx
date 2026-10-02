@@ -75,7 +75,7 @@ function RadioGroupItem({ children, description, className, rowClassName, disabl
             </span>
           )}
           {description && (
-            <span className="text-xs leading-[normal] text-(color:--content-muted) group-data-disabled/radio:text-(color:--content-disabled)">
+            <span className="text-xs leading-normal text-(color:--content-muted) group-data-disabled/radio:text-(color:--content-disabled)">
               {description}
             </span>
           )}

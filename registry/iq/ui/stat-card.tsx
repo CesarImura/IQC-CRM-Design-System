@@ -167,7 +167,7 @@ function InfoIcon() {
 }
 
 const cardVariants = cva(
-  "flex overflow-hidden bg-(--surface-raised) p-(--stat-card-padding) text-base leading-[normal] font-normal",
+  "flex overflow-hidden border border-(--stat-card-border) bg-(--surface-raised) p-(--stat-card-padding) text-base leading-6 font-normal",
   {
     variants: {
       layout: {
@@ -246,8 +246,8 @@ function StatCard({
       className={cn(
         "font-medium whitespace-nowrap text-(color:--stat-card-value) tabular-nums",
         layout === "stacked"
-          ? "text-(length:--stat-card-value-size-lg)"
-          : "text-(length:--stat-card-value-size)"
+          ? "text-(length:--stat-card-value-size-lg) leading-[1.3]"
+          : "text-(length:--stat-card-value-size) leading-[1.3]"
       )}
     >
       {value}

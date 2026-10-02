@@ -207,6 +207,9 @@
   --button-radius-control: var(--radius-control);
   --button-stroke-default: 1px;
   --button-spacing-gap: var(--space-gap-control-default);
+  --button-size-xs-height: 24px;
+  --button-size-xs-padding-x: var(--space-inset-control-x-xs);
+  --button-size-xs-icon: 16px;
   --button-size-sm-height: 32px;
   --button-size-sm-padding-x: var(--space-inset-control-x-sm);
   --button-size-sm-icon: 16px;
@@ -224,6 +227,7 @@
   --button-filled-content-disabled: var(--content-on-accent-disabled);
   --button-danger-content-default: var(--error);
   --button-danger-content-disabled: var(--content-danger-disabled);
+  --button-neutral-content-rest-opacity: 0.7;
   /* Button / Primary */
   --button-primary-bg-default: var(--primitive-primary);
   --button-primary-bg-hover: var(--primitive-primary-hover);
@@ -324,22 +328,22 @@
   --badge-gap-lg: 6px;
   --badge-font-lg: 16px;
   --badge-icon-lg: 20px;
-  --badge-gray-bg: var(--primitive-neutral-850);
+  --badge-gray-bg: var(--primitive-white-8);
   --badge-gray-content: var(--primitive-gray);
   --badge-gray-border: var(--primitive-white-16);
-  --badge-white-bg: var(--primitive-neutral-800);
-  --badge-white-content: var(--primitive-white);
+  --badge-white-bg: var(--surface-soft);
+  --badge-white-content: var(--content-default);
   --badge-white-border: var(--primitive-white-24);
   --badge-blue-bg: var(--primitive-blue-16);
-  --badge-blue-content: var(--primitive-info);
+  --badge-blue-content: var(--info);
   --badge-blue-border: var(--primitive-info-32);
   --badge-green-bg: var(--primitive-teal-16);
-  --badge-green-content: var(--primitive-accent);
+  --badge-green-content: var(--accent);
   --badge-green-border: var(--primitive-accent-32);
   --badge-yellow-bg: var(--primitive-warning-16);
-  --badge-yellow-content: var(--primitive-warning);
+  --badge-yellow-content: var(--warning);
   --badge-yellow-border: var(--primitive-warning-32);
-  --badge-red-bg: var(--primitive-error-16);
+  --badge-red-bg: var(--error-subtle);
   --badge-red-content: var(--primitive-coral);
   --badge-red-border: var(--primitive-coral-32);
   --badge-purple-bg: var(--primitive-violet-16);
@@ -349,6 +353,7 @@
   --badge-delta-neutral-bg: var(--primitive-white-5);
   /* Stat Card */
   --stat-card-padding: 24px;
+  --stat-card-border: var(--border-grid);
   --stat-card-title: var(--content-disabled);
   --stat-card-value: var(--primitive-white-80);
   --stat-card-caption: var(--content-disabled);
@@ -387,7 +392,7 @@
   --chart-tooltip-label: var(--content-disabled);
   --chart-tooltip-value: var(--primitive-white-80);
   --chart-legend-label: var(--content-disabled);
-  --chart-card-border: #25282780;
+  --chart-card-border: var(--border-panel);
   --chart-card-radius: 4px;
   --chart-padding: var(--primitive-space-24);
   --chart-title: var(--primitive-white-50);
@@ -399,9 +404,9 @@
   --chart-ring-gap: 3px;
   --chart-ring-track: var(--primitive-white-5);
   --chart-ring-stripe: #ffffff1a;
-  --chart-ring-positive: var(--primitive-accent);
-  --chart-ring-warning: var(--primitive-chart-yellow);
-  --chart-ring-negative: var(--primitive-error);
+  --chart-ring-positive: var(--chart-series-1);
+  --chart-ring-warning: var(--chart-series-2);
+  --chart-ring-negative: var(--button-danger-bg-default);
   --chart-ring-value: var(--primitive-white);
   --chart-ring-label: var(--primitive-white);
   /* Status Dot */
@@ -410,7 +415,7 @@
   --status-dot-negative: var(--primitive-coral);
   --status-dot-warning: var(--primitive-warning);
   --status-dot-info: var(--primitive-info);
-  --status-dot-label: var(--content-muted);
+  --status-dot-label: var(--content-default);
   /* Partner Logo */
   --partner-logo-gap-sm: 6px;
   --partner-logo-gap-md: 8px;
@@ -435,8 +440,8 @@
   --pill-overlay-hover: var(--primitive-white-6);
   --pill-overlay-pressed: #00000029;
   /* Value Slot */
-  --value-slot-text: var(--primitive-white-80);
-  --value-slot-secondary: var(--primitive-white-50);
+  --value-slot-text: var(--content-default);
+  --value-slot-secondary: var(--content-tertiary);
   --value-slot-strong: var(--primitive-white);
   --value-slot-link: #7affdbcc;
   /* Checkbox */
@@ -463,7 +468,8 @@
   /* Table */
   --table-header-bg: var(--primitive-white-2);
   --table-row-hover: var(--primitive-white-2);
-  --table-text: var(--primitive-white-80);
+  --table-text: var(--content-default);
+  --table-header-text: var(--content-tertiary);
   --table-icon: #ffffff4d;
   --table-cell-height: 48px;
   --table-cell-px: var(--space-stack-md);
@@ -589,10 +595,13 @@
   --tabs-pill-track-bg: var(--surface-raised);
   --tabs-pill-track-border: var(--border-subtle);
   --tabs-pill-track-padding: var(--primitive-space-4);
+  --tabs-pill-track-padding-sm: var(--primitive-space-2);
   --tabs-pill-gap: var(--primitive-space-4);
+  --tabs-pill-gap-sm: var(--primitive-space-2);
   --tabs-pill-radius: var(--radius-control);
   --tabs-pill-item-px: var(--primitive-space-12);
   --tabs-pill-item-py: var(--primitive-space-6);
+  --tabs-pill-item-py-sm: 2.5px;
   --tabs-pill-item-gap: var(--space-gap-control-default);
   --tabs-pill-item-bg-selected: var(--surface-soft);
   --tabs-pill-item-bg-selected-hover: var(--surface-pressed);

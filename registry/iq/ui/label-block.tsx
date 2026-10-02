@@ -21,14 +21,14 @@ function LabelBlock({ label, description, disabled, htmlFor, labelId, descriptio
     <div
       data-slot="label-block"
       data-disabled={disabled || undefined}
-      className={cn("flex flex-col items-start gap-(--label-block-gap) leading-[normal]", className)}
+      className={cn("flex flex-col items-start gap-(--label-block-gap) leading-normal", className)}
       {...props}
     >
       {label && (
         <LabelTag
           id={labelId}
           htmlFor={htmlFor}
-          className={cn("text-sm leading-[normal] font-medium", disabled ? "text-(color:--content-disabled)" : "text-(color:--label-block-label)")}
+          className={cn("text-sm leading-normal font-medium", disabled ? "text-(color:--content-disabled)" : "text-(color:--label-block-label)")}
         >
           {label}
         </LabelTag>
@@ -36,7 +36,7 @@ function LabelBlock({ label, description, disabled, htmlFor, labelId, descriptio
       {description && (
         <p
           id={descriptionId}
-          className={cn("text-xs leading-[normal]", disabled ? "text-(color:--content-disabled)" : "text-(color:--label-block-description)")}
+          className={cn("text-xs leading-normal", disabled ? "text-(color:--content-disabled)" : "text-(color:--label-block-description)")}
         >
           {description}
         </p>

@@ -59,9 +59,9 @@ function ChartHeader({
 }: ChartHeaderProps) {
   return (
     <header className="flex items-start justify-between gap-4 p-(--chart-padding)">
-      <div className="flex min-w-0 flex-col gap-2 leading-[normal]">
-        <div className="flex items-center gap-1.5 text-base leading-[normal] text-(color:--chart-title)">
-          <h3 id={titleId} className="truncate text-base leading-[normal] font-normal">
+      <div className="flex min-w-0 flex-col gap-2 leading-6">
+        <div className="flex items-center gap-1.5 text-base leading-6 text-(color:--chart-title)">
+          <h3 id={titleId} className="truncate text-base leading-6 font-normal">
             {title}
           </h3>
           {info &&
@@ -77,11 +77,11 @@ function ChartHeader({
         </div>
         {value !== undefined && (
           <div className="flex items-center gap-2">
-            <p className="text-lg leading-[normal] text-(color:--chart-value) tabular-nums">{value}</p>
+            <p className="text-lg leading-[1.3] text-(color:--chart-value) tabular-nums">{value}</p>
             {delta !== undefined && <DeltaBadge tone={deltaTone}>{delta}</DeltaBadge>}
           </div>
         )}
-        {!compact && timestamp && <p className="text-base leading-[normal] text-(color:--chart-title)">{timestamp}</p>}
+        {!compact && timestamp && <p className="text-base leading-6 text-(color:--chart-title)">{timestamp}</p>}
       </div>
       {!compact && ranges && ranges.length > 0 && (
         <Tabs value={range} defaultValue={defaultRange ?? ranges[0]} onValueChange={onRangeChange}>
@@ -134,7 +134,7 @@ function ChartStatus({ status, content, height }: { status: "empty" | "error"; c
         <div className="flex w-full flex-col items-center gap-2 pt-2">
           <p
             className={cn(
-              "w-full text-base leading-[normal] font-medium",
+              "w-full text-base leading-6 font-medium",
               error ? "text-(color:--table-status-title-error)" : "text-(color:--table-status-title)"
             )}
           >

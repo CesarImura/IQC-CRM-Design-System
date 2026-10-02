@@ -30,6 +30,14 @@ export default function TabsPillDemo() {
           </TabsPillTrigger>
         </TabsPillList>
       </Tabs>
+      <Tabs defaultValue="7d">
+        <TabsPillList size="sm" aria-label="Range (Small)">
+          <TabsPillTrigger value="1d">1D</TabsPillTrigger>
+          <TabsPillTrigger value="7d">7D</TabsPillTrigger>
+          <TabsPillTrigger value="30d">30D</TabsPillTrigger>
+          <TabsPillTrigger value="1y">1Y</TabsPillTrigger>
+        </TabsPillList>
+      </Tabs>
     </div>
   )
 }

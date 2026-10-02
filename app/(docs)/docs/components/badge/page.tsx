@@ -109,7 +109,7 @@ export default function BadgeDocsPage() {
       <Callout tone="warning">
         <strong className="text-white">Figma notes:</strong>
         <ul className="mt-2 ml-4 list-disc space-y-1">
-          <li>The Delta neutral background is a raw #ffffff0d instead of the gray badge variable (#141716).</li>
+          <li>The Delta neutral background is a raw #ffffff0d instead of the gray badge variable (white 8%).</li>
           <li>The Focus Ring layer inside each badge has a 0px spread, so it never shows.</li>
           <li>The Value Slot page still uses “Badge (Legacy)”: 15% backgrounds and a 25px height instead of 16% and 22px.</li>
         </ul>

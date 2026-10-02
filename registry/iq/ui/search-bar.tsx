@@ -105,7 +105,7 @@ function SearchBar({
             disabled={disabled}
             aria-label={scope.label ?? "Search in"}
             className={cn(
-              "flex shrink-0 cursor-pointer items-center gap-(--button-spacing-gap) font-medium whitespace-nowrap outline-none",
+              "flex shrink-0 cursor-pointer items-center gap-(--button-spacing-gap) border-x border-(--button-secondary-border-default) font-medium whitespace-nowrap outline-none",
               md ? "px-(--button-size-md-padding-x) text-base leading-6" : "px-(--button-size-sm-padding-x) text-sm leading-[21px]",
               disabled ? "text-(color:--content-disabled)" : "text-white/70 hover:text-white/90 data-[state=open]:text-white/90"
             )}

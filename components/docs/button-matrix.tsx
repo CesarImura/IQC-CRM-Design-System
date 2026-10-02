@@ -13,6 +13,7 @@ const variants = [
 ] as const
 
 const sizes = [
+  ["xs", "XSmall"],
   ["sm", "Small"],
   ["md", "Medium"],
   ["lg", "Large"],
