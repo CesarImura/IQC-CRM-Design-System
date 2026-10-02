@@ -310,6 +310,34 @@
   /* Dropdown */
   --dropdown-panel-width: 303px;
   --dropdown-panel-width-icon: 242px;
+  /* Alert */
+  --alert-surface: var(--surface-raised);
+  --alert-surface-destructive: var(--primitive-danger-5);
+  --alert-border: var(--border-panel);
+  --alert-title: var(--content-default);
+  --alert-description: var(--content-muted);
+  --alert-destructive: var(--danger);
+  --alert-icon: var(--icon-default);
+  --alert-icon-success: var(--accent);
+  --alert-icon-destructive: var(--danger);
+  --alert-px: 16px;
+  --alert-py: 12px;
+  --alert-gap: 16px;
+  --alert-radius: 4px;
+  /* Item */
+  --item-radius: var(--radius-modal);
+  --item-gap: 16px;
+  --item-copy-gap: 2px;
+  --item-px-sm: 12px;
+  --item-py-sm: 6px;
+  --item-px-md: 16px;
+  --item-py-md: 12px;
+  --item-px-lg: 24px;
+  --item-py-lg: 16px;
+  --item-border: var(--primitive-white-6);
+  --item-muted-bg: var(--surface-raised);
+  --item-label: var(--content-default);
+  --item-description: var(--content-muted);
   /* Badge */
   --badge-radius-default: var(--radius-control);
   --badge-stroke-width: 1px;
