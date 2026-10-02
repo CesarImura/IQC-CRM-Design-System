@@ -72,11 +72,13 @@ export default function OptionPanelDocsPage() {
       <UL>
         <li>Small: 8px padding, 14px text. Medium: 12 / 8px padding, 16px text. 8px gap, 2px radius.</li>
         <li>Label at 90%; hover fill 3% (Neutral), yellow 5% (Warning) or red 5% (Danger).</li>
+        <li>Checkmark sits at the right edge in a 16px slot that stays reserved when the option isn’t chosen.</li>
+        <li>Checkbox sits first, in a 20px slot (Figma nests the Checkbox scaled to ≈17px).</li>
         <li>Disabled: everything at 32%, no hover.</li>
       </UL>
       <H3>Label</H3>
       <UL>
-        <li>Geist Mono, uppercase, 50%. Small: 12px, 8px sides. Medium: 14px, 12 / 4px padding.</li>
+        <li>Geist Mono, 50%, original case. Small: 12px, 8px sides. Medium: 14px, 12 / 4px padding.</li>
       </UL>
 
       <H2>Tokens</H2>

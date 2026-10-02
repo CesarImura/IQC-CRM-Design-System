@@ -84,7 +84,7 @@ type CheckboxMarkProps = Omit<React.ComponentProps<"span">, "children"> & {
   disabled?: boolean
   /** Hover / pressed look (64% border), driven by the parent row, e.g. a highlighted option. */
   highlighted?: boolean
-  /** 20px (default, the Checkbox control) or 16px (inside Option Panel items). */
+  /** 20px (default, the Checkbox control) or 16 for the ≈17px scaled box Figma nests in Option Panel items. */
   size?: 16 | 20
 }
 
@@ -101,7 +101,7 @@ function CheckboxMark({ checked = false, indeterminate = false, disabled = false
       data-state={indeterminate ? "indeterminate" : checked ? "checked" : "unchecked"}
       className={cn(
         "inline-flex shrink-0 items-center justify-center border-(length:--checkbox-stroke-default)",
-        size === 20 ? "size-5 rounded-(--checkbox-radius-control)" : "size-4 rounded-[3px]",
+        size === 20 ? "size-5 rounded-(--checkbox-radius-control)" : "size-[16.67px] rounded-[3.33px]",
         on ? "border-transparent bg-(--checkbox-fill-selected) text-(color:--checkbox-icon-on-selected)" : "border-(--checkbox-border-default)",
         highlighted && !disabled && "border-(--checkbox-border-hover)",
         disabled && (on ? "bg-(--checkbox-fill-disabled) text-(color:--checkbox-icon-disabled)" : "border-(--checkbox-border-disabled)"),
@@ -109,7 +109,7 @@ function CheckboxMark({ checked = false, indeterminate = false, disabled = false
       )}
       {...props}
     >
-      {checked && !indeterminate && <CheckIcon className={size === 20 ? "size-[18px]" : "size-[14px]"} />}
+      {checked && !indeterminate && <CheckIcon className={size === 20 ? "size-[18px]" : "size-[15px]"} />}
       {indeterminate && <span className={cn("rounded-[1px] bg-current", size === 20 ? "h-0.5 w-3" : "h-0.5 w-2.5")} />}
     </span>
   )

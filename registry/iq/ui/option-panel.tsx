@@ -61,13 +61,13 @@ const labelSize: Record<OptionSize, string> = {
   md: "[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-1 [&_[cmdk-group-heading]]:text-sm",
 }
 
-/** A group of options with its Label item (Geist Mono, uppercase, 50%). */
+/** A group of options with its Label item (Geist Mono, 50%). */
 function OptionGroup({ size = "sm", className, ...props }: React.ComponentProps<typeof Command.Group> & { size?: OptionSize }) {
   return (
     <Command.Group
       data-slot="option-group"
       className={cn(
-        "[&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:leading-normal [&_[cmdk-group-heading]]:text-(color:--option-item-label) [&_[cmdk-group-heading]]:uppercase",
+        "[&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:leading-normal [&_[cmdk-group-heading]]:text-(color:--option-item-label)",
         "[&_[cmdk-group-items]]:flex [&_[cmdk-group-items]]:flex-col [&_[cmdk-group-items]]:gap-(--option-item-gap) [&_[cmdk-group-heading]+[cmdk-group-items]]:mt-(--option-item-gap)",
         labelSize[size],
         className
@@ -157,22 +157,20 @@ function OptionItem({
       )}
       {...props}
     >
-      {selection === "checkmark" && (
-        <span aria-hidden="true" className="flex size-4 shrink-0 items-center justify-center">
-          {checked && <Checkmark size={16} />}
-        </span>
-      )}
       {selection === "checkbox" && (
-        <CheckboxMark
-          size={16}
-          checked={checked}
-          disabled={disabled}
-          // Highlighted row (hover / arrow keys) or pressed: 64% border, like Checkbox hover.
-          className={cn(
-            !disabled &&
-              "group-data-[selected=true]/option:border-(--checkbox-border-hover) group-data-[visual=hover]/option:border-(--checkbox-border-hover) group-active/option:border-(--checkbox-border-hover)"
-          )}
-        />
+        // Figma nests the Checkbox scaled into a 20px slot (≈17px box).
+        <span className="flex size-5 shrink-0 items-center justify-center">
+          <CheckboxMark
+            size={16}
+            checked={checked}
+            disabled={disabled}
+            // Highlighted row (hover / arrow keys) or pressed: 64% border, like Checkbox hover.
+            className={cn(
+              !disabled &&
+                "group-data-[selected=true]/option:border-(--checkbox-border-hover) group-data-[visual=hover]/option:border-(--checkbox-border-hover) group-active/option:border-(--checkbox-border-hover)"
+            )}
+          />
+        </span>
       )}
       {icon && <span className="flex size-4 shrink-0 items-center justify-center [&_svg]:size-4">{icon}</span>}
       <span className="shrink-0 whitespace-nowrap">
@@ -180,6 +178,12 @@ function OptionItem({
       </span>
       {secondary && (
         <span className={cn("min-w-0 truncate", disabled ? "" : "text-(color:--option-item-secondary)")}>{secondary}</span>
+      )}
+      {/* Trailing checkmark slot, reserved when unchecked so labels don't shift. */}
+      {selection === "checkmark" && (
+        <span aria-hidden="true" className="ml-auto flex size-4 shrink-0 items-center justify-center">
+          {checked && <Checkmark size={16} />}
+        </span>
       )}
     </Command.Item>
   )

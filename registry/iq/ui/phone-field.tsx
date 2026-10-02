@@ -219,7 +219,7 @@ function PhoneField({
                 <Command.Group
                   key={group.heading}
                   heading={group.heading}
-                  className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:pt-1 [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:leading-normal [&_[cmdk-group-heading]]:text-(color:--content-muted) [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-items]]:flex [&_[cmdk-group-items]]:flex-col [&_[cmdk-group-items]]:gap-1"
+                  className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:pt-1 [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:leading-normal [&_[cmdk-group-heading]]:text-(color:--content-muted) [&_[cmdk-group-items]]:flex [&_[cmdk-group-items]]:flex-col [&_[cmdk-group-items]]:gap-1"
                 >
                   {group.items.map((c) => (
                     <CountryItem key={`${group.heading}-${c.code}`} group={group.heading} country={c} selected={c.code === country.code} onSelect={() => select(c)} />

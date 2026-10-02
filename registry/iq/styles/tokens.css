@@ -456,6 +456,10 @@
   --checkbox-icon-on-selected: var(--surface-canvas);
   --checkbox-fill-disabled: var(--surface-active);
   --checkbox-icon-disabled: var(--primitive-white-50);
+  --radio-border-selected: var(--accent);
+  --radio-dot-selected: var(--checkbox-fill-selected);
+  --radio-selected-disabled: var(--primitive-accent-16);
+  --radio-dot-size: 10px;
   /* Table */
   --table-header-bg: var(--primitive-white-2);
   --table-row-hover: var(--primitive-white-2);
