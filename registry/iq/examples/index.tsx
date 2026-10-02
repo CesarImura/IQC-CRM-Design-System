@@ -15,6 +15,7 @@ import ModalDemo from "./modal-demo"
 import ToolbarDemo from "./toolbar-demo"
 import ScrollAreaDemo from "./scroll-area-demo"
 import PageHeaderDemo from "./page-header-demo"
+import FieldGridDemo from "./field-grid-demo"
 import RadioGroupDemo from "./radio-group-demo"
 import FormFieldDemo from "./form-field-demo"
 import FormFieldSizes from "./form-field-sizes"
@@ -108,6 +109,7 @@ export const examples = {
   "toolbar-demo": ToolbarDemo,
   "scroll-area-demo": ScrollAreaDemo,
   "page-header-demo": PageHeaderDemo,
+  "field-grid-demo": FieldGridDemo,
   "radio-group-demo": RadioGroupDemo,
   "form-field-demo": FormFieldDemo,
   "form-field-sizes": FormFieldSizes,

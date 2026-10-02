@@ -615,6 +615,18 @@
           "page-header-py": "var(--space-gap-control-default)",
           "page-header-title": "var(--primitive-white-70)",
           "page-header-info": "#ffffff4d",
+          "field-grid-row-height": "44px",
+          "field-grid-row-px": "16px",
+          "field-grid-row-bg-hover": "var(--surface-hover)",
+          "field-grid-divider": "var(--border-grid)",
+          "field-grid-gap": "var(--space-gap-control-default)",
+          "field-grid-column-gap": "24px",
+          "field-grid-label-width": "160px",
+          "field-grid-label-width-narrow": "120px",
+          "field-grid-label": "var(--content-tertiary)",
+          "field-grid-value": "var(--content-default)",
+          "field-grid-action-hit": "44px",
+          "field-grid-state-padding": "var(--space-inset-control-x-lg)",
           "toast-surface": "var(--surface-raised)",
           "toast-border": "var(--border-panel)",
           "toast-stroke": "1px",
@@ -1536,6 +1548,27 @@
       "files": [
         {
           "path": "registry/iq/ui/page-header.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "field-grid",
+      "type": "registry:ui",
+      "title": "Field Grid",
+      "description": "Record details as label / value rows with copy-on-hover; 1–3 columns; Empty, Error and Read Only states.",
+      "dependencies": [
+        "@carbon/icons-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/button",
+        "@iq/empty"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/field-grid.tsx",
           "type": "registry:ui"
         }
       ]

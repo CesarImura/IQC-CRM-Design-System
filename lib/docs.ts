@@ -37,6 +37,7 @@ export const nav: NavSection[] = [
       { title: "Date Picker", href: "/docs/components/date-picker" },
       { title: "Dropdown", href: "/docs/components/dropdown" },
       { title: "Empty", href: "/docs/components/empty" },
+      { title: "Field Grid", href: "/docs/components/field-grid" },
       { title: "Flag", href: "/docs/components/flag" },
       { title: "Form Field", href: "/docs/components/form-field" },
       { title: "Input", href: "/docs/components/input" },

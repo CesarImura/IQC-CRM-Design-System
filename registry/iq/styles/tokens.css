@@ -654,6 +654,19 @@
   --page-header-py: var(--space-gap-control-default);
   --page-header-title: var(--primitive-white-70);
   --page-header-info: #ffffff4d;
+  /* Field Grid */
+  --field-grid-row-height: 44px;
+  --field-grid-row-px: 16px;
+  --field-grid-row-bg-hover: var(--surface-hover);
+  --field-grid-divider: var(--border-grid);
+  --field-grid-gap: var(--space-gap-control-default);
+  --field-grid-column-gap: 24px;
+  --field-grid-label-width: 160px;
+  --field-grid-label-width-narrow: 120px;
+  --field-grid-label: var(--content-tertiary);
+  --field-grid-value: var(--content-default);
+  --field-grid-action-hit: 44px;
+  --field-grid-state-padding: var(--space-inset-control-x-lg);
   /* Toast */
   --toast-surface: var(--surface-raised);
   --toast-border: var(--border-panel);
