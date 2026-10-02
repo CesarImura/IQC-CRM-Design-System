@@ -535,6 +535,26 @@
           "form-field-divider": "var(--border-subtle)",
           "form-field-icon": "var(--primitive-white-50)",
           "form-field-resize-handle": "#ffffff1a",
+          "backdrop-subtle": "var(--overlay-subtle)",
+          "backdrop-default": "var(--overlay-default)",
+          "backdrop-strong": "var(--overlay-strong)",
+          "backdrop-blur-soft": "4px",
+          "modal-surface": "var(--surface-raised)",
+          "modal-border": "var(--border-panel)",
+          "modal-title": "var(--content-default)",
+          "modal-body": "var(--content-body)",
+          "modal-shadow": "var(--overlay-default)",
+          "modal-radius": "var(--radius-modal)",
+          "modal-padding": "24px",
+          "modal-gap": "16px",
+          "modal-width-sm": "480px",
+          "modal-width-md": "640px",
+          "modal-width-lg": "800px",
+          "modal-body-max-height": "384px",
+          "modal-close-hit": "44px",
+          "modal-close-opacity": "0.4",
+          "modal-motion-in": "180ms",
+          "modal-motion-out": "120ms",
           "toast-surface": "var(--surface-raised)",
           "toast-border": "var(--border-panel)",
           "toast-stroke": "1px",
@@ -1281,6 +1301,80 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "backdrop",
+      "type": "registry:ui",
+      "title": "Backdrop",
+      "description": "Scrim behind modals and trays: Subtle, Default or Strong, with an optional soft blur.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/backdrop.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "modal",
+      "type": "registry:ui",
+      "title": "Modal",
+      "description": "Dialog with header, body (auto or fixed scroll) and footer layouts; Small, Medium or Large; Default or Danger. Built on Radix Dialog.",
+      "dependencies": [
+        "@radix-ui/react-dialog"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/backdrop"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/modal.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "css": {
+        "@keyframes overlay-in": {
+          "from": {
+            "opacity": "0"
+          },
+          "to": {
+            "opacity": "1"
+          }
+        },
+        "@keyframes overlay-out": {
+          "from": {
+            "opacity": "1"
+          },
+          "to": {
+            "opacity": "0"
+          }
+        },
+        "@keyframes modal-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(8px) scale(0.98)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "none"
+          }
+        },
+        "@keyframes modal-out": {
+          "from": {
+            "opacity": "1",
+            "transform": "none"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(8px) scale(0.98)"
+          }
+        }
+      }
     },
     {
       "name": "choice-field",

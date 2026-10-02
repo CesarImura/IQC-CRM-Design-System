@@ -26,6 +26,7 @@ export const nav: NavSection[] = [
   {
     title: "Components",
     items: [
+      { title: "Backdrop", href: "/docs/components/backdrop" },
       { title: "Badge", href: "/docs/components/badge" },
       { title: "Breadcrumb", href: "/docs/components/breadcrumb" },
       { title: "Button", href: "/docs/components/button" },
@@ -39,6 +40,7 @@ export const nav: NavSection[] = [
       { title: "Input", href: "/docs/components/input" },
       { title: "Label Block", href: "/docs/components/label-block" },
       { title: "Line Chart", href: "/docs/components/line-chart" },
+      { title: "Modal", href: "/docs/components/modal" },
       { title: "Option Panel", href: "/docs/components/option-panel" },
       { title: "Pagination", href: "/docs/components/pagination" },
       { title: "Partner Logo", href: "/docs/components/partner-logo" },

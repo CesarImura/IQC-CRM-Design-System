@@ -566,6 +566,28 @@
   --form-field-divider: var(--border-subtle);
   --form-field-icon: var(--primitive-white-50);
   --form-field-resize-handle: #ffffff1a;
+  /* Backdrop */
+  --backdrop-subtle: var(--overlay-subtle);
+  --backdrop-default: var(--overlay-default);
+  --backdrop-strong: var(--overlay-strong);
+  --backdrop-blur-soft: 4px;
+  /* Modal */
+  --modal-surface: var(--surface-raised);
+  --modal-border: var(--border-panel);
+  --modal-title: var(--content-default);
+  --modal-body: var(--content-body);
+  --modal-shadow: var(--overlay-default);
+  --modal-radius: var(--radius-modal);
+  --modal-padding: 24px;
+  --modal-gap: 16px;
+  --modal-width-sm: 480px;
+  --modal-width-md: 640px;
+  --modal-width-lg: 800px;
+  --modal-body-max-height: 384px;
+  --modal-close-hit: 44px;
+  --modal-close-opacity: 0.4;
+  --modal-motion-in: 180ms;
+  --modal-motion-out: 120ms;
   /* Toast */
   --toast-surface: var(--surface-raised);
   --toast-border: var(--border-panel);

@@ -131,3 +131,25 @@ body {
     opacity: 0;
   }
 }
+
+/* Modal enter / exit: fade + 8px rise + slight scale (the centering uses the separate translate property). Also shipped in @iq/modal. Backdrop reuses overlay-in / out. */
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes modal-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}

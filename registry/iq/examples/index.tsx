@@ -11,6 +11,7 @@ import OptionPanelStates from "./option-panel-states"
 import PhoneFieldDemo from "./phone-field-demo"
 import SelectFieldDemo from "./select-field-demo"
 import ToggleDemo from "./toggle-demo"
+import ModalDemo from "./modal-demo"
 import RadioGroupDemo from "./radio-group-demo"
 import FormFieldDemo from "./form-field-demo"
 import FormFieldSizes from "./form-field-sizes"
@@ -100,6 +101,7 @@ export const examples = {
   "phone-field-demo": PhoneFieldDemo,
   "select-field-demo": SelectFieldDemo,
   "toggle-demo": ToggleDemo,
+  "modal-demo": ModalDemo,
   "radio-group-demo": RadioGroupDemo,
   "form-field-demo": FormFieldDemo,
   "form-field-sizes": FormFieldSizes,
