@@ -598,6 +598,23 @@
           "empty-title-error": "var(--error)",
           "empty-title-compact": "var(--primitive-white-80)",
           "empty-description": "var(--content-muted)",
+          "toolbar-surface": "var(--surface-raised)",
+          "toolbar-border": "var(--border-panel)",
+          "toolbar-px": "var(--space-inset-control-x-lg)",
+          "toolbar-py": "var(--space-stack-lg)",
+          "toolbar-gap": "var(--space-gap-control-default)",
+          "toolbar-divider": "var(--button-secondary-border-default)",
+          "scroll-bar-thumb": "var(--content-default)",
+          "scroll-bar-opacity": "0.4",
+          "scroll-bar-opacity-hover": "0.64",
+          "scroll-bar-opacity-drag": "0.88",
+          "scroll-bar-size": "8px",
+          "scroll-bar-size-hover": "12px",
+          "scroll-bar-radius": "1px",
+          "page-header-px": "var(--space-inset-control-x-lg)",
+          "page-header-py": "var(--space-gap-control-default)",
+          "page-header-title": "var(--primitive-white-70)",
+          "page-header-info": "#ffffff4d",
           "toast-surface": "var(--surface-raised)",
           "toast-border": "var(--border-panel)",
           "toast-stroke": "1px",
@@ -1468,6 +1485,57 @@
       "files": [
         {
           "path": "registry/iq/ui/item.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toolbar",
+      "type": "registry:ui",
+      "title": "Toolbar",
+      "description": "Filter bar and actions above tables and lists; horizontal or vertical; divider.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/toolbar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "Native scrolling with the IQ overlay scroll bar (8px, 12px on hover; 40/64/88% thumb). Built on Radix Scroll Area.",
+      "dependencies": [
+        "@radix-ui/react-scroll-area"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:ui",
+      "title": "Page Header",
+      "description": "Page title row with info icon and a toolbar slot.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/page-header.tsx",
           "type": "registry:ui"
         }
       ]

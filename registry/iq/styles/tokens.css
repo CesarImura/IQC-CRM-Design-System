@@ -634,6 +634,26 @@
   --empty-title-error: var(--error);
   --empty-title-compact: var(--primitive-white-80);
   --empty-description: var(--content-muted);
+  /* Toolbar */
+  --toolbar-surface: var(--surface-raised);
+  --toolbar-border: var(--border-panel);
+  --toolbar-px: var(--space-inset-control-x-lg);
+  --toolbar-py: var(--space-stack-lg);
+  --toolbar-gap: var(--space-gap-control-default);
+  --toolbar-divider: var(--button-secondary-border-default);
+  /* Scroll Bar */
+  --scroll-bar-thumb: var(--content-default);
+  --scroll-bar-opacity: 0.4;
+  --scroll-bar-opacity-hover: 0.64;
+  --scroll-bar-opacity-drag: 0.88;
+  --scroll-bar-size: 8px;
+  --scroll-bar-size-hover: 12px;
+  --scroll-bar-radius: 1px;
+  /* Page Header */
+  --page-header-px: var(--space-inset-control-x-lg);
+  --page-header-py: var(--space-gap-control-default);
+  --page-header-title: var(--primitive-white-70);
+  --page-header-info: #ffffff4d;
   /* Toast */
   --toast-surface: var(--surface-raised);
   --toast-border: var(--border-panel);
