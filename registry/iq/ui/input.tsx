@@ -145,8 +145,9 @@ function ResizeHandle({ minHeight, className }: { minHeight: number; className?:
         start.current = null
       }}
     >
-      <svg viewBox="0 0 12 12" className="block size-3">
-        <path d="M12 0V12H0L12 0Z" fill="currentColor" />
+      {/* Inline size and fill: the frame's icon rules ([&_svg] → 16px, 70%) must not reach the handle. */}
+      <svg viewBox="0 0 12 12" style={{ display: "block", width: 12, height: 12 }}>
+        <path d="M12 0V12H0L12 0Z" style={{ fill: "var(--form-field-resize-handle)" }} />
       </svg>
     </span>
   )
