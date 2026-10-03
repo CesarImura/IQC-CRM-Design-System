@@ -7,7 +7,8 @@ import { ChevronDown, Close, Search } from "@carbon/icons-react"
 import { cn } from "@/lib/utils"
 import { OptionItem, OptionPanel, OptionPanelList } from "@/registry/iq/ui/option-panel"
 
-// Figma: IQ Capital CRM Design System → Search Bar (529:36926). Size Small | Medium × State Default | Focus | Error | Disabled.
+// Figma: IQ Capital CRM Design System → Search Bar (529:36926). Size Small | Medium × State Default | Focus | Error | Disabled | Active.
+// Focus (teal ring) is keyboard focus; Active (neutral-500 border, white 12% ring) is editing: focused with the pointer, or typing.
 // Icon, Dropdown (scope) and Show Clear are independent.
 
 type SearchBarScope = {
@@ -31,8 +32,8 @@ type SearchBarProps = Omit<React.ComponentProps<"input">, "size" | "onChange" | 
   clearable?: boolean
   /** Scope dropdown before the input, e.g. "Contacts / Deals / Companies". */
   scope?: SearchBarScope
-  /** Force Focus for documentation matrices. */
-  visualState?: "focus"
+  /** Force Focus or Active for documentation matrices. */
+  visualState?: "focus" | "active"
   frameClassName?: string
 }
 
@@ -65,6 +66,9 @@ function SearchBar({
   const scopeValue = scope?.value ?? scopeInner
   const [scopeOpen, setScopeOpen] = React.useState(false)
   const md = size === "md"
+  const pointerRef = React.useRef(false)
+  const [interactionState, setInteraction] = React.useState<"focus" | "active" | null>(null)
+  const interaction = error || disabled ? undefined : (visualState ?? interactionState ?? undefined)
 
   return (
     <div
@@ -72,14 +76,15 @@ function SearchBar({
       data-size={size}
       data-status={error ? "error" : undefined}
       data-disabled={disabled || undefined}
-      data-visual={visualState}
+      data-interaction={interaction}
       className={cn(
-        "flex w-full min-w-0 items-stretch rounded-(--button-radius-control) border",
+        "group/search flex w-full min-w-0 items-stretch rounded-(--button-radius-control) border",
         md ? "h-(--button-size-md-height)" : "h-(--button-size-sm-height)",
         "border-(--button-secondary-border-default) bg-(--button-secondary-bg-default)",
-        // Focus: no fill, teal ring (any focus inside the bar, e.g. the input or the scope)
-        "has-[:focus-visible]:bg-(--form-field-surface-transparent) has-[:focus-visible]:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]",
-        "data-[visual=focus]:bg-(--form-field-surface-transparent) data-[visual=focus]:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]",
+        // Focus (keyboard): no fill, teal ring
+        "data-[interaction=focus]:bg-(--form-field-surface-transparent) data-[interaction=focus]:shadow-[0_0_0_var(--focus-spread)_var(--focus-ring)]",
+        // Active (editing): 2% fill, neutral-500 border, white 12% ring
+        "data-[interaction=active]:border-(--input-border-hover) data-[interaction=active]:bg-(--input-bg-active) data-[interaction=active]:shadow-[0_0_0_var(--focus-spread)_var(--input-ring-active)]",
         // Error: 2px red border, red ring
         "data-[status=error]:border-(length:--search-bar-error-border-width) data-[status=error]:border-(--form-field-error-border) data-[status=error]:bg-(--form-field-surface-transparent) data-[status=error]:shadow-[0_0_0_var(--focus-spread)_var(--focus-danger)]",
         // Disabled
@@ -87,6 +92,21 @@ function SearchBar({
         "[&_svg]:size-4 [&_svg]:shrink-0",
         frameClassName
       )}
+      onPointerDownCapture={() => {
+        pointerRef.current = true
+      }}
+      onFocus={() => {
+        const viaPointer = pointerRef.current
+        pointerRef.current = false
+        setInteraction((current) => (viaPointer ? "active" : (current ?? "focus")))
+      }}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null) && !scopeOpen) setInteraction(null)
+      }}
+      onKeyDown={(event) => {
+        const navigation = ["Tab", "Shift", "Escape", "Meta", "Control", "Alt", "CapsLock", "ArrowUp", "ArrowDown", "Enter"]
+        if (interactionState === "focus" && event.target === inputRef.current && !navigation.includes(event.key)) setInteraction("active")
+      }}
       onMouseDown={(event) => {
         if ((event.target as HTMLElement).closest("button, input")) return
         event.preventDefault()
@@ -111,7 +131,7 @@ function SearchBar({
             )}
           >
             {scope.options.find((o) => o.value === scopeValue)?.label}
-            <ChevronDown aria-hidden="true" className={disabled ? "" : "text-(color:--content-default)"} />
+            <ChevronDown aria-hidden="true" />
           </Popover.Trigger>
           <Popover.Portal>
             <Popover.Content align="start" sideOffset={8} className="z-50 w-56 outline-none">
@@ -155,7 +175,7 @@ function SearchBar({
         placeholder={placeholder}
         aria-invalid={error || undefined}
         className={cn(
-          "h-full min-w-0 flex-1 bg-transparent px-(--input-px) text-white/90 outline-none [&::-webkit-search-cancel-button]:hidden",
+          "h-full min-w-0 flex-1 bg-transparent px-(--input-px) text-(color:--input-text) outline-none [&::-webkit-search-cancel-button]:hidden group-data-[interaction=active]/search:text-(color:--input-text-active) disabled:text-(color:--content-disabled)",
           md ? "text-base leading-6" : "text-sm leading-[21px]",
           "placeholder:text-(color:--input-placeholder) disabled:placeholder:text-(color:--content-disabled)",
           className
