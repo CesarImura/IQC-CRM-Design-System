@@ -117,6 +117,41 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
   )
 })
 
+/** Figma _Resize: a 12px triangle at white 10% that drags the text box taller (the browser's own grip is turned off,
+ * since it can't be restyled consistently across browsers). */
+function ResizeHandle({ minHeight, className }: { minHeight: number; className?: string }) {
+  const start = React.useRef<{ el: HTMLTextAreaElement; y: number; h: number } | null>(null)
+  return (
+    <span
+      aria-hidden="true"
+      data-slot="resize-handle"
+      className={cn("absolute size-3 cursor-ns-resize touch-none text-(color:--form-field-resize-handle)", className)}
+      onPointerDown={(event) => {
+        // The handle sits in the same frame as its textarea.
+        const el = event.currentTarget.parentElement?.querySelector("textarea")
+        if (!el) return
+        event.preventDefault()
+        try {
+          event.currentTarget.setPointerCapture(event.pointerId)
+        } catch {}
+        start.current = { el, y: event.clientY, h: el.getBoundingClientRect().height }
+      }}
+      onPointerMove={(event) => {
+        const drag = start.current
+        if (!drag) return
+        drag.el.style.height = `${Math.max(minHeight, drag.h + event.clientY - drag.y)}px`
+      }}
+      onPointerUp={() => {
+        start.current = null
+      }}
+    >
+      <svg viewBox="0 0 12 12" className="block size-3">
+        <path d="M12 0V12H0L12 0Z" fill="currentColor" />
+      </svg>
+    </span>
+  )
+}
+
 /* -------------------------------------------------------------------------------------------------
  * Text Area
  * -----------------------------------------------------------------------------------------------*/
@@ -171,8 +206,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(function T
         readOnly={readOnly}
         aria-invalid={error || undefined}
         className={cn(
-          "min-h-[58px] min-w-0 flex-1 bg-transparent outline-none [field-sizing:content] [&::-webkit-resizer]:bg-transparent",
-          expandable && !readOnly && !disabled ? "resize-y" : "resize-none",
+          "min-h-[58px] min-w-0 flex-1 resize-none bg-transparent outline-none [field-sizing:content]",
           "placeholder:text-(color:--input-placeholder) group-[:not([data-interaction]):hover]/input:placeholder:text-(color:--input-placeholder-hover) group-[:not([data-interaction])[data-visual=hover]]/input:placeholder:text-(color:--input-placeholder-hover)",
           "group-data-[interaction=focus]/input:placeholder:text-(color:--input-text) group-data-[interaction=active]/input:placeholder:text-(color:--input-text-active)",
           "disabled:placeholder:text-(color:--content-disabled)",
@@ -197,10 +231,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(function T
       />
       {trailingIcon && !readOnly && <span className="flex pt-0.5">{trailingIcon}</span>}
       {expandable && (
-        // Figma _Resize: 12px triangle, 10% white, in the corner.
-        <svg viewBox="0 0 12 12" aria-hidden="true" className="pointer-events-none absolute right-[3px] bottom-[3px] size-3 text-(color:--form-field-resize-handle)">
-          <path d="M12 0V12H0L12 0Z" fill="currentColor" />
-        </svg>
+        // Figma _Resize: 8px from the right and bottom edges of the frame.
+        <ResizeHandle minHeight={58} className={cn("right-[7px] bottom-[7px]", (readOnly || disabled) && "pointer-events-none")} />
       )}
     </div>
   )

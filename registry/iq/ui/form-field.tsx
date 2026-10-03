@@ -320,12 +320,47 @@ function FieldTextarea({ className, rows = 3, ...props }: React.ComponentProps<"
       rows={rows}
       className={cn(
         valueClasses,
-        "min-h-[60px] resize-y [field-sizing:content] [&::-webkit-resizer]:bg-transparent",
+        "min-h-[60px] resize-none [field-sizing:content]",
         className
       )}
       {...a11y}
       {...props}
     />
+  )
+}
+
+/** Figma _Resize: a 12px triangle at white 10% that drags the text box taller (the browser's own grip is turned off,
+ * since it can't be restyled consistently across browsers). */
+function ResizeHandle({ minHeight, className }: { minHeight: number; className?: string }) {
+  const start = React.useRef<{ el: HTMLTextAreaElement; y: number; h: number } | null>(null)
+  return (
+    <span
+      aria-hidden="true"
+      data-slot="resize-handle"
+      className={cn("absolute size-3 cursor-ns-resize touch-none text-(color:--form-field-resize-handle)", className)}
+      onPointerDown={(event) => {
+        // The handle sits in the same frame as its textarea.
+        const el = event.currentTarget.parentElement?.querySelector("textarea")
+        if (!el) return
+        event.preventDefault()
+        try {
+          event.currentTarget.setPointerCapture(event.pointerId)
+        } catch {}
+        start.current = { el, y: event.clientY, h: el.getBoundingClientRect().height }
+      }}
+      onPointerMove={(event) => {
+        const drag = start.current
+        if (!drag) return
+        drag.el.style.height = `${Math.max(minHeight, drag.h + event.clientY - drag.y)}px`
+      }}
+      onPointerUp={() => {
+        start.current = null
+      }}
+    >
+      <svg viewBox="0 0 12 12" className="block size-3">
+        <path d="M12 0V12H0L12 0Z" fill="currentColor" />
+      </svg>
+    </span>
   )
 }
 
@@ -399,14 +434,11 @@ function TextareaField(props: TextareaFieldProps) {
     <FormField
       {...field}
       aside={
-        // Figma resize handle: 12px triangle, 10% white, 7px from the corner.
-        <svg
-          viewBox="0 0 12 12"
-          aria-hidden="true"
-          className="pointer-events-none absolute right-[7px] bottom-[7px] size-3 text-(color:--form-field-resize-handle)"
-        >
-          <path d="M12 0V12H0L12 0Z" fill="currentColor" />
-        </svg>
+        // Resize handle: 12px triangle, 10% white, 7px from the corner.
+        <ResizeHandle
+          minHeight={60}
+          className={cn("right-[7px] bottom-[7px]", (field.disabled || field.readOnly) && "pointer-events-none")}
+        />
       }
     >
       <FieldTextarea className={textareaClassName} {...textareaProps} />
