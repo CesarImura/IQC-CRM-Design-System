@@ -32,7 +32,7 @@ function Table({ variant = "grid", size = "lg", className, containerClassName, .
       <div
         data-slot="table-container"
         className={cn(
-          "relative w-full overflow-x-auto [scrollbar-color:var(--border-grid)_transparent] [scrollbar-width:thin]",
+          "relative w-full overflow-x-auto",
           containerClassName
         )}
       >

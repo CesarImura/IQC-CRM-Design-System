@@ -1,9 +1,9 @@
 import { ScrollBarStatic } from "@/registry/iq/ui/scroll-area"
 
 const states = [
-  { label: "Default · 8px, 40%" },
-  { label: "Hover · 12px, 64%", visual: "hover" as const },
-  { label: "Drag · 12px, 88%", visual: "drag" as const },
+  { label: "Default · 20%" },
+  { label: "Hover · 36%", visual: "hover" as const },
+  { label: "Drag · 52%", visual: "drag" as const },
 ]
 
 /** Scroll Bar: Orientation × State, drawn statically. */

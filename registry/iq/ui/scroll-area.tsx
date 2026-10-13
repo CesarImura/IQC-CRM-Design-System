@@ -6,11 +6,12 @@ import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
 import { cn } from "@/lib/utils"
 
 // Figma: IQ Capital CRM Design System → Scroll Bar (1436:2369) and _Scroll Bar / Thumb (1436:2357).
-// Orientation Horizontal | Vertical × State Default | Hover | Drag. An overlay thumb: white at 40%, 64% on hover, 88% while
-// dragging; 8px thick, 12px on hover and drag; 1px radius. The track itself is invisible.
+// Orientation Horizontal | Vertical × State Default | Hover | Drag. An overlay thumb: white at 20%, 36% on hover, 52% while
+// dragging; an 8px invisible track with a 4px square thumb inset 2px from the sides and the ends. Same as the native
+// scrollbar rule in globals.css.
 
 const barClass =
-  "group/bar flex touch-none p-0 select-none transition-[width,height] duration-100 data-[orientation=vertical]:h-full data-[orientation=vertical]:w-(--scroll-bar-size) data-[orientation=vertical]:hover:w-(--scroll-bar-size-hover) data-[orientation=horizontal]:h-(--scroll-bar-size) data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:hover:h-(--scroll-bar-size-hover)"
+  "group/bar flex touch-none p-(--scroll-bar-inset) select-none data-[orientation=vertical]:h-full data-[orientation=vertical]:w-(--scroll-bar-size) data-[orientation=horizontal]:h-(--scroll-bar-size) data-[orientation=horizontal]:flex-col"
 
 const thumbClass =
   "relative flex-1 rounded-(--scroll-bar-radius) bg-(--scroll-bar-thumb) opacity-(--scroll-bar-opacity) transition-opacity group-hover/bar:opacity-(--scroll-bar-opacity-hover) active:opacity-(--scroll-bar-opacity-drag)"
@@ -54,9 +55,9 @@ type ScrollBarStaticProps = React.ComponentProps<"div"> & {
 /** The scroll bar as a static drawing, for documentation and mockups. */
 function ScrollBarStatic({ orientation = "horizontal", ratio = 0.84, offset = 0, visualState, className, style, ...props }: ScrollBarStaticProps) {
   const horizontal = orientation === "horizontal"
-  const big = visualState === "hover" || visualState === "drag"
   const opacity = visualState === "drag" ? "var(--scroll-bar-opacity-drag)" : visualState === "hover" ? "var(--scroll-bar-opacity-hover)" : "var(--scroll-bar-opacity)"
-  const size = big ? "var(--scroll-bar-size-hover)" : "var(--scroll-bar-size)"
+  const size = "var(--scroll-bar-size)"
+  const inset = "var(--scroll-bar-inset)"
   return (
     <div
       data-slot="scroll-bar-static"
@@ -70,8 +71,8 @@ function ScrollBarStatic({ orientation = "horizontal", ratio = 0.84, offset = 0,
         style={{
           opacity,
           ...(horizontal
-            ? { top: 0, bottom: 0, width: `${ratio * 100}%`, left: `${offset * (1 - ratio) * 100}%` }
-            : { left: 0, right: 0, height: `${ratio * 100}%`, top: `${offset * (1 - ratio) * 100}%` }),
+            ? { top: inset, bottom: inset, width: `calc(${ratio * 100}% - 2 * ${inset})`, left: `calc(${inset} + ${offset * (1 - ratio) * 100}%)` }
+            : { left: inset, right: inset, height: `calc(${ratio * 100}% - 2 * ${inset})`, top: `calc(${inset} + ${offset * (1 - ratio) * 100}%)` }),
         }}
       />
     </div>

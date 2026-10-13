@@ -208,7 +208,7 @@ function PhoneField({
                 className="h-full min-w-0 flex-1 bg-transparent pr-3 text-sm leading-[21px] text-(color:--content-default) outline-none placeholder:text-(color:--content-muted)"
               />
             </div>
-            <Command.List className="max-h-72 overflow-y-auto [scrollbar-color:var(--border-grid)_transparent] [scrollbar-width:thin]">
+            <Command.List className="max-h-72 overflow-y-auto">
               <Command.Empty className="px-2 py-6 text-center text-sm text-(color:--content-muted)">
                 {labels?.empty ?? "No country found."}
               </Command.Empty>

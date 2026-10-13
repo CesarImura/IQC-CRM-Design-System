@@ -48,7 +48,7 @@ function OptionPanelList({ className, ...props }: React.ComponentProps<typeof Co
     <Command.List
       data-slot="option-panel-list"
       className={cn(
-        "max-h-72 overflow-y-auto [scrollbar-color:var(--border-grid)_transparent] [scrollbar-width:thin] [&_[cmdk-list-sizer]]:flex [&_[cmdk-list-sizer]]:flex-col [&_[cmdk-list-sizer]]:gap-(--option-item-gap)",
+        "max-h-72 overflow-y-auto [&_[cmdk-list-sizer]]:flex [&_[cmdk-list-sizer]]:flex-col [&_[cmdk-list-sizer]]:gap-(--option-item-gap)",
         className
       )}
       {...props}

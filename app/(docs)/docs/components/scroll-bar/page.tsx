@@ -19,7 +19,7 @@ export default function ScrollBarDocsPage() {
       <PageHeader
         eyebrow="Components"
         title="Scroll Bar"
-        description="A thin overlay thumb for scrollable panels, lists and tables. It thickens and brightens when you hover or drag it."
+        description="A thin overlay thumb for scrollable panels, lists and tables. It brightens when you hover or drag it."
       >
         <Button asChild variant="secondary" size="sm">
           <a href={figmaNode("1436:2369")} target="_blank" rel="noreferrer">
@@ -35,8 +35,8 @@ export default function ScrollBarDocsPage() {
       <H2>Variants</H2>
       <ScrollBarMatrix />
       <UL>
-        <li>White thumb at 40%; 64% on hover; 88% while dragging. 1px radius.</li>
-        <li>8px thick, 12px on hover and drag. The track is invisible and runs along the whole edge.</li>
+        <li>White thumb at 20%; 36% on hover; 52% while dragging. Square (0 radius).</li>
+        <li>8px track, 4px thumb inset 2px from the sides and the ends, so it never touches the border. The track is invisible and runs along the whole edge.</li>
         <li>Thumb length follows the visible share of the content; its position follows the scroll offset.</li>
       </UL>
 
@@ -47,8 +47,8 @@ export default function ScrollBarDocsPage() {
           ["Opacity default / hover / drag", "scroll-bar-opacity"],
           ["", "scroll-bar-opacity-hover"],
           ["", "scroll-bar-opacity-drag"],
-          ["Thickness / hover", "scroll-bar-size"],
-          ["", "scroll-bar-size-hover"],
+          ["Track thickness", "scroll-bar-size"],
+          ["Inset (sides and ends)", "scroll-bar-inset"],
           ["Radius", "scroll-bar-radius"],
         ]}
       />

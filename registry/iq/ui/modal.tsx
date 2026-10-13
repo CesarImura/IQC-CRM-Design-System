@@ -129,7 +129,7 @@ function ModalBody({ scroll = "auto", className, ...props }: ModalBodyProps) {
       data-slot="modal-body"
       data-scroll={scroll}
       className={cn(
-        "flex min-h-0 flex-1 flex-col gap-(--modal-gap) overflow-y-auto px-(--modal-padding) [&>*]:shrink-0 text-sm leading-[21px] text-(color:--modal-body) [scrollbar-color:var(--border-grid)_transparent] [scrollbar-width:thin]",
+        "flex min-h-0 flex-1 flex-col gap-(--modal-gap) overflow-y-auto px-(--modal-padding) [&>*]:shrink-0 text-sm leading-[21px] text-(color:--modal-body)",
         scroll === "fixed" && "max-h-(--modal-body-max-height) flex-none",
         className
       )}

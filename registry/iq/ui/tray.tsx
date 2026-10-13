@@ -122,7 +122,7 @@ function TrayBody({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="tray-body"
-      className={cn("flex min-h-0 flex-1 flex-col overflow-y-auto pb-(--tray-padding-y) [scrollbar-color:var(--border-grid)_transparent] [scrollbar-width:thin]", className)}
+      className={cn("flex min-h-0 flex-1 flex-col overflow-y-auto pb-(--tray-padding-y)", className)}
       {...props}
     />
   )
