@@ -11,10 +11,10 @@ import { cn } from "@/lib/utils"
 // scrollbar rule in globals.css.
 
 const barClass =
-  "group/bar flex touch-none p-(--scroll-bar-inset) select-none data-[orientation=vertical]:h-full data-[orientation=vertical]:w-(--scroll-bar-size) data-[orientation=horizontal]:h-(--scroll-bar-size) data-[orientation=horizontal]:flex-col"
+  "group/bar flex touch-none p-0 select-none data-[orientation=vertical]:h-full data-[orientation=vertical]:w-(--scroll-bar-size) data-[orientation=horizontal]:h-(--scroll-bar-size) data-[orientation=horizontal]:flex-col"
 
 const thumbClass =
-  "relative flex-1 rounded-(--scroll-bar-radius) bg-(--scroll-bar-thumb) transition-colors group-hover/bar:bg-(--scroll-bar-thumb-hover) active:bg-(--scroll-bar-thumb-drag)"
+  "relative flex-1 rounded-(--scroll-bar-radius) border-(length:--scroll-bar-inset) border-transparent bg-clip-padding bg-(--scroll-bar-thumb) transition-colors group-hover/bar:bg-(--scroll-bar-thumb-hover) active:bg-(--scroll-bar-thumb-drag)"
 
 function ScrollBar({ orientation = "vertical", className, ...props }: React.ComponentProps<typeof ScrollAreaPrimitive.Scrollbar>) {
   return (
