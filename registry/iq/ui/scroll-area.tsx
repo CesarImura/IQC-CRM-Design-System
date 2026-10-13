@@ -6,15 +6,15 @@ import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
 import { cn } from "@/lib/utils"
 
 // Figma: IQ Capital CRM Design System → Scroll Bar (1436:2369) and _Scroll Bar / Thumb (1436:2357).
-// Orientation Horizontal | Vertical × State Default | Hover | Drag. An overlay thumb: white at 20%, 36% on hover, 52% while
-// dragging; an 8px invisible track with a 4px square thumb inset 2px from the sides and the ends. Same as the native
+// Orientation Horizontal | Vertical × State Default | Hover | Drag. An overlay thumb in solid neutrals: 600, 500 on hover, 400
+// while dragging; an 8px invisible track with a 4px square thumb inset 2px from the sides and the ends. Same as the native
 // scrollbar rule in globals.css.
 
 const barClass =
   "group/bar flex touch-none p-(--scroll-bar-inset) select-none data-[orientation=vertical]:h-full data-[orientation=vertical]:w-(--scroll-bar-size) data-[orientation=horizontal]:h-(--scroll-bar-size) data-[orientation=horizontal]:flex-col"
 
 const thumbClass =
-  "relative flex-1 rounded-(--scroll-bar-radius) bg-(--scroll-bar-thumb) opacity-(--scroll-bar-opacity) transition-opacity group-hover/bar:opacity-(--scroll-bar-opacity-hover) active:opacity-(--scroll-bar-opacity-drag)"
+  "relative flex-1 rounded-(--scroll-bar-radius) bg-(--scroll-bar-thumb) transition-colors group-hover/bar:bg-(--scroll-bar-thumb-hover) active:bg-(--scroll-bar-thumb-drag)"
 
 function ScrollBar({ orientation = "vertical", className, ...props }: React.ComponentProps<typeof ScrollAreaPrimitive.Scrollbar>) {
   return (
@@ -55,7 +55,7 @@ type ScrollBarStaticProps = React.ComponentProps<"div"> & {
 /** The scroll bar as a static drawing, for documentation and mockups. */
 function ScrollBarStatic({ orientation = "horizontal", ratio = 0.84, offset = 0, visualState, className, style, ...props }: ScrollBarStaticProps) {
   const horizontal = orientation === "horizontal"
-  const opacity = visualState === "drag" ? "var(--scroll-bar-opacity-drag)" : visualState === "hover" ? "var(--scroll-bar-opacity-hover)" : "var(--scroll-bar-opacity)"
+  const fill = visualState === "drag" ? "var(--scroll-bar-thumb-drag)" : visualState === "hover" ? "var(--scroll-bar-thumb-hover)" : "var(--scroll-bar-thumb)"
   const size = "var(--scroll-bar-size)"
   const inset = "var(--scroll-bar-inset)"
   return (
@@ -67,9 +67,9 @@ function ScrollBarStatic({ orientation = "horizontal", ratio = 0.84, offset = 0,
       {...props}
     >
       <span
-        className="absolute rounded-(--scroll-bar-radius) bg-(--scroll-bar-thumb)"
+        className="absolute rounded-(--scroll-bar-radius)"
         style={{
-          opacity,
+          background: fill,
           ...(horizontal
             ? { top: inset, bottom: inset, width: `calc(${ratio * 100}% - 2 * ${inset})`, left: `calc(${inset} + ${offset * (1 - ratio) * 100}%)` }
             : { left: inset, right: inset, height: `calc(${ratio * 100}% - 2 * ${inset})`, top: `calc(${inset} + ${offset * (1 - ratio) * 100}%)` }),

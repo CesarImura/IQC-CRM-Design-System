@@ -35,7 +35,7 @@ export default function ScrollBarDocsPage() {
       <H2>Variants</H2>
       <ScrollBarMatrix />
       <UL>
-        <li>White thumb at 20%; 36% on hover; 52% while dragging. Square (0 radius).</li>
+        <li>Solid thumb, no transparency over the content: neutral 600; 500 on hover; 400 while dragging. Square (0 radius).</li>
         <li>8px track, 4px thumb inset 2px from the sides and the ends, so it never touches the border. The track is invisible and runs along the whole edge.</li>
         <li>Thumb length follows the visible share of the content; its position follows the scroll offset.</li>
       </UL>
@@ -43,10 +43,9 @@ export default function ScrollBarDocsPage() {
       <H2>Tokens</H2>
       <TokenTable
         rows={[
-          ["Thumb", "scroll-bar-thumb"],
-          ["Opacity default / hover / drag", "scroll-bar-opacity"],
-          ["", "scroll-bar-opacity-hover"],
-          ["", "scroll-bar-opacity-drag"],
+          ["Thumb default / hover / drag", "scroll-bar-thumb"],
+          ["", "scroll-bar-thumb-hover"],
+          ["", "scroll-bar-thumb-drag"],
           ["Track thickness", "scroll-bar-size"],
           ["Inset (sides and ends)", "scroll-bar-inset"],
           ["Radius", "scroll-bar-radius"],

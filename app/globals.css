@@ -20,7 +20,7 @@ body {
 }
 
 /* Native scrollbars follow the DS Scroll Bar: invisible track, 8px gutter with a 4px thumb inset 2px from the
-   sides and the ends (transparent border + padding-box clip), square (0 radius), white at 20/36/52%. */
+   sides and the ends (transparent border + padding-box clip), square (0 radius), solid neutral 600 / 500 / 400 (no transparency over content). */
 ::-webkit-scrollbar {
   width: var(--scroll-bar-size);
   height: var(--scroll-bar-size);
@@ -39,22 +39,22 @@ body {
   border: var(--scroll-bar-inset) solid transparent;
   background-clip: padding-box;
   border-radius: var(--scroll-bar-radius);
-  background-color: color-mix(in srgb, var(--scroll-bar-thumb) calc(var(--scroll-bar-opacity) * 100%), transparent);
+  background-color: var(--scroll-bar-thumb);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: color-mix(in srgb, var(--scroll-bar-thumb) calc(var(--scroll-bar-opacity-hover) * 100%), transparent);
+  background-color: var(--scroll-bar-thumb-hover);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background-color: color-mix(in srgb, var(--scroll-bar-thumb) calc(var(--scroll-bar-opacity-drag) * 100%), transparent);
+  background-color: var(--scroll-bar-thumb-drag);
 }
 
 /* Firefox has no ::-webkit-scrollbar; in Chrome these properties would override the rules above. */
 @supports not selector(::-webkit-scrollbar) {
   * {
     scrollbar-width: thin;
-    scrollbar-color: color-mix(in srgb, var(--scroll-bar-thumb) calc(var(--scroll-bar-opacity) * 100%), transparent) transparent;
+    scrollbar-color: var(--scroll-bar-thumb) transparent;
   }
 }
 
