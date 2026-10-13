@@ -36,7 +36,7 @@ export function TabsLineMatrix() {
                 {states.map((state) => (
                   <td key={state} className="border-l border-grid px-4 py-3 text-center">
                     <Tabs value={row.active ? "item" : "other"} className="inline-flex">
-                      <TabsLineList aria-label={`${tone} ${row.label} ${state}`} className="border-0 px-0">
+                      <TabsLineList aria-label={`${tone} ${row.label} ${state}`} className="overflow-visible border-0 px-0">
                         <TabsLineTrigger
                           value="item"
                           tone={tone}

@@ -86,15 +86,15 @@ export default function TabsDocsPage() {
       </UL>
 
       <H2>Tabs / Line</H2>
-      <P>Underline tabs for page sections and record views. The tone recolors the icon, the count and the underline.</P>
+      <P>Underline tabs for page sections and record views. The tone recolors the icon, the count and the underline of the active tab only; inactive tabs stay neutral.</P>
       <ComponentPreview name="tabs-line-demo" className="block p-0 sm:p-0" />
       <TabsLineMatrix />
       <UL>
         <li>Bar: 24px side padding, items 10px apart, border-divider (#252827) on the bottom (or top and bottom).</li>
-        <li>Item: 8 / 16px padding, 14px medium; inactive label at 40%, hover at 80% with a soft fill.</li>
-        <li>Active: white label, 1px underline in the tone color; 2px on hover.</li>
+        <li>Item: 8 / 16px padding, 14px medium. Inactive: label at 40%, muted icon, gray count, whatever the tone. Hover on an inactive tab only lights the label to white (no fill).</li>
+        <li>Active: white label, 1px underline, icon and count in the tone. Hover: 2px underline and a gradient of the tone (0 → 5%) behind the item.</li>
         <li>Tones: Neutral (50% white), Accent (green), Danger (red), Warning (yellow), Info (blue). Counts use the matching Badge.</li>
-        <li>Focus: 3px teal ring. Disabled: label at 32%, icon and count dimmed.</li>
+        <li>Focus: 2% fill, 4px radius and the 3px teal ring; the active underline stays. Disabled: label at 32%; an active tab keeps its tone.</li>
       </UL>
       <TokenTable
         title="Tabs / Line"
@@ -106,10 +106,13 @@ export default function TabsDocsPage() {
           ["", "tabs-line-item-py"],
           ["Underline", "tabs-line-stroke"],
           ["Underline, hover", "tabs-line-stroke-hover"],
-          ["Hover fill", "tabs-line-hover-bg"],
+          ["Active hover gradient (Neutral)", "tabs-line-hover-bg"],
           ["Label, active", "tabs-line-label"],
           ["Label, inactive", "tabs-line-label-inactive"],
-          ["Label, hover", "tabs-line-label-hover"],
+          ["Label, inactive hover", "tabs-line-label-hover"],
+          ["Icon, inactive", "tabs-line-icon-inactive"],
+          ["Focus fill", "tabs-line-focus-bg"],
+          ["Focus radius", "tabs-line-focus-radius"],
           ["Neutral", "tabs-line-tone-neutral"],
           ["Accent", "tabs-line-tone-accent"],
           ["Danger", "tabs-line-tone-danger"],
