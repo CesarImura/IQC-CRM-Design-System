@@ -11,6 +11,7 @@ import { toast } from "@/registry/iq/ui/toast"
 
 import {
   DAILY_LIMIT,
+  HISTORY,
   MAX_LOSS,
   SCRIPT,
   START,
@@ -24,6 +25,17 @@ import {
   winningRun,
   type Scenario,
 } from "@/registry/iq/examples/balance-range-chart-data"
+
+type Mode = "challenge" | "funded"
+// Last N sessions (trading days, not calendar days). Long Funded histories open on 30D.
+type Range = "7" | "30" | "90" | "all"
+const RANGES: [Range, string][] = [
+  ["7", "7D"],
+  ["30", "30D"],
+  ["90", "90D"],
+  ["all", "All"],
+]
+const defaultRange = (mode: Mode, count: number): Range => (mode === "funded" && count > 90 ? "30" : "all")
 
 type BalanceRangeChartDemoProps = {
   /** Preview only: start in Funded mode. */
@@ -45,10 +57,11 @@ export default function BalanceRangeChartDemo({
   autoPass = false,
   autoPassModal = true,
 }: BalanceRangeChartDemoProps = {}) {
-  const [mode, setMode] = React.useState<"challenge" | "funded">(initialMode)
+  const [mode, setMode] = React.useState<Mode>(initialMode)
   const [scenario, setScenario] = React.useState<Scenario>(initialScenario)
   const [initial] = React.useState(() => (autoPass ? winningRun() : null))
-  const [sessions, setSessions] = React.useState<BalanceSession[]>(() => initial?.sessions ?? seed(initialScenario))
+  const [sessions, setSessions] = React.useState<BalanceSession[]>(() => initial?.sessions ?? seed(initialScenario, initialMode))
+  const [range, setRange] = React.useState<Range>(() => defaultRange(initialMode, sessions.length))
   const [step, setStep] = React.useState(0)
   const [open, setOpen] = React.useState<number | null>(null)
   const [status, setStatus] = React.useState<"active" | "passed" | "breached">(initial ? "passed" : "active")
@@ -63,8 +76,9 @@ export default function BalanceRangeChartDemo({
   // Share of the cushion used: from the highest equity (or the start) down to the line.
   const cushionTop = locked ? Math.max(START, ...sessions.map((s) => s.equity)) : peak
   const used = Math.min(1, Math.max(0, (cushionTop - last.equity) / Math.max(1, cushionTop - level)))
-  const best = sessions.reduce((a, b) => (b.pnl > a.pnl ? b : a))
-  const worst = sessions.reduce((a, b) => (b.pnl < a.pnl ? b : a))
+  const shown = range === "all" ? sessions : sessions.slice(-Number(range))
+  const best = shown.reduce((a, b) => (b.pnl > a.pnl ? b : a))
+  const worst = shown.reduce((a, b) => (b.pnl < a.pnl ? b : a))
   const selected = open !== null ? sessions[open] : null
   const passSession = funded ? undefined : sessions.find((s) => s.balance >= TARGET)
   const breachIndex = sessions.findIndex((s, i) => s.equity < levels[i + 1])
@@ -74,7 +88,7 @@ export default function BalanceRangeChartDemo({
     if (status !== "active") return
     const script = scenario === "profit" ? WIN_SCRIPT : SCRIPT
     const pnl = script[step % script.length]
-    const session = nextSession(sessions, pnl)
+    const session = nextSession(sessions, pnl, funded ? HISTORY : 0)
     const next = session.balance
     const n = sessions.length
     const nextLevel = maxLossLevels(START, [...sessions, session], MAX_LOSS, TRAILING).levels[n + 1]
@@ -109,25 +123,30 @@ export default function BalanceRangeChartDemo({
     toast.success("Payout sent", { description: `${money(amount)} withdrawn at session ${last.label}. Max loss locked at ${money(START)}.` })
   }
 
-  function pickMode(next: "challenge" | "funded") {
+  // Funded runs carry months of history: switching the account type or the run reloads the recorded sessions.
+  function load(nextScenario: Scenario, nextMode: Mode) {
+    const next = seed(nextScenario, nextMode)
+    setSessions(next)
+    setRange(defaultRange(nextMode, next.length))
+    setStep(0)
+    setStatus("active")
+    return next
+  }
+
+  function pickMode(next: Mode) {
     setMode(next)
-    // Payouts only exist in Funded: going back to Challenge restarts the run.
-    if (next === "challenge" && sessions.some((s) => s.payout)) pickScenario(scenario)
+    load(scenario, next)
   }
 
   function pickScenario(next: Scenario) {
     setScenario(next)
-    setSessions(seed(next))
-    setStep(0)
-    setStatus("active")
+    load(next, mode)
   }
 
   function reset() {
-    setSessions(seed(scenario))
-    setStep(0)
-    setStatus("active")
+    const next = load(scenario, mode)
     setCelebrate(null)
-    toast.info("Snapshots reset", { description: "Back to the 15 recorded sessions." })
+    toast.info("Snapshots reset", { description: `Back to the ${next.length} recorded sessions.` })
   }
 
   return (
@@ -156,7 +175,7 @@ export default function BalanceRangeChartDemo({
               <TabsPillTrigger value="drawdown">Drawdown</TabsPillTrigger>
             </TabsPillList>
           </Tabs>
-          <Tabs value={mode} onValueChange={(v) => pickMode(v as "challenge" | "funded")}>
+          <Tabs value={mode} onValueChange={(v) => pickMode(v as Mode)}>
             <TabsPillList size="sm" aria-label="Account type">
               <TabsPillTrigger value="challenge">Challenge</TabsPillTrigger>
               <TabsPillTrigger value="funded">Funded</TabsPillTrigger>
@@ -174,14 +193,30 @@ export default function BalanceRangeChartDemo({
           <Stat
             label="Sessions traded"
             value={String(sessions.length)}
-            caption={`best ${signed(best.pnl)} (${best.label}) · worst ${signed(worst.pnl)} (${worst.label})`}
+            caption={`best ${whole(best.pnl)} · worst ${whole(worst.pnl)}`}
+            title={`Best ${signed(best.pnl)} (${best.label}) · worst ${signed(worst.pnl)} (${worst.label})`}
           />
         </div>
 
         {/* Chart + rail */}
-        <div className="grid gap-8 px-6 pt-6 pb-5 xl:grid-cols-[minmax(0,1fr)_280px]">
+        <div className="grid gap-8 px-6 pt-6 pb-6 xl:grid-cols-[minmax(0,1fr)_280px]">
+          <div className="flex min-w-0 flex-col gap-4">
+          {/* Legend + time range share one row above the plot, so the range adds no height. */}
+          <div className="flex flex-wrap items-center justify-between gap-3 md:flex-nowrap">
+            <BalanceRangeLegend funded={funded} trailing={TRAILING} />
+            <Tabs value={range} onValueChange={(v) => setRange(v as Range)}>
+              <TabsPillList size="sm" aria-label="Time range in sessions">
+                {RANGES.map(([value, label]) => (
+                  <TabsPillTrigger key={value} value={value}>
+                    {label}
+                  </TabsPillTrigger>
+                ))}
+              </TabsPillList>
+            </Tabs>
+          </div>
           <BalanceRangeChart
             start={START}
+            range={range === "all" ? undefined : Number(range)}
             sessions={sessions}
             maxLoss={MAX_LOSS}
             trailing={TRAILING}
@@ -190,6 +225,7 @@ export default function BalanceRangeChartDemo({
             onSessionSelect={setOpen}
             activeIndex={pinnedSession}
           />
+          </div>
           <BalanceRangeRail>
             {funded ? (
               <BalanceRangeRailBlock title="Payout available" value={signed(Math.max(0, balance - START))} valueTone="up" caption="Profit above the start balance · no cap" />
@@ -241,7 +277,6 @@ export default function BalanceRangeChartDemo({
             />
           </BalanceRangeRail>
         </div>
-        <BalanceRangeLegend funded={funded} trailing={TRAILING} className="px-6 pb-6" />
       </section>
 
       {/* Profit target reached */}
@@ -343,9 +378,12 @@ export default function BalanceRangeChartDemo({
   )
 }
 
-function Stat({ label, value, caption, tone }: { label: string; value: string; caption: string; tone?: "up" | "down" }) {
+// Signed whole dollars for one-line captions, e.g. "+1,600 $".
+const whole = (v: number) => `${v >= 0 ? "+" : "−"}${Math.abs(Math.round(v)).toLocaleString("en-US")} $`
+
+function Stat({ label, value, caption, tone, title }: { label: string; value: string; caption: string; tone?: "up" | "down"; title?: string }) {
   return (
-    <div className="flex flex-col gap-1 border-(--border-grid) px-6 lg:[&:not(:first-child)]:border-l">
+    <div className="flex min-w-0 flex-col gap-1 border-(--border-grid) px-6 lg:[&:not(:first-child)]:border-l">
       <span className="text-sm leading-[21px] text-(color:--content-muted)">{label}</span>
       <span
         className={
@@ -358,7 +396,9 @@ function Stat({ label, value, caption, tone }: { label: string; value: string; c
       >
         {value}
       </span>
-      <span className="text-sm leading-[21px] text-(color:--content-muted)">{caption}</span>
+      <span className="truncate text-sm leading-[21px] text-(color:--content-muted)" title={title ?? caption}>
+        {caption}
+      </span>
     </div>
   )
 }

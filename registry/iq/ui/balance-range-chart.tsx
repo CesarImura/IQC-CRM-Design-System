@@ -39,6 +39,8 @@ type BalanceRangeChartProps = Omit<React.ComponentProps<"div">, "onSelect"> & {
   maxLoss: number
   /** Trail the max loss below the highest intraday equity (step line). Off = a fixed level. */
   trailing?: boolean
+  /** Show only the last N sessions (the max loss still counts the whole history). Undefined = all. */
+  range?: number
   /** Challenge only. Leave undefined for Funded accounts. */
   target?: number
   /** Plot height in px, axis labels included. */
@@ -88,7 +90,8 @@ function niceStep(range: number) {
 
 function BalanceRangeChart({
   start,
-  sessions,
+  sessions: allSessions,
+  range,
   maxLoss,
   trailing = false,
   target,
@@ -122,9 +125,13 @@ function BalanceRangeChart({
 
   const funded = target === undefined
   const goal = target ?? 0
-  const values = [start, ...sessions.map((s) => s.balance)]
-  const { levels, peak: highest, locked } = maxLossLevels(start, sessions, maxLoss, trailing)
-  const peak = trailing ? highest : Math.max(...values)
+  // Range: the window opens on the close before its first session.
+  const offset = range ? Math.max(0, allSessions.length - range) : 0
+  const sessions = allSessions.slice(offset)
+  const values = [offset ? allSessions[offset - 1].balance : start, ...sessions.map((s) => s.balance)]
+  const { levels: allLevels, peak: highest, locked } = maxLossLevels(start, allSessions, maxLoss, trailing)
+  const levels = allLevels.slice(offset)
+  const peak = trailing ? highest : Math.max(start, ...allSessions.map((s) => s.balance))
   const last = values[values.length - 1]
   const lastLevel = levels[levels.length - 1]
 
@@ -232,7 +239,7 @@ function BalanceRangeChart({
 
   function onKeyDown(event: React.KeyboardEvent) {
     if (event.key === "Enter" && hover !== null) {
-      onSessionSelect?.(hover - 1)
+      onSessionSelect?.(offset + hover - 1)
       return
     }
     const keys = ["ArrowRight", "ArrowLeft", "Home", "End", "Escape"]
@@ -265,7 +272,7 @@ function BalanceRangeChart({
         tabIndex={0}
         onPointerMove={(e) => setHover(indexAt(e.clientX))}
         onPointerLeave={() => setHover(null)}
-        onClick={() => hasActive && onSessionSelect?.(active - 1)}
+        onClick={() => hasActive && onSessionSelect?.(offset + active - 1)}
         onKeyDown={onKeyDown}
         onBlur={() => setHover(null)}
         className={cn(
@@ -494,10 +501,11 @@ function LevelTag({ tone, outline, className, children, ...props }: React.Compon
   )
 }
 
-// _Chart / Legend: 14px squares, label at 32%. Level bands get a hatched swatch so they read as zones.
+// _Chart / Legend: 12px squares, 12px labels at 32%, kept on one line so it shares a row with the time range.
+// Level bands get a hatched swatch so they read as zones.
 function HatchSwatch({ color }: { color: string }) {
   return (
-    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" className="shrink-0 overflow-hidden rounded-[2px]">
+    <svg aria-hidden="true" width="12" height="12" viewBox="0 0 14 14" className="shrink-0 overflow-hidden rounded-[2px]">
       <rect width="14" height="14" style={{ fill: color, opacity: 0.16 }} />
       <path d="M-2,6L6,-2M-2,11L11,-2M-2,16L16,-2M3,16L16,3M8,16L16,8" strokeWidth="1.25" style={{ stroke: color }} />
       <rect x="0.5" y="0.5" width="13" height="13" rx="1.5" fill="none" style={{ stroke: color, opacity: 0.6 }} />
@@ -513,10 +521,10 @@ function BalanceRangeLegend({ funded, trailing, className }: { funded?: boolean;
     [trailing ? "Max loss (trailing)" : "Max loss", "var(--balance-range-max-loss)", true],
   ]
   return (
-    <ul className={cn("flex flex-wrap items-center gap-x-6 gap-y-2", className)}>
+    <ul className={cn("flex flex-wrap items-center gap-x-4 gap-y-2", className)}>
       {items.map(([label, color, hatched]) => (
-        <li key={label} className="flex items-center gap-2 text-sm leading-normal text-(color:--chart-legend-label)">
-          {hatched ? <HatchSwatch color={color} /> : <span aria-hidden="true" className="size-3.5 shrink-0 rounded-[2px]" style={{ background: color }} />}
+        <li key={label} className="flex items-center gap-1.5 text-xs leading-[18px] whitespace-nowrap text-(color:--chart-legend-label)">
+          {hatched ? <HatchSwatch color={color} /> : <span aria-hidden="true" className="size-3 shrink-0 rounded-[2px]" style={{ background: color }} />}
           {label}
         </li>
       ))}

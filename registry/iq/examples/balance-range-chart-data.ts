@@ -12,15 +12,16 @@ export const TRAILING = true
 
 export type Scenario = "profit" | "drawdown"
 
-// profit: the recorded 15 sessions, highest equity 103,860 $ at #10 (max loss 97,628.40 $).
+// profit: the recorded 15 sessions with back-and-forth and a few new highs, so the max loss steps up only at #02, #04,
+// #10 and #15 (to 96,481.60 $).
 // drawdown: gains to a 104,200 $ high at #4 (max loss 97,948 $), daily-limit hits at #7 and #11, below the start
 // from #9 and a close whose equity sits 192 $ above the trailing max loss.
 // spike = how far the intraday high went above the session's open, close and equity.
 export const SCENARIOS: Record<Scenario, { closes: number[]; float: number[]; spike: number[]; trades: number[] }> = {
   profit: {
-    closes: [100150, 100420, 99780, 101460, 101760, 101180, 102050, 102680, 103210, 103400, 102230, 101950, 102480, 101900, 102400],
-    float: [120, -60, 210, 380, -140, 90, 260, -110, 180, 160, -320, 70, 140, -90, 780],
-    spike: [180, 240, 160, 320, 210, 150, 280, 190, 260, 300, 140, 120, 200, 110, 90],
+    closes: [99880, 100260, 99940, 101420, 101180, 100860, 101240, 100920, 101330, 102150, 101760, 101420, 101880, 101610, 102400],
+    float: [-60, 40, -50, 110, -120, 80, -60, 70, 40, 130, -90, 60, -50, 90, 180],
+    spike: [70, 60, 50, 90, 40, 60, 50, 40, 60, 80, 50, 40, 60, 40, 60],
     trades: [3, 5, 2, 6, 4, 3, 5, 4, 6, 2, 7, 3, 4, 5, 3],
   },
   drawdown: {
@@ -44,13 +45,43 @@ export function dateFor(i: number) {
   return `${d.getUTCDate().toString().padStart(2, "0")} ${d.toLocaleString("en-GB", { month: "short", timeZone: "UTC" })} 2026 · 21:00 UTC`
 }
 
-export function seed(scenario: Scenario = "profit"): BalanceSession[] {
-  const { closes, float, spike, trades } = SCENARIOS[scenario]
+// Funded accounts run for months: 105 earlier sessions of back-and-forth around the start that net to zero and never
+// reach the scenario's highs, so the last 15 sessions read the same as in the Challenge.
+export const HISTORY = 105
+
+function history() {
+  let n = 7
+  const rnd = () => (n = (n * 16807) % 2147483647) / 2147483647
+  const closes: number[] = []
+  const float: number[] = []
+  const spike: number[] = []
+  const trades: number[] = []
+  let balance = START
+  for (let i = 0; i < HISTORY; i++) {
+    // Random session P&L pulled back toward the start (stays between ~99,100 and ~101,300 $).
+    const pnl = Math.round((rnd() * 1200 - 600 - (balance - START) * 0.3) / 10) * 10
+    balance = i === HISTORY - 1 ? START : balance + pnl
+    closes.push(balance)
+    float.push(Math.round((rnd() * 300 - 150) / 10) * 10)
+    spike.push(40 + Math.round(rnd() * 8) * 10)
+    trades.push(2 + Math.round(rnd() * 6))
+  }
+  return { closes, float, spike, trades }
+}
+
+export function seed(scenario: Scenario = "profit", mode: "challenge" | "funded" = "challenge"): BalanceSession[] {
+  const run = SCENARIOS[scenario]
+  const past = mode === "funded" ? history() : { closes: [], float: [], spike: [], trades: [] }
+  const closes = [...past.closes, ...run.closes]
+  const float = [...past.float, ...run.float]
+  const spike = [...past.spike, ...run.spike]
+  const trades = [...past.trades, ...run.trades]
+  const offset = past.closes.length
   return closes.map((balance, i) => {
     const open = i === 0 ? START : closes[i - 1]
     return {
       label: `#${(i + 1).toString().padStart(2, "0")}`,
-      date: dateFor(i),
+      date: dateFor(i - offset),
       balance,
       equity: balance + float[i],
       high: Math.max(open, balance, balance + float[i]) + spike[i],
@@ -60,12 +91,13 @@ export function seed(scenario: Scenario = "profit"): BalanceSession[] {
   })
 }
 
-/** One simulated session: closes at open + pnl with 140 $ floating and a 200 $ intraday high above both. */
-export function nextSession(prev: BalanceSession[], pnl: number): BalanceSession {
+/** One simulated session: closes at open + pnl with 140 $ floating and a 200 $ intraday high above both.
+ * offset = sessions before the 15 recorded ones (HISTORY in Funded), so the dates continue from 04 Oct. */
+export function nextSession(prev: BalanceSession[], pnl: number, offset = 0): BalanceSession {
   const n = prev.length
   const open = prev[n - 1]?.balance ?? START
   const balance = open + pnl
-  return { label: `#${(n + 1).toString().padStart(2, "0")}`, date: dateFor(n), balance, equity: balance + 140, high: Math.max(open, balance + 140) + 200, pnl, trades: 4 }
+  return { label: `#${(n + 1).toString().padStart(2, "0")}`, date: dateFor(n - offset), balance, equity: balance + 140, high: Math.max(open, balance + 140) + 200, pnl, trades: 4 }
 }
 
 /** Profit run played with WIN_SCRIPT until it closes at or above the target. */
