@@ -763,7 +763,15 @@
           "skeleton-bone-pulse": "var(--primitive-white-16)",
           "skeleton-radius-bar": "var(--primitive-radius-2)",
           "skeleton-radius-circle": "var(--primitive-radius-100)",
-          "skeleton-pulse-duration": "2s"
+          "skeleton-pulse-duration": "2s",
+          "balance-range-up": "var(--accent)",
+          "balance-range-down": "var(--badge-red-content)",
+          "balance-range-target": "var(--accent)",
+          "balance-range-max-loss": "var(--badge-red-content)",
+          "balance-range-hatch-opacity": "0.12",
+          "balance-range-segment-empty": "var(--border-divider)",
+          "balance-range-loss-area-opacity": "0.16",
+          "balance-range-gain-area-opacity": "0.16"
         }
       }
     },
@@ -1082,6 +1090,22 @@
       "files": [
         {
           "path": "registry/iq/ui/chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "balance-range-chart",
+      "type": "registry:ui",
+      "title": "Balance Range Chart",
+      "description": "Account balance by session between the max-loss level and the profit target (Challenge) or with no ceiling (Funded), drawn in the Line Chart style. Prototype.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/balance-range-chart.tsx",
           "type": "registry:ui"
         }
       ]

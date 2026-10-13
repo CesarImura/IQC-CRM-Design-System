@@ -29,6 +29,7 @@ export const nav: NavSection[] = [
       { title: "Alert", href: "/docs/components/alert" },
       { title: "Backdrop", href: "/docs/components/backdrop" },
       { title: "Badge", href: "/docs/components/badge" },
+      { title: "Balance Range Chart", href: "/docs/components/balance-range-chart" },
       { title: "Breadcrumb", href: "/docs/components/breadcrumb" },
       { title: "Button", href: "/docs/components/button" },
       { title: "Checkbox", href: "/docs/components/checkbox" },

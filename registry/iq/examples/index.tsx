@@ -30,6 +30,9 @@ import DataTableCompact from "./data-table-compact"
 import DataTableDemo from "./data-table-demo"
 import DataTableStates from "./data-table-states"
 import LineChartColors from "./line-chart-colors"
+import BalanceRangeChartDemo from "./balance-range-chart-demo"
+import BalanceRangeChartStates from "./balance-range-chart-states"
+import BalanceRangeChartTypes from "./balance-range-chart-types"
 import LineChartDemo from "./line-chart-demo"
 import LineChartSizes from "./line-chart-sizes"
 import LineChartStates from "./line-chart-states"
@@ -176,6 +179,9 @@ export const examples = {
   "option-panel-states": OptionPanelStates,
   "tabs-pill-demo": TabsPillDemo,
   "line-chart-colors": LineChartColors,
+  "balance-range-chart-demo": BalanceRangeChartDemo,
+  "balance-range-chart-types": BalanceRangeChartTypes,
+  "balance-range-chart-states": BalanceRangeChartStates,
   "line-chart-demo": LineChartDemo,
   "line-chart-sizes": LineChartSizes,
   "line-chart-states": LineChartStates,

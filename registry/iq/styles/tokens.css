@@ -812,4 +812,13 @@
   --skeleton-radius-bar: var(--primitive-radius-2);
   --skeleton-radius-circle: var(--primitive-radius-100);
   --skeleton-pulse-duration: 2s;
+  /* Balance Range Chart */
+  --balance-range-up: var(--accent);
+  --balance-range-down: var(--badge-red-content);
+  --balance-range-target: var(--accent);
+  --balance-range-max-loss: var(--badge-red-content);
+  --balance-range-hatch-opacity: 0.12;
+  --balance-range-segment-empty: var(--border-divider);
+  --balance-range-loss-area-opacity: 0.16;
+  --balance-range-gain-area-opacity: 0.16;
 }
