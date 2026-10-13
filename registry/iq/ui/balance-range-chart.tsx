@@ -568,7 +568,7 @@ function BalanceRangeRailBlock({
   caption: string
 }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-3">
       <span className="text-xs leading-[18px] text-(color:--content-muted)">{title}</span>
       <span className={cn("text-xl leading-[26px] font-medium", valueTone === "up" ? "text-(color:--balance-range-up)" : "text-(color:--content-default)")}>
         {value}
@@ -580,7 +580,8 @@ function BalanceRangeRailBlock({
 }
 
 function BalanceRangeRail({ className, ...props }: React.ComponentProps<"div">) {
-  return <div data-slot="balance-range-rail" className={cn("flex flex-col gap-7 border-l border-(--border-grid) pl-6", className)} {...props} />
+  // Stretches to the chart's height and centres its blocks, leaving even breathing room above and below.
+  return <div data-slot="balance-range-rail" className={cn("flex flex-col justify-center gap-8 border-l border-(--border-grid) py-4 pl-6", className)} {...props} />
 }
 
 export { BalanceRangeChart, BalanceRangeLegend, BalanceRangeRail, BalanceRangeRailBlock, ProgressBar, maxLossLevels }
