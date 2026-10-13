@@ -28,6 +28,7 @@ import {
 
 type Mode = "challenge" | "funded"
 // Last N sessions (trading days, not calendar days). Long Funded histories open on 30D.
+// 90D only on Funded: a Challenge lasts 30 days (extensions add 30 more), so 30D already covers it.
 type Range = "7" | "30" | "90" | "all"
 const RANGES: [Range, string][] = [
   ["7", "7D"],
@@ -206,7 +207,7 @@ export default function BalanceRangeChartDemo({
             <BalanceRangeLegend funded={funded} trailing={TRAILING} />
             <Tabs value={range} onValueChange={(v) => setRange(v as Range)}>
               <TabsPillList size="sm" aria-label="Time range in sessions">
-                {RANGES.map(([value, label]) => (
+                {RANGES.filter(([value]) => funded || value !== "90").map(([value, label]) => (
                   <TabsPillTrigger key={value} value={value}>
                     {label}
                   </TabsPillTrigger>
