@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils"
 // The balance runs between the max-loss level (bottom) and the profit target (top). Funded accounts have no target:
 // the top band is replaced by a dashed high-water mark.
 // Level tags (profit target, max loss, high-water mark) are square and sit centred on their dashed line.
+// Trailing max loss (EoD): at each New York close the line moves up to the same % below the highest intraday equity
+// so far and never moves down, so it is drawn as a step line. After the first payout it locks at the start balance.
 // Drawn in the Line Chart language of the DS:
 // green line with a 10% area fill, dashed 2/2 grid, X axis track with ticks, crosshair + 13px point on hover,
 // and the _Chart / Tooltip anchored to the hovered point (below it in the top half, above it in the bottom half).
@@ -23,14 +25,20 @@ type BalanceSession = {
   /** Net P&L of the session. */
   pnl: number
   trades: number
+  /** Highest intraday equity of the session. Drives the trailing max loss; defaults to max(balance, equity). */
+  high?: number
+  /** Withdrawn at the session close (Funded). The first payout locks the max loss at the start balance. */
+  payout?: number
 }
 
 type BalanceRangeChartProps = Omit<React.ComponentProps<"div">, "onSelect"> & {
   /** Balance before the first session. */
   start: number
   sessions: BalanceSession[]
-  /** The breach level. */
+  /** The breach level before the first session. */
   maxLoss: number
+  /** Trail the max loss below the highest intraday equity (step line). Off = a fixed level. */
+  trailing?: boolean
   /** Challenge only. Leave undefined for Funded accounts. */
   target?: number
   /** Plot height in px, axis labels included. */
@@ -55,6 +63,24 @@ const money = (v: number) =>
 const signed = (v: number) => `${v >= 0 ? "+" : "−"}${money(Math.abs(v))}`
 const compact = (v: number) => (v >= 1000 ? `${+(v / 1000).toFixed(1)}k` : String(v))
 
+/** Max-loss level in force at each close (index 0 = before the first session) and the highest equity so far. */
+function maxLossLevels(start: number, sessions: BalanceSession[], maxLoss: number, trailing = false) {
+  const ratio = maxLoss / start
+  let peak = start
+  let level = maxLoss
+  let locked = false
+  const levels = [maxLoss]
+  for (const s of sessions) {
+    if (trailing) {
+      peak = Math.max(peak, s.high ?? Math.max(s.balance, s.equity))
+      if (s.payout) locked = true
+      level = locked ? start : Math.max(level, Math.round(peak * ratio * 100) / 100)
+    }
+    levels.push(level)
+  }
+  return { levels, peak, locked }
+}
+
 function niceStep(range: number) {
   const steps = [250, 500, 1000, 2000, 4000, 5000, 10000, 20000, 50000]
   return steps.find((s) => range / s <= 5) ?? 100000
@@ -64,6 +90,7 @@ function BalanceRangeChart({
   start,
   sessions,
   maxLoss,
+  trailing = false,
   target,
   height = 440,
   activeIndex,
@@ -96,10 +123,12 @@ function BalanceRangeChart({
   const funded = target === undefined
   const goal = target ?? 0
   const values = [start, ...sessions.map((s) => s.balance)]
-  const peak = Math.max(...values)
+  const { levels, peak: highest, locked } = maxLossLevels(start, sessions, maxLoss, trailing)
+  const peak = trailing ? highest : Math.max(...values)
   const last = values[values.length - 1]
+  const lastLevel = levels[levels.length - 1]
 
-  const rawMin = Math.min(maxLoss, ...values)
+  const rawMin = Math.min(...levels, ...values)
   const rawMax = Math.max(funded ? peak : goal, ...values)
   const step = niceStep(rawMax - rawMin)
   const min = Math.floor((rawMin - step / 2) / step) * step
@@ -116,6 +145,9 @@ function BalanceRangeChart({
   const y = (v: number) => bottom - ((v - min) / (max - min)) * (bottom - top)
   const ys = y(start)
   const pts = values.map((v, i) => [x(i), y(v)] as const)
+  // Step line: each close holds the level until the next close moves it.
+  const levelPath = `M0,${y(levels[0])}${levels.slice(1).map((l, i) => `H${x(i + 1)}V${y(l)}`).join("")}`
+  const levelArea = `${levelPath}V${bottom}H0Z`
 
   let upPath = ""
   let downPath = ""
@@ -172,6 +204,8 @@ function BalanceRangeChart({
     return y(last)
   }
   const tagBottom = Math.min(y(last), lineYAt(tagLeftX), lineYAt((tagLeftX + x(count - 1)) / 2)) - 10
+  // The start label (bottom-right of the start line) gives way to the current-balance and trailing max-loss tags.
+  const showStart = Math.abs(tagBottom - 11 - (ys + 13)) >= 22 && !(trailing && Math.abs(y(lastLevel) - (ys + 13)) < 22)
 
   // Challenge: the first session that closes at or above the target.
   const passIndex = funded ? -1 : values.findIndex((v, i) => i > 0 && v >= goal)
@@ -227,7 +261,7 @@ function BalanceRangeChart({
         ref={plotRef}
         role="group"
         aria-roledescription="chart"
-        aria-label={`Balance by session. Start ${formatValue(start)}, max loss ${formatValue(maxLoss)}${funded ? "" : `, profit target ${formatValue(goal)}`}. Use the arrow keys to read sessions and Enter to open one.`}
+        aria-label={`Balance by session. Start ${formatValue(start)}, ${trailing ? "trailing " : ""}max loss ${formatValue(lastLevel)}${funded ? "" : `, profit target ${formatValue(goal)}`}. Use the arrow keys to read sessions and Enter to open one.`}
         tabIndex={0}
         onPointerMove={(e) => setHover(indexAt(e.clientX))}
         onPointerLeave={() => setHover(null)}
@@ -285,8 +319,8 @@ function BalanceRangeChart({
             ) : (
               <line x1={0} x2={plotWidth} y1={y(peak)} y2={y(peak)} strokeDasharray="2 3" style={{ stroke: "var(--balance-range-target)", opacity: 0.7 }} />
             )}
-            <rect x={0} y={y(maxLoss)} width={plotWidth} height={Math.max(0, bottom - y(maxLoss))} fill={`url(#${uid}-hatch-loss)`} style={{ opacity: "var(--balance-range-hatch-opacity)" }} />
-            <line x1={0} x2={plotWidth} y1={y(maxLoss)} y2={y(maxLoss)} strokeWidth={1.5} strokeDasharray="6 4" style={{ stroke: "var(--balance-range-max-loss)" }} />
+            <path d={levelArea} fill={`url(#${uid}-hatch-loss)`} style={{ opacity: "var(--balance-range-hatch-opacity)" }} />
+            <path d={levelPath} fill="none" strokeWidth={1.5} strokeDasharray={trailing ? undefined : "6 4"} style={{ stroke: "var(--balance-range-max-loss)" }} />
 
             {/* Start */}
             <line x1={0} x2={plotWidth} y1={ys} y2={ys} style={{ stroke: "var(--chart-baseline)" }} />
@@ -312,6 +346,7 @@ function BalanceRangeChart({
             {hasActive && (
               <g>
                 <line x1={Math.round(x(active)) + 0.5} x2={Math.round(x(active)) + 0.5} y1={top} y2={bottom + AXIS_GAP} style={{ stroke: "var(--chart-crosshair)" }} />
+                {trailing && <rect x={x(active) - 3.5} y={y(levels[active]) - 3.5} width={7} height={7} style={{ fill: "var(--balance-range-max-loss)" }} />}
                 <circle
                   cx={x(active)}
                   cy={y(values[active])}
@@ -351,12 +386,20 @@ function BalanceRangeChart({
                 High-water mark <span className="ml-2">{formatValue(peak)}</span>
               </LevelTag>
             )}
-            <LevelTag tone="loss" style={{ left: PLOT_LEFT, top: y(maxLoss) }}>
-              Max loss <span className="ml-2">{formatValue(maxLoss)}</span>
-            </LevelTag>
+            {trailing ? (
+              <LevelTag tone="loss" className="-translate-x-full" style={{ left: PLOT_LEFT + plotWidth, top: y(lastLevel) }}>
+                {locked ? "Max loss · locked" : "Max loss · trailing"} <span className="ml-2">{formatValue(lastLevel)}</span>
+              </LevelTag>
+            ) : (
+              <LevelTag tone="loss" style={{ left: PLOT_LEFT, top: y(maxLoss) }}>
+                Max loss <span className="ml-2">{formatValue(maxLoss)}</span>
+              </LevelTag>
+            )}
+            {showStart && (
             <span className="absolute -translate-x-full text-xs leading-[18px] whitespace-nowrap text-(color:--chart-axis-label)" style={{ left: PLOT_LEFT + plotWidth - 6, top: ys + 4 }}>
               Start {formatValue(start).replace(" $", "")}
             </span>
+            )}
             {passed && (
               <span
                 className="absolute inline-flex -translate-y-full items-center gap-1 px-1.5 py-0.5 text-xs leading-[18px] font-medium whitespace-nowrap"
@@ -409,8 +452,10 @@ function BalanceRangeChart({
             <TooltipItem color={activeUp ? "var(--chart-series-1)" : "var(--balance-range-down)"} label="Balance" value={formatValue(session.balance)} />
             <TooltipItem color="var(--content-default)" label="Equity" value={formatValue(session.equity)} />
             <TooltipItem color={session.pnl >= 0 ? "var(--chart-series-1)" : "var(--balance-range-down)"} label="Session P&L" value={signed(session.pnl)} />
+            {session.payout ? <TooltipItem color="var(--content-muted)" label="Payout" value={`−${formatValue(session.payout)}`} /> : null}
             {!funded && <TooltipItem color="var(--balance-range-target)" label="To target" value={formatValue(Math.max(0, goal - session.balance))} />}
-            <TooltipItem color="var(--balance-range-max-loss)" label="Above max loss" value={formatValue(session.balance - maxLoss)} />
+            {trailing && <TooltipItem color="var(--balance-range-max-loss)" label="Max loss" value={formatValue(levels[active])} />}
+            <TooltipItem color="var(--balance-range-max-loss)" label="Above max loss" value={formatValue((trailing ? session.equity : session.balance) - levels[active])} />
           </div>
         )}
         <span className="sr-only" aria-live="polite">
@@ -460,12 +505,12 @@ function HatchSwatch({ color }: { color: string }) {
   )
 }
 
-function BalanceRangeLegend({ funded, className }: { funded?: boolean; className?: string }) {
+function BalanceRangeLegend({ funded, trailing, className }: { funded?: boolean; trailing?: boolean; className?: string }) {
   const items: [string, string, boolean][] = [
     ["Balance", "var(--chart-series-1)", false],
     ["Below start", "var(--balance-range-down)", false],
     [funded ? "High-water mark" : "Profit target", "var(--balance-range-target)", true],
-    ["Max loss", "var(--balance-range-max-loss)", true],
+    [trailing ? "Max loss (trailing)" : "Max loss", "var(--balance-range-max-loss)", true],
   ]
   return (
     <ul className={cn("flex flex-wrap items-center gap-x-6 gap-y-2", className)}>
@@ -530,5 +575,5 @@ function BalanceRangeRail({ className, ...props }: React.ComponentProps<"div">) 
   return <div data-slot="balance-range-rail" className={cn("flex flex-col gap-7 border-l border-(--border-grid) pl-6", className)} {...props} />
 }
 
-export { BalanceRangeChart, BalanceRangeLegend, BalanceRangeRail, BalanceRangeRailBlock, ProgressBar }
+export { BalanceRangeChart, BalanceRangeLegend, BalanceRangeRail, BalanceRangeRailBlock, ProgressBar, maxLossLevels }
 export type { BalanceRangeChartProps, BalanceSession }

@@ -4,6 +4,7 @@ import { Launch } from "@carbon/icons-react"
 import { FIGMA_FILE } from "@/lib/docs"
 import { Button } from "@/registry/iq/ui/button"
 import { Toaster } from "@/registry/iq/ui/toast"
+import { PageGrid } from "@/registry/iq/ui/page-grid"
 import { MobileNav } from "@/components/docs/mobile-nav"
 import { SidebarNav } from "@/components/docs/sidebar"
 
@@ -11,7 +12,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 border-b border-grid bg-canvas/90 backdrop-blur">
-        <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-3 px-4 lg:px-6">
+        <div className="flex h-14 items-center gap-3 px-4 lg:px-6">
           <MobileNav />
           <Link
             href="/"
@@ -38,13 +39,16 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
         </div>
       </header>
 
-      <div className="mx-auto flex w-full max-w-[1400px] flex-1">
+      {/* Menu pinned to the left edge; the middle follows the Page Grid, Reduced width (1120 centered). */}
+      <div className="flex w-full flex-1">
         <aside className="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-60 shrink-0 overflow-y-auto border-r border-grid px-4 py-8 lg:block">
           <SidebarNav />
         </aside>
-        <main className="min-w-0 flex-1 px-4 py-10 sm:px-8 lg:px-12 lg:py-12">
-          <div className="mx-auto max-w-4xl">{children}</div>
-        </main>
+        <div className="flex min-w-0 flex-1 justify-center">
+          <PageGrid width="reduced" contentClassName="min-w-0">
+            <div className="min-w-0">{children}</div>
+          </PageGrid>
+        </div>
       </div>
       <Toaster />
     </div>

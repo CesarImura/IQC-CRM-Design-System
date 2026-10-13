@@ -643,12 +643,13 @@
   --toolbar-divider: var(--button-secondary-border-default);
   /* Scroll Bar */
   --scroll-bar-thumb: var(--content-default);
-  --scroll-bar-opacity: 0.4;
-  --scroll-bar-opacity-hover: 0.64;
-  --scroll-bar-opacity-drag: 0.88;
+  --scroll-bar-opacity: 0.2;
+  --scroll-bar-opacity-hover: 0.36;
+  --scroll-bar-opacity-drag: 0.52;
   --scroll-bar-size: 8px;
   --scroll-bar-size-hover: 12px;
-  --scroll-bar-radius: 1px;
+  --scroll-bar-radius: 0px;
+  --scroll-bar-inset: 2px;
   /* Page Header */
   --page-header-px: var(--space-inset-control-x-lg);
   --page-header-py: var(--space-gap-control-default);

@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { CheckmarkFilled, Close, Copy, Renew, Play } from "@carbon/icons-react"
+import { CheckmarkFilled, Close, Copy, Renew, Play, Money } from "@carbon/icons-react"
 
-import { BalanceRangeChart, BalanceRangeLegend, BalanceRangeRail, BalanceRangeRailBlock, type BalanceSession } from "@/registry/iq/ui/balance-range-chart"
+import { BalanceRangeChart, BalanceRangeLegend, BalanceRangeRail, BalanceRangeRailBlock, maxLossLevels, type BalanceSession } from "@/registry/iq/ui/balance-range-chart"
 import { Button } from "@/registry/iq/ui/button"
 import { Modal, ModalBody, ModalClose, ModalContent, ModalFooter, ModalHeader } from "@/registry/iq/ui/modal"
 import { Tabs, TabsPillList, TabsPillTrigger } from "@/registry/iq/ui/tabs"
@@ -15,9 +15,10 @@ import {
   SCRIPT,
   START,
   TARGET,
+  TRAILING,
   WIN_SCRIPT,
-  dateFor,
   money,
+  nextSession,
   seed,
   signed,
   winningRun,
@@ -56,28 +57,33 @@ export default function BalanceRangeChartDemo({
   const funded = mode === "funded"
   const last = sessions[sessions.length - 1]
   const balance = last.balance
-  const lowest = Math.min(START, ...sessions.map((s) => s.balance))
+  const { levels, peak, locked } = maxLossLevels(START, sessions, MAX_LOSS, TRAILING)
+  const level = levels[levels.length - 1]
+  const room = last.equity - level
+  // Share of the cushion used: from the highest equity (or the start) down to the line.
+  const cushionTop = locked ? Math.max(START, ...sessions.map((s) => s.equity)) : peak
+  const used = Math.min(1, Math.max(0, (cushionTop - last.equity) / Math.max(1, cushionTop - level)))
   const best = sessions.reduce((a, b) => (b.pnl > a.pnl ? b : a))
   const worst = sessions.reduce((a, b) => (b.pnl < a.pnl ? b : a))
   const selected = open !== null ? sessions[open] : null
   const passSession = funded ? undefined : sessions.find((s) => s.balance >= TARGET)
-  const breachSession = sessions.find((s) => s.balance <= MAX_LOSS)
+  const breachIndex = sessions.findIndex((s, i) => s.equity < levels[i + 1])
+  const breachSession = breachIndex >= 0 ? sessions[breachIndex] : undefined
 
   function simulate() {
     if (status !== "active") return
     const script = scenario === "profit" ? WIN_SCRIPT : SCRIPT
     const pnl = script[step % script.length]
-    const next = balance + pnl
+    const session = nextSession(sessions, pnl)
+    const next = session.balance
     const n = sessions.length
-    setSessions((prev) => [
-      ...prev,
-      { label: `#${(n + 1).toString().padStart(2, "0")}`, date: dateFor(n), balance: next, equity: next + 140, pnl, trades: 4 },
-    ])
+    const nextLevel = maxLossLevels(START, [...sessions, session], MAX_LOSS, TRAILING).levels[n + 1]
+    setSessions((prev) => [...prev, session])
     setStep((s) => s + 1)
     const label = `Session #${n + 1}`
-    if (next <= MAX_LOSS) {
+    if (session.equity < nextLevel) {
       setStatus("breached")
-      toast.error("Max loss breached", { description: `${label} closed at ${money(next)}, below ${money(MAX_LOSS)}. The account is disabled.` })
+      toast.error("Max loss breached", { description: `${label} closed with ${money(session.equity)} equity, below the ${money(nextLevel)} max loss. The account is disabled.` })
     } else if (!funded && next >= TARGET) {
       setStatus("passed")
       toast.success("Profit target reached", { description: `${label} closed at ${money(next)}. Phase 1 passed.` })
@@ -89,6 +95,24 @@ export default function BalanceRangeChartDemo({
     } else {
       toast(`${label} closed`, { description: `${signed(pnl)} · balance ${money(next)}` })
     }
+  }
+
+  // Funded: withdraw half the profit at the last close. The first payout locks the max loss at the start balance.
+  function payout() {
+    const amount = Math.floor((balance - START) / 20) * 10
+    if (amount <= 0) return
+    setSessions((prev) =>
+      prev.map((s, i) =>
+        i === prev.length - 1 ? { ...s, balance: s.balance - amount, equity: s.equity - amount, payout: (s.payout ?? 0) + amount } : s
+      )
+    )
+    toast.success("Payout sent", { description: `${money(amount)} withdrawn at session ${last.label}. Max loss locked at ${money(START)}.` })
+  }
+
+  function pickMode(next: "challenge" | "funded") {
+    setMode(next)
+    // Payouts only exist in Funded: going back to Challenge restarts the run.
+    if (next === "challenge" && sessions.some((s) => s.payout)) pickScenario(scenario)
   }
 
   function pickScenario(next: Scenario) {
@@ -116,6 +140,12 @@ export default function BalanceRangeChartDemo({
             <Play />
             Simulate session
           </Button>
+          {funded && (
+            <Button variant="secondary" size="sm" onClick={payout} disabled={status !== "active" || balance <= START}>
+              <Money />
+              Request payout
+            </Button>
+          )}
           <Button variant="ghost" size="sm" onClick={reset}>
             <Renew />
             Reset
@@ -126,7 +156,7 @@ export default function BalanceRangeChartDemo({
               <TabsPillTrigger value="drawdown">Drawdown</TabsPillTrigger>
             </TabsPillList>
           </Tabs>
-          <Tabs value={mode} onValueChange={(v) => setMode(v as "challenge" | "funded")}>
+          <Tabs value={mode} onValueChange={(v) => pickMode(v as "challenge" | "funded")}>
             <TabsPillList size="sm" aria-label="Account type">
               <TabsPillTrigger value="challenge">Challenge</TabsPillTrigger>
               <TabsPillTrigger value="funded">Funded</TabsPillTrigger>
@@ -154,6 +184,7 @@ export default function BalanceRangeChartDemo({
             start={START}
             sessions={sessions}
             maxLoss={MAX_LOSS}
+            trailing={TRAILING}
             target={funded ? undefined : TARGET}
             height={440}
             onSessionSelect={setOpen}
@@ -186,15 +217,19 @@ export default function BalanceRangeChartDemo({
                 value="Breached"
                 progress={1}
                 progressColor="var(--balance-range-down)"
-                caption={`Closed below ${money(MAX_LOSS)} at session ${breachSession.label} · account disabled`}
+                caption={`Equity closed below the ${money(levels[breachIndex + 1])} max loss at session ${breachSession.label} · account disabled`}
               />
             ) : (
               <BalanceRangeRailBlock
                 title="Room to max loss"
-                value={money(Math.max(0, balance - MAX_LOSS))}
-                progress={(START - lowest) / (START - MAX_LOSS)}
+                value={money(Math.max(0, room))}
+                progress={used}
                 progressColor="var(--balance-range-down)"
-                caption={`Lowest balance ${money(lowest)} · ${Math.min(100, Math.round(((START - lowest) / (START - MAX_LOSS)) * 100))}% of the loss limit used`}
+                caption={
+                  locked
+                    ? `Locked at the start balance ${money(START)} after the first payout · ${Math.round(used * 100)}% used`
+                    : `Line at ${money(level)} · trails 6% below the ${money(peak)} high · ${Math.round(used * 100)}% used`
+                }
               />
             )}
             <BalanceRangeRailBlock
@@ -206,7 +241,7 @@ export default function BalanceRangeChartDemo({
             />
           </BalanceRangeRail>
         </div>
-        <BalanceRangeLegend funded={funded} className="px-6 pb-6" />
+        <BalanceRangeLegend funded={funded} trailing={TRAILING} className="px-6 pb-6" />
       </section>
 
       {/* Profit target reached */}
@@ -248,7 +283,7 @@ export default function BalanceRangeChartDemo({
                 <dl className="mt-4 grid grid-cols-3 gap-x-6 gap-y-4">
                   <Field label="Sessions" value={String(celebrate.count)} />
                   <Field label="Best session" value={signed(best.pnl)} tone="up" />
-                  <Field label="Loss limit used" value={`${Math.min(100, Math.round(((START - lowest) / (START - MAX_LOSS)) * 100))}%`} />
+                  <Field label="Loss limit used" value={`${Math.round(used * 100)}%`} />
                 </dl>
               </ModalBody>
               <ModalFooter layout="double">
@@ -279,7 +314,8 @@ export default function BalanceRangeChartDemo({
                   <Field label="Session P&L" value={signed(selected.pnl)} tone={selected.pnl >= 0 ? "up" : "down"} />
                   <Field label="Trades" value={String(selected.trades)} />
                   {!funded && <Field label="To profit target" value={money(Math.max(0, TARGET - selected.balance))} />}
-                  <Field label="Above max loss" value={money(selected.balance - MAX_LOSS)} />
+                  <Field label="Max loss" value={money(levels[open! + 1])} />
+                  <Field label="Equity above max loss" value={money(selected.equity - levels[open! + 1])} />
                 </dl>
               </ModalBody>
               <ModalFooter layout="double">
