@@ -13,7 +13,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 border-b border-grid bg-canvas/90 backdrop-blur">
-        <div className="flex h-14 items-center gap-3 px-4 lg:px-6">
+        <div className="flex h-12 items-center gap-3 px-4 lg:px-6">
           <MobileNav />
           <SidebarToggle />
           <Link
@@ -42,7 +42,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 
       {/* Menu pinned to the left edge; the middle follows the Page Grid, Reduced width (1120 centered). */}
       <div className="flex w-full flex-1">
-        <aside data-docs-aside className="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-60 shrink-0 overflow-y-auto border-r border-grid px-4 py-8 lg:block">
+        <aside data-docs-aside className="sticky top-12 hidden h-[calc(100vh-3rem)] w-60 shrink-0 overflow-y-auto border-r border-grid px-4 py-8 lg:block">
           <SidebarNav />
         </aside>
         <div className="flex min-w-0 flex-1 justify-center">

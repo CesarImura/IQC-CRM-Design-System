@@ -43,7 +43,7 @@ export function MobileNav() {
           }}
           className="fixed inset-y-0 left-0 z-50 flex w-[min(320px,85vw)] flex-col border-r border-grid bg-canvas shadow-2xl outline-none data-[state=closed]:animate-[drawer-out_180ms_ease-in_forwards] data-[state=open]:animate-[drawer-in_240ms_cubic-bezier(0.16,1,0.3,1)] motion-reduce:animate-none lg:hidden"
         >
-          <div className="flex h-14 shrink-0 items-center justify-between gap-3 border-b border-grid px-4">
+          <div className="flex h-12 shrink-0 items-center justify-between gap-3 border-b border-grid px-4">
             <Dialog.Title asChild>
               <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2.5 rounded-[2px] outline-none focus-visible:shadow-[0_0_0_2px_var(--focus-ring)]">
                 <span aria-hidden className="grid size-6 place-items-center rounded-[2px] bg-brand text-[11px] font-bold text-black">

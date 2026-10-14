@@ -36,7 +36,7 @@ export function SidebarToggle() {
       onClick={toggle}
       aria-label="Show or hide the menu"
       title="Menu"
-      className="hidden size-8 place-items-center rounded-[2px] text-white/60 outline-none hover:bg-white/5 hover:text-white focus-visible:shadow-[0_0_0_2px_var(--focus-ring)] lg:grid"
+      className="hidden size-8 cursor-pointer place-items-center rounded-[2px] text-white/60 outline-none transition-colors hover:bg-white/10 hover:text-white focus-visible:shadow-[0_0_0_2px_var(--focus-ring)] lg:grid"
     >
       <svg viewBox="0 0 16 16" aria-hidden className={icon}>
         <rect x="2" y="3" width="12" height="10" rx="1" />
@@ -66,7 +66,7 @@ export function ThemeSwitch() {
       aria-label={label}
       aria-pressed={theme === t}
       title={label}
-      className="grid h-6 w-8 place-items-center rounded-[2px] text-white/50 outline-none hover:bg-white/5 hover:text-white focus-visible:shadow-[0_0_0_2px_var(--focus-ring)] aria-pressed:bg-white/10 aria-pressed:text-white"
+      className="grid h-6 w-8 cursor-pointer place-items-center rounded-[2px] text-white/50 outline-none transition-colors hover:bg-white/10 hover:text-white focus-visible:shadow-[0_0_0_2px_var(--focus-ring)] aria-pressed:bg-white/[0.14] aria-pressed:text-white"
     >
       {children}
     </button>
