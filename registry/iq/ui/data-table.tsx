@@ -107,10 +107,25 @@ type DataTableProps<TData extends RowData> = {
     onChange?: OnChangeFn<PaginationState>
     /** Paginate on the server: pass the total and the current page's rows as `data`. */
     manual?: { rowCount: number }
+    /** Show the "Items per page" select. Defaults to true. */
+    showPageSize?: boolean
+    /** Replaces the page size and range with your own text, e.g. "63,989 Users". */
+    summary?: React.ReactNode
   }
+  /** Column ids kept visible at the right edge while the table scrolls sideways, e.g. a row actions column. */
+  pinnedRight?: string[]
   onRowClick?: (row: DataTableRow<TData>) => void
   className?: string
 }
+
+// Pinned cells stick to the right edge on an opaque canvas, with the row tint layered on top on hover / selection.
+const pinnedBase = "sticky right-0 z-[1] bg-(--surface-canvas) shadow-[-1px_0_0_var(--border-grid)]"
+const pinnedHeadClass = cn(pinnedBase, "[background:linear-gradient(var(--table-header-bg),var(--table-header-bg))_var(--surface-canvas)]")
+const pinnedCellClass = cn(
+  pinnedBase,
+  "[tr:hover>&]:[background:linear-gradient(var(--table-row-hover),var(--table-row-hover))_var(--surface-canvas)]",
+  "[tr[data-state=selected]>&]:[background:linear-gradient(var(--table-row-hover),var(--table-row-hover))_var(--surface-canvas)]"
+)
 
 function DataTable<TData extends RowData>({
   columns,
@@ -133,6 +148,7 @@ function DataTable<TData extends RowData>({
   manualSorting = false,
   pagination = {},
   onRowClick,
+  pinnedRight,
   className,
 }: DataTableProps<TData>) {
   const [sortingState, setSortingState] = React.useState<SortingState>([])
@@ -231,7 +247,7 @@ function DataTable<TData extends RowData>({
                   <TableHead
                     key={header.id}
                     style={{ width: header.getSize() }}
-                    className={header.column.id === "__select" ? "py-0" : undefined}
+                    className={cn(header.column.id === "__select" && "py-0", pinnedRight?.includes(header.column.id) && pinnedHeadClass)}
                     sort={canSort ? sorted : undefined}
                     onSort={canSort ? header.column.getToggleSortingHandler() as () => void : undefined}
                   >
@@ -281,7 +297,7 @@ function DataTable<TData extends RowData>({
                 className={onRowClick ? "cursor-pointer" : undefined}
               >
                 {row.getAllCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell key={cell.id} className={pinnedRight?.includes(cell.column.id) ? pinnedCellClass : undefined}>
                     <table.FlexRender cell={cell} />
                   </TableCell>
                 ))}
@@ -299,8 +315,9 @@ function DataTable<TData extends RowData>({
           onPageChange={(page) => table.setPageIndex(page - 1)}
           pageSize={table.state.pagination.pageSize}
           pageSizeOptions={pagination.pageSizeOptions ?? [10, 25, 50, 100]}
-          onPageSizeChange={(size) => table.setPageSize(size)}
+          onPageSizeChange={pagination.showPageSize === false ? undefined : (size) => table.setPageSize(size)}
           totalItems={totalItems}
+          summary={pagination.summary}
         />
       )}
     </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Launch } from "@carbon/icons-react"
 
-import { figmaNode } from "@/lib/docs"
+import { figmaNode, PROTOTYPE_URL } from "@/lib/docs"
 import { Button } from "@/registry/iq/ui/button"
 import { ComponentPreview } from "@/components/docs/component-preview"
 import { SideMenuLinkMatrix } from "@/components/docs/side-menu-link-matrix"
@@ -24,6 +24,12 @@ export default function NavigationDocsPage() {
         <Button asChild variant="secondary" size="sm">
           <a href={figmaNode("132:2513")} target="_blank" rel="noreferrer">
             Figma: Side Menu
+            <Launch />
+          </a>
+        </Button>
+        <Button asChild variant="secondary" size="sm">
+          <a href={`${PROTOTYPE_URL}/customers/users`} target="_blank" rel="noreferrer">
+            Prototype: Users screen
             <Launch />
           </a>
         </Button>
@@ -56,6 +62,13 @@ export default function NavigationDocsPage() {
         <li>56px bar, 8px padding, canvas background, 1px bottom border at white 10%.</li>
         <li>Left: brand mark and Breadcrumb, 12px apart. Right: Search Bar and Secondary icon buttons (Notification, Settings), 8px apart.</li>
       </UL>
+      <P>
+        See the full shell (Top Menu, collapsed Side Menu and Sub Menu) in the{" "}
+        <a href={`${PROTOTYPE_URL}/customers/users`} target="_blank" rel="noreferrer" className="text-(color:--accent) underline underline-offset-2">
+          Users screen prototype
+        </a>
+        .
+      </P>
 
       <H2>Tokens</H2>
       <TokenTable

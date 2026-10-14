@@ -13,6 +13,7 @@ import SelectFieldDemo from "./select-field-demo"
 import ToggleDemo from "./toggle-demo"
 import ModalDemo from "./modal-demo"
 import ToolbarDemo from "./toolbar-demo"
+import FilterDemo from "./filter-demo"
 import ScrollAreaDemo from "./scroll-area-demo"
 import PageHeaderDemo from "./page-header-demo"
 import FieldGridDemo from "./field-grid-demo"
@@ -211,6 +212,7 @@ export const examples = {
   "stat-card-layouts": StatCardLayouts,
   "stat-card-tones": StatCardTones,
   "stat-card-info": StatCardInfo,
+  "filter-demo": FilterDemo,
 } satisfies Record<string, ComponentType>
 
 export type ExampleName = keyof typeof examples
