@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Launch } from "@carbon/icons-react"
 
-import { FIGMA_FILE } from "@/lib/docs"
+import { FIGMA_FILE, PROTOTYPE_URL } from "@/lib/docs"
 import { Button } from "@/registry/iq/ui/button"
 import { Toaster } from "@/registry/iq/ui/toast"
 import { PageGrid } from "@/registry/iq/ui/page-grid"
@@ -29,6 +29,12 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             v0.1
           </span>
           <div className="ml-auto flex items-center gap-2">
+            <Button asChild variant="secondary" size="sm">
+              <a href={PROTOTYPE_URL} target="_blank" rel="noreferrer">
+                Prototype
+                <Launch />
+              </a>
+            </Button>
             <Button asChild variant="ghost" size="sm">
               <a href={FIGMA_FILE} target="_blank" rel="noreferrer">
                 Figma
