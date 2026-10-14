@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowRight, Launch } from "@carbon/icons-react"
 
-import { FIGMA_FILE } from "@/lib/docs"
+import { FIGMA_FILE, PROTOTYPE_URL } from "@/lib/docs"
 import { Button } from "@/registry/iq/ui/button"
 import { H2, P, PageHeader, UL } from "@/components/docs/typography"
 
@@ -36,6 +36,12 @@ export default function IntroductionPage() {
         </Button>
         <Button asChild variant="secondary">
           <Link href="/docs/tokens">Tokens</Link>
+        </Button>
+        <Button asChild variant="secondary">
+          <a href={PROTOTYPE_URL} target="_blank" rel="noreferrer">
+            Explore the prototype
+            <Launch />
+          </a>
         </Button>
         <Button asChild variant="ghost">
           <a href={FIGMA_FILE} target="_blank" rel="noreferrer">
