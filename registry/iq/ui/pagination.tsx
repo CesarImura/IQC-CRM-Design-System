@@ -25,6 +25,8 @@ type PaginationProps = Omit<React.ComponentProps<"nav">, "onChange"> & {
   onPageSizeChange?: (size: number) => void
   /** Total number of items, for the "1 – 25 of 63,989 items" range. */
   totalItems?: number
+  /** Replaces the left side (page size and range) with your own text, e.g. "63,989 Users". */
+  summary?: React.ReactNode
   /** Show the first and last page buttons. */
   showFirstLast?: boolean
   /** Formats numbers in the range and status. Defaults to the user's locale. */
@@ -174,6 +176,7 @@ function Pagination({
   pageSizeOptions = [10, 25, 50, 100],
   onPageSizeChange,
   totalItems,
+  summary,
   showFirstLast = true,
   formatNumber = (n) => n.toLocaleString(),
   labels: labelsProp,
@@ -204,25 +207,31 @@ function Pagination({
       )}
       {...props}
     >
-      <div className="flex flex-wrap items-center gap-4">
-        {pageSize !== undefined && onPageSizeChange && (
-          <div className="flex items-center gap-2">
-            <span className="text-(color:--pagination-muted) uppercase">{labels.itemsPerPage}</span>
-            <PageSizeSelect value={pageSize} options={pageSizeOptions} onChange={onPageSizeChange} label={labels.itemsPerPage} />
-          </div>
-        )}
-        {totalItems !== undefined && pageSize !== undefined && (
-          <p className="flex items-center gap-2" aria-live="polite">
-            <span aria-hidden="true" className="h-4 w-px bg-(--pagination-divider)" />
-            <span className="text-(color:--pagination-content)">{formatNumber(from)}</span>
-            <span className="text-(color:--pagination-muted)">–</span>
-            <span className="text-(color:--pagination-content)">{formatNumber(to)}</span>
-            <span className="text-(color:--pagination-muted)">{labels.of}</span>
-            <span className="text-(color:--pagination-content)">{formatNumber(totalItems)}</span>
-            <span className="text-(color:--pagination-muted)">{labels.items}</span>
-          </p>
-        )}
-      </div>
+      {summary !== undefined ? (
+        <p className="text-(color:--pagination-muted)" aria-live="polite">
+          {summary}
+        </p>
+      ) : (
+        <div className="flex flex-wrap items-center gap-4">
+          {pageSize !== undefined && onPageSizeChange && (
+            <div className="flex items-center gap-2">
+              <span className="text-(color:--pagination-muted) uppercase">{labels.itemsPerPage}</span>
+              <PageSizeSelect value={pageSize} options={pageSizeOptions} onChange={onPageSizeChange} label={labels.itemsPerPage} />
+            </div>
+          )}
+          {totalItems !== undefined && pageSize !== undefined && (
+            <p className="flex items-center gap-2" aria-live="polite">
+              <span aria-hidden="true" className="h-4 w-px bg-(--pagination-divider)" />
+              <span className="text-(color:--pagination-content)">{formatNumber(from)}</span>
+              <span className="text-(color:--pagination-muted)">–</span>
+              <span className="text-(color:--pagination-content)">{formatNumber(to)}</span>
+              <span className="text-(color:--pagination-muted)">{labels.of}</span>
+              <span className="text-(color:--pagination-content)">{formatNumber(totalItems)}</span>
+              <span className="text-(color:--pagination-muted)">{labels.items}</span>
+            </p>
+          )}
+        </div>
+      )}
 
       <div className="flex items-center gap-(--pagination-gap-controls)">
         <div className="flex items-center gap-(--pagination-gap-buttons)">

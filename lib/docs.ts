@@ -1,6 +1,9 @@
 export const FIGMA_FILE =
   "https://www.figma.com/design/6gc2fkxSUQG7VaiOSUz30L/IQ-Capital-CRM-Design-System"
 
+/** Redesign prototype (IQC CRM workspace, ../prototype). Set NEXT_PUBLIC_PROTOTYPE_URL once it's deployed. */
+export const PROTOTYPE_URL = process.env.NEXT_PUBLIC_PROTOTYPE_URL ?? "http://localhost:3001"
+
 export function figmaNode(nodeId: string) {
   return `${FIGMA_FILE}?node-id=${nodeId.replace(":", "-")}`
 }
@@ -40,6 +43,7 @@ export const nav: NavSection[] = [
       { title: "Dropdown", href: "/docs/components/dropdown" },
       { title: "Empty", href: "/docs/components/empty" },
       { title: "Field Grid", href: "/docs/components/field-grid" },
+      { title: "Filter", href: "/docs/components/filter" },
       { title: "Flag", href: "/docs/components/flag" },
       { title: "Form Field", href: "/docs/components/form-field" },
       { title: "Input", href: "/docs/components/input" },

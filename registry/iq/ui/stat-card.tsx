@@ -202,6 +202,14 @@ type StatCardProps = Omit<React.ComponentProps<"section">, "title"> & {
   highlightIndex?: number
   /** Split layout: the two proportions and their legend labels. */
   split?: { lead: SplitPart; trail: SplitPart }
+  /** Colors the value itself: accent for good news (e.g. new sign-ups), red for bad (e.g. bans). */
+  valueTone?: "default" | "positive" | "negative"
+}
+
+const valueToneClass = {
+  default: "text-(color:--stat-card-value)",
+  positive: "text-(color:--stat-card-value-positive)",
+  negative: "text-(color:--stat-card-value-negative)",
 }
 
 function StatCard({
@@ -216,6 +224,7 @@ function StatCard({
   average,
   highlightIndex,
   split,
+  valueTone = "default",
   className,
   ...props
 }: StatCardProps) {
@@ -244,7 +253,8 @@ function StatCard({
   const valueEl = (
     <p
       className={cn(
-        "font-medium whitespace-nowrap text-(color:--stat-card-value) tabular-nums",
+        "font-medium whitespace-nowrap tabular-nums",
+        valueToneClass[valueTone],
         layout === "stacked"
           ? "text-(length:--stat-card-value-size-lg) leading-[1.3]"
           : "text-(length:--stat-card-value-size) leading-[1.3]"
