@@ -28,10 +28,28 @@ body {
   }
 }
 
-/* Side menu hidden from the header button (desktop only; mobile uses the drawer). */
+/* Side menu hidden from the header button (desktop only; mobile uses the drawer).
+   The width slides 240 → 0 in 160ms and the Page Grid re-centres with it; the menu keeps its own
+   width inside, so the links are clipped instead of re-wrapping while it closes. */
 @media (min-width: 1024px) {
+  [data-docs-aside] {
+    transition: width 0.16s ease, padding 0.16s ease, border-color 0.16s ease, visibility 0s linear 0s;
+  }
+  [data-docs-aside] > * {
+    min-width: 13rem;
+  }
   html[data-docs-sidebar="hidden"] [data-docs-aside] {
-    display: none;
+    width: 0;
+    padding-inline: 0;
+    overflow: hidden;
+    border-right-color: transparent;
+    visibility: hidden;
+    transition: width 0.16s ease, padding 0.16s ease, border-color 0.16s ease, visibility 0s linear 0.16s;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-docs-aside] {
+    transition: none !important;
   }
 }
 
