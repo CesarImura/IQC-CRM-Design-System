@@ -11,7 +11,7 @@ const states = ["Default", "Disabled"] as const
 /** Mirrors the Figma Pill matrix. Hover, press and Tab through the pills for the other states. */
 export function PillMatrix() {
   return (
-    <div className="overflow-x-auto rounded-[2px] border border-grid">
+    <div className="overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="w-full min-w-[980px] border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

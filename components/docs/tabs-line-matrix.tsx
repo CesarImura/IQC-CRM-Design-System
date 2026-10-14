@@ -16,7 +16,7 @@ const states = ["Default", "Hover", "Focus", "Disabled"] as const
 /** Mirrors the Figma "_Tabs / Line Item" matrix: Tone × Active × Trailing by State. */
 export function TabsLineMatrix() {
   return (
-    <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="w-full min-w-[760px] border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

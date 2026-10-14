@@ -43,7 +43,7 @@ function Card({ layout, delta }: { layout: StatLayout; delta: string }) {
 /** Mirrors the Figma "Stat Card" matrix (Layout × Tone) at the Figma card width of 364px. */
 export function StatCardMatrix() {
   return (
-    <div className="overflow-x-auto rounded-[2px] border border-grid">
+    <div className="overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

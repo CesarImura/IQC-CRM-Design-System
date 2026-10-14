@@ -24,7 +24,7 @@ const states = ["Default", "Disabled", "Loading"] as const
 /** Mirrors the Figma "Button Default" matrix for side-by-side QA. Hover, pressed and focus are live. */
 export function ButtonMatrix() {
   return (
-    <div className="overflow-x-auto rounded-[2px] border border-grid">
+    <div className="overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="w-full min-w-[860px] border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

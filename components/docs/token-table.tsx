@@ -7,7 +7,7 @@ type Row = [property: string, token: string]
 /** Which token drives which property of a component, with its value and Figma source. */
 export function TokenTable({ rows, title }: { rows: Row[]; title?: string }) {
   return (
-    <div className="my-4 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-4 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       {title && <p className="border-b border-grid bg-white/[0.02] px-4 py-2 text-xs font-medium tracking-wider text-white/50 uppercase">{title}</p>}
       <table className="w-full min-w-[560px] text-left text-sm">
         <tbody className="divide-y divide-grid">

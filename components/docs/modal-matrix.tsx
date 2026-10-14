@@ -18,7 +18,7 @@ function Slot({ height = 96 }: { height?: number }) {
 /** Modal / Size × Intent, drawn statically (the live one is in the demo above). */
 export function ModalMatrix() {
   return (
-    <div className="my-6 flex flex-col gap-8 overflow-x-auto rounded-[2px] border border-grid p-6">
+    <div className="my-6 flex flex-col gap-8 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid p-6">
       {sizes.map(({ size, label }) => (
         <div key={size} className="flex flex-col gap-3">
           <p className="text-xs font-medium text-white/50">{label}</p>
@@ -51,7 +51,7 @@ const layouts: ModalFooterLayout[] = ["double", "split", "stack", "single"]
 /** _Modal / Footer layouts. */
 export function ModalFooterMatrix() {
   return (
-    <div className="my-6 grid gap-4 overflow-x-auto rounded-[2px] border border-grid p-6 lg:grid-cols-2">
+    <div className="my-6 grid gap-4 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid p-6 lg:grid-cols-2">
       {layouts.map((layout) => (
         <div key={layout} className="flex flex-col gap-2">
           <p className="text-xs font-medium text-white/50 capitalize">{layout}</p>
@@ -85,7 +85,7 @@ export function ModalFooterMatrix() {
 /** _Modal / Body Scroll: Auto grows; Fixed caps at 384px and scrolls. */
 export function ModalScrollMatrix() {
   return (
-    <div className="my-6 flex flex-wrap gap-6 overflow-x-auto rounded-[2px] border border-grid p-6">
+    <div className="my-6 flex flex-wrap gap-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid p-6">
       {(["auto", "fixed"] as const).map((scroll) => (
         <div key={scroll} className="flex flex-col gap-2">
           <p className="text-xs font-medium text-white/50">{scroll === "auto" ? "Auto" : "Fixed · 384px, scrolls"}</p>

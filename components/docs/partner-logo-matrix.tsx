@@ -3,7 +3,7 @@ import { PartnerLogo, PartnerMark, partners } from "@/registry/iq/ui/partner-log
 /** Mirrors the Figma "Partner Logo" matrix: Mark, Small and Medium for every partner. */
 export function PartnerLogoMatrix() {
   return (
-    <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="w-full min-w-[560px] border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

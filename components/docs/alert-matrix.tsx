@@ -10,7 +10,7 @@ const tones: { tone: AlertTone; title: string }[] = [
 /** Alert: Tone, with and without the action. */
 export function AlertMatrix() {
   return (
-    <div className="my-6 grid gap-4 overflow-x-auto rounded-[2px] border border-grid p-6 lg:grid-cols-2">
+    <div className="my-6 grid gap-4 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid p-6 lg:grid-cols-2">
       {[false, true].map((withAction) => (
         <div key={String(withAction)} className="flex flex-col gap-3">
           <p className="text-xs font-medium text-white/50">{withAction ? "With action" : "Icon + text"}</p>

@@ -8,7 +8,7 @@ const today = new Date(2025, 3, 6)
 /** Mirrors the Figma "Date Picker" matrix: Size × Open by Status. Calendars are drawn in place, fixed to April 2025. */
 export function DatePickerMatrix() {
   return (
-    <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="w-full min-w-[1100px] border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">
@@ -69,7 +69,7 @@ const interactions = ["Default", "Hover", "Pressed", "Focus"] as const
 /** Mirrors the Figma "_Calendar / Day Cell" matrix: Status / Selection by Interaction. */
 export function DayCellMatrix() {
   return (
-    <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="w-full min-w-[560px] border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

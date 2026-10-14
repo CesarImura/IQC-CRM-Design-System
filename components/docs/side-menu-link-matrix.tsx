@@ -13,7 +13,7 @@ const states = [
 /** _Side Menu / Link: State, expanded and collapsed. */
 export function SideMenuLinkMatrix() {
   return (
-    <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

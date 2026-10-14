@@ -28,7 +28,7 @@ const toggleStates = [
 export function ChoiceFieldMatrix({ type }: { type: "radio" | "checkbox" | "toggle" }) {
   const columns = type === "toggle" ? toggleStates : states
   return (
-    <div className="overflow-x-auto rounded-[2px] border border-grid">
+    <div className="overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

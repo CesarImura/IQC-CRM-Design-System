@@ -8,7 +8,7 @@ const states = ["Default", "Focus", "Error", "Disabled", "Read-only", "Active"] 
 export function InputMatrix({ kind = "input" }: { kind?: "input" | "textarea" }) {
   const Field = kind === "textarea" ? TextArea : Input
   return (
-    <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="w-full min-w-[640px] border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

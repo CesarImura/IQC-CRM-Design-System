@@ -13,7 +13,7 @@ const states = [
 /** Mirrors the Figma "Toggle" matrix: Active × State. Hover, Focus and Pressed are forced. */
 export function ToggleMatrix() {
   return (
-    <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="w-full min-w-[900px] border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

@@ -14,7 +14,7 @@ const rowStates = [
 /** _Field Grid / Row: State × Label width. */
 export function FieldGridRowMatrix() {
   return (
-    <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">
@@ -62,7 +62,7 @@ export function FieldGridMatrix() {
     </Button>
   )
   return (
-    <div className="my-6 grid gap-6 overflow-x-auto rounded-[2px] border border-grid p-6 xl:grid-cols-2">
+    <div className="my-6 grid gap-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid p-6 xl:grid-cols-2">
       {[
         { label: "1 column · Default", node: <FieldGrid>{rows(4)}</FieldGrid> },
         { label: "1 column · Read Only", node: <FieldGrid state="read-only">{rows(4)}</FieldGrid> },

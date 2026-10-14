@@ -67,7 +67,7 @@ export default function TypographyPage() {
         <section key={role}>
           <H2>{role}</H2>
           <P className="-mt-2 text-sm">{roles[role]?.use}</P>
-          <div className="overflow-hidden rounded-[2px] border border-grid">
+          <div className="overflow-hidden ds-keep-dark rounded-[2px] border border-grid">
             <ul className="divide-y divide-grid">
               {styles.map((s) => (
                 <li key={s.name} className="flex flex-col gap-2 px-4 py-4 sm:flex-row sm:items-center sm:gap-6">

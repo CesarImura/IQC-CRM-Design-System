@@ -13,7 +13,7 @@ const passed = winningRun().sessions
 /** Account type × State. Hover is forced on session #10; Funded has no target, so it has no "Target reached" state. */
 export function BalanceRangeChartMatrix() {
   return (
-    <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

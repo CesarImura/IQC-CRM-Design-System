@@ -10,7 +10,7 @@ const surfaces: { value: EmptySurface; label: string }[] = [
 /** Empty: Page × Status × Surface (two actions), plus Compact. */
 export function EmptyMatrix() {
   return (
-    <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../registry/iq/styles/tokens.css";
+@import "./docs-theme.css";
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
@@ -16,7 +17,22 @@ html {
 
 body {
   background: var(--surface-canvas);
-  color: #ffffff;
+  color: var(--docs-ink, #ffffff);
+}
+
+/* Light docs chrome: cards that show the IQ admin UI stay dark (tokens re-declared in app/docs-theme.css). */
+@layer base {
+  html[data-docs-theme="light"] .ds-keep-dark {
+    background-color: var(--surface-canvas);
+    color: var(--docs-ink);
+  }
+}
+
+/* Side menu hidden from the header button (desktop only; mobile uses the drawer). */
+@media (min-width: 1024px) {
+  html[data-docs-sidebar="hidden"] [data-docs-aside] {
+    display: none;
+  }
 }
 
 /* Native scrollbars follow the DS Scroll Bar: invisible track, 8px gutter with a 4px thumb inset 2px from the

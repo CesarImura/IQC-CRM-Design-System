@@ -24,7 +24,7 @@ const columns = [
 /** Mirrors the Figma Combo Box matrix: Size × State by Closed / Hover / Open (Autocomplete adds Active). Panels are drawn in place. */
 export function ComboboxMatrix({ type }: { type: "select" | "autocomplete" }) {
   return (
-    <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

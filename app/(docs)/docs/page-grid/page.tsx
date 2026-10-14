@@ -45,7 +45,7 @@ export default function PageGridDocsPage() {
       <ComponentPreview name="page-grid-demo" className="block p-4 sm:p-6" />
 
       <H2>Widths</H2>
-      <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+      <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
         <table className="w-full min-w-[640px] text-left text-sm">
           <thead className="border-b border-grid bg-white/[0.02] text-xs tracking-wider text-white/40 uppercase">
             <tr>

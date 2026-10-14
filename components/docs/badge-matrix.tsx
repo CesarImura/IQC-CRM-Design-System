@@ -7,7 +7,7 @@ const variants = ["filled", "outline", "ghost"] as const
 /** Mirrors the Figma Badge matrix: Size × Style rows, Color columns. */
 export function BadgeMatrix() {
   return (
-    <div className="overflow-x-auto rounded-[2px] border border-grid">
+    <div className="overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="w-full min-w-[820px] border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">

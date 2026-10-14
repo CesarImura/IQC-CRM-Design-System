@@ -21,7 +21,7 @@ const noop = undefined
 /** Mirrors the Figma "Tooltip" matrix: Content × Placement. Placement names where the bubble sits relative to the trigger. */
 export function TooltipMatrix() {
   return (
-    <div className="my-6 overflow-x-auto rounded-[2px] border border-grid">
+    <div className="my-6 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
       <table className="w-full min-w-[720px] border-collapse text-sm">
         <thead>
           <tr className="border-b border-grid">
