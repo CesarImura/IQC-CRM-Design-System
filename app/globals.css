@@ -244,3 +244,7 @@ body {
     transform: translateX(100%);
   }
 }
+
+/* No blinking text caret on clicked titles, paragraphs or cells (caret browsing / focusable text); only real fields show it. */
+body { caret-color: transparent; }
+input, textarea, select, [contenteditable]:not([contenteditable="false"]) { caret-color: auto; }
