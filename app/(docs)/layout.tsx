@@ -54,7 +54,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
         </aside>
         <div className="flex min-w-0 flex-1 justify-center">
           <PageGrid width="reduced" contentClassName="min-w-0">
-            <div data-docs-content className="min-w-0">{children}</div>
+            <div className="min-w-0">{children}</div>
           </PageGrid>
         </div>
       </div>

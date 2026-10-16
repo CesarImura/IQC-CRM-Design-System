@@ -40,7 +40,7 @@ export default function ToolbarDocsPage() {
       <ComponentPreview name="toolbar-applied-filters" className="block p-4 sm:p-6" />
       <UL>
         <li>Filter button: the Filter Button (Small Secondary) with a green count once a filter is applied.</li>
-        <li>Group: muted surface, filter name in white 50%, then one 24px chip per value with a × to remove it.</li>
+        <li>Group: filter name in white 50%, then one chip per value, as tall as the Filter button (32px), with a × to remove it.</li>
         <li>Remove all: Ghost Small Button in danger red with the trash icon, only while something is applied.</li>
         <li>The chips wrap onto new lines when they run out of room, same as the filter bar.</li>
       </UL>

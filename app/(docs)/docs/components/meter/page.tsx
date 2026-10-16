@@ -48,7 +48,7 @@ export default function MeterDocsPage() {
       <UL>
         <li>190 × 114px. 56 ticks over 200°, from 10° below the left side to 10° below the right.</li>
         <li>Each tick 3px wide and 22.8px long (outer radius 95, inner 72.2), flat ends.</li>
-        <li>Value 26px medium white, centered 70px from the top.</li>
+        <li>Value 22px medium white, centered 74px from the top, so longer amounts still fit inside the arc.</li>
       </UL>
       <H3>Card</H3>
       <UL>

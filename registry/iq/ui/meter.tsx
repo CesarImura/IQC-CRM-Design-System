@@ -70,7 +70,7 @@ function MeterGauge({ value, tone = "positive", ticks = 56, children, className,
         })}
       </svg>
       {children != null && (
-        <div className="absolute inset-x-0 top-[70px] text-center text-[26px] leading-[34px] font-medium text-(--chart-meter-value) tabular-nums">
+        <div className="absolute inset-x-0 top-[74px] text-center text-[22px] leading-[28px] font-medium text-(--chart-meter-value) tabular-nums">
           {children}
         </div>
       )}

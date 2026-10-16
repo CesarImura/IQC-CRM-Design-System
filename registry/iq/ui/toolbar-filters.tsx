@@ -73,21 +73,21 @@ function ToolbarFilters({ filters, value, onValueChange, label = "Filter", align
           role="group"
           aria-label={f.label}
           data-slot="toolbar-filter-group"
-          className="flex flex-wrap items-center gap-1 rounded-(--button-radius-control) bg-(--surface-muted) py-1 pr-1 pl-2.5"
+          className="flex flex-wrap items-center gap-2 pl-1"
         >
-          <span className="mr-1 text-sm text-(color:--content-muted)">{f.label}</span>
+          <span className="text-sm text-(color:--content-muted)">{f.label}</span>
           {value[f.id].map((o) => (
             <span
               key={o}
               data-slot="toolbar-filter-chip"
-              className="inline-flex h-6 items-center gap-1 rounded-(--button-radius-control) border border-(--filter-chip-border) bg-(--filter-chip-bg) pr-0.5 pl-2 text-sm leading-5 text-(color:--content-default)"
+              className="inline-flex h-(--button-size-sm-height) items-center gap-1 rounded-(--button-radius-control) border border-(--filter-chip-border) bg-(--filter-chip-bg) pr-1 pl-3 text-sm leading-5 text-(color:--content-default)"
             >
               {o}
               <button
                 type="button"
                 aria-label={`Remove ${f.label}: ${o}`}
                 onClick={() => toggle(f.id, o)}
-                className="inline-flex size-5 cursor-pointer items-center justify-center rounded-(--button-radius-control) text-(color:--content-muted) outline-none hover:text-(color:--content-default) focus-visible:shadow-[0_0_0_2px_var(--focus-ring)] [&_svg]:size-3.5"
+                className="inline-flex size-6 cursor-pointer items-center justify-center rounded-(--button-radius-control) text-(color:--content-muted) outline-none hover:text-(color:--content-default) focus-visible:shadow-[0_0_0_2px_var(--focus-ring)] [&_svg]:size-3.5"
               >
                 <Close aria-hidden="true" />
               </button>
