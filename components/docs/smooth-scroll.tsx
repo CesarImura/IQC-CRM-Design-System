@@ -4,7 +4,8 @@ import * as React from "react"
 import { usePathname } from "next/navigation"
 import Lenis from "lenis"
 
-// Smooth scrolling (Lenis, as on getartcraft.com/apps) for the page and for the side menu. Content is static:
+// Smooth scrolling (Lenis) for the page and for the side menu, kept barely noticeable (Davi, 17 Oct): lerp 0.3
+// follows the wheel almost 1:1, just without the stepped jumps. Content is static:
 // no entrance animations. Off with prefers-reduced-motion.
 
 export function SmoothScroll() {
@@ -15,7 +16,7 @@ export function SmoothScroll() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
     const page = new Lenis({
       autoRaf: true,
-      lerp: 0.1,
+      lerp: 0.3,
       anchors: { offset: -80 },
       allowNestedScroll: true,
       // Menus, popovers, modals and the side menu (it has its own instance) keep their own scrolling.
@@ -26,7 +27,7 @@ export function SmoothScroll() {
     const aside = document.querySelector<HTMLElement>("[data-docs-aside]")
     const menu =
       aside?.firstElementChild instanceof HTMLElement
-        ? new Lenis({ wrapper: aside, content: aside.firstElementChild, autoRaf: true, lerp: 0.12 })
+        ? new Lenis({ wrapper: aside, content: aside.firstElementChild, autoRaf: true, lerp: 0.3 })
         : null
 
     // Radix locks the page with data-scroll-locked on <body>; pause Lenis while it's there.
