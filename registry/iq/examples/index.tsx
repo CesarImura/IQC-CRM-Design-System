@@ -12,6 +12,7 @@ import PhoneFieldDemo from "./phone-field-demo"
 import SelectFieldDemo from "./select-field-demo"
 import ToggleDemo from "./toggle-demo"
 import ModalDemo from "./modal-demo"
+import ToolbarAppliedFilters from "./toolbar-applied-filters"
 import ToolbarDemo from "./toolbar-demo"
 import FilterDemo from "./filter-demo"
 import ScrollAreaDemo from "./scroll-area-demo"
@@ -56,6 +57,8 @@ import PillClickable from "./pill-clickable"
 import PillColors from "./pill-colors"
 import PillDisabled from "./pill-disabled"
 import PillSizes from "./pill-sizes"
+import MeterDemo from "./meter-demo"
+import MeterValues from "./meter-values"
 import RingChartDemo from "./ring-chart-demo"
 import RingChartItems from "./ring-chart-items"
 import RingChartStates from "./ring-chart-states"
@@ -114,6 +117,7 @@ export const examples = {
   "toggle-demo": ToggleDemo,
   "modal-demo": ModalDemo,
   "toolbar-demo": ToolbarDemo,
+  "toolbar-applied-filters": ToolbarAppliedFilters,
   "scroll-area-demo": ScrollAreaDemo,
   "page-header-demo": PageHeaderDemo,
   "field-grid-demo": FieldGridDemo,
@@ -143,6 +147,8 @@ export const examples = {
   "pill-colors": PillColors,
   "pill-disabled": PillDisabled,
   "pill-sizes": PillSizes,
+  "meter-demo": MeterDemo,
+  "meter-values": MeterValues,
   "ring-chart-demo": RingChartDemo,
   "ring-chart-items": RingChartItems,
   "ring-chart-states": RingChartStates,

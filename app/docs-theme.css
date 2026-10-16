@@ -465,6 +465,14 @@ html[data-docs-theme="light"] .ds-keep-dark {
   --chart-ring-negative: var(--button-danger-bg-default);
   --chart-ring-value: var(--primitive-white);
   --chart-ring-label: var(--primitive-white);
+  --chart-meter-track: #1f2221;
+  --chart-meter-positive: var(--chart-series-1);
+  --chart-meter-warning: var(--primitive-warning);
+  --chart-meter-negative: var(--button-danger-bg-default);
+  --chart-meter-tick-width: 3px;
+  --chart-meter-value: var(--primitive-white);
+  --chart-meter-caption: #bbbebd;
+  --chart-meter-meta: #8e9190;
   --status-dot-neutral: #ffffff33;
   --status-dot-positive: var(--accent);
   --status-dot-negative: var(--primitive-coral);

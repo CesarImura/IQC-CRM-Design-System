@@ -50,6 +50,7 @@ export const nav: NavSection[] = [
       { title: "Item", href: "/docs/components/item" },
       { title: "Label Block", href: "/docs/components/label-block" },
       { title: "Line Chart", href: "/docs/components/line-chart" },
+      { title: "Meter", href: "/docs/components/meter" },
       { title: "Modal", href: "/docs/components/modal" },
       { title: "Navigation", href: "/docs/components/navigation" },
       { title: "Option Panel", href: "/docs/components/option-panel" },

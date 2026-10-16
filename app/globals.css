@@ -53,6 +53,45 @@ body {
   }
 }
 
+/* Scroll reveal (components/docs/smooth-scroll.tsx): blocks rise 28px out of an 8px blur; H2s draw a hairline from the left. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+.ds-reveal {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ds-reveal.is-in {
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+h2.ds-reveal {
+  position: relative;
+}
+h2.ds-reveal::before {
+  content: "";
+  position: absolute;
+  inset: -20px 0 auto 0;
+  height: 1px;
+  background: var(--border-grid);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.1s cubic-bezier(0.65, 0, 0.35, 1) 0.15s;
+}
+h2.ds-reveal.is-in::before {
+  transform: scaleX(1);
+}
+
 /* Native scrollbars follow the DS Scroll Bar: invisible track, 8px gutter with a 4px thumb inset 2px from the
    sides and the ends (transparent border + padding-box clip), square (0 radius), solid neutral 600 / 500 / 400 (no transparency over content). */
 ::-webkit-scrollbar {

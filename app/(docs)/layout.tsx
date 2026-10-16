@@ -8,6 +8,7 @@ import { PageGrid } from "@/registry/iq/ui/page-grid"
 import { MobileNav } from "@/components/docs/mobile-nav"
 import { SidebarNav } from "@/components/docs/sidebar"
 import { IqLogo, SidebarToggle, ThemeSwitch } from "@/components/docs/docs-chrome"
+import { SmoothScroll } from "@/components/docs/smooth-scroll"
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -48,16 +49,17 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 
       {/* Menu pinned to the left edge; the middle follows the Page Grid, Reduced width (1120 centered). */}
       <div className="flex w-full flex-1">
-        <aside data-docs-aside className="sticky top-12 hidden h-[calc(100vh-3rem)] w-60 shrink-0 overflow-y-auto border-r border-grid px-4 py-8 lg:block">
+        <aside data-docs-aside data-lenis-prevent className="sticky top-12 hidden h-[calc(100vh-3rem)] w-60 shrink-0 overflow-y-auto border-r border-grid px-4 py-8 lg:block">
           <SidebarNav />
         </aside>
         <div className="flex min-w-0 flex-1 justify-center">
           <PageGrid width="reduced" contentClassName="min-w-0">
-            <div className="min-w-0">{children}</div>
+            <div data-docs-content className="min-w-0">{children}</div>
           </PageGrid>
         </div>
       </div>
       <Toaster />
+      <SmoothScroll />
     </div>
   )
 }

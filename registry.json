@@ -416,6 +416,14 @@
           "chart-ring-negative": "var(--button-danger-bg-default)",
           "chart-ring-value": "var(--primitive-white)",
           "chart-ring-label": "var(--primitive-white)",
+          "chart-meter-track": "#1f2221",
+          "chart-meter-positive": "var(--chart-series-1)",
+          "chart-meter-warning": "var(--primitive-warning)",
+          "chart-meter-negative": "var(--button-danger-bg-default)",
+          "chart-meter-tick-width": "3px",
+          "chart-meter-value": "var(--primitive-white)",
+          "chart-meter-caption": "#bbbebd",
+          "chart-meter-meta": "#8e9190",
           "status-dot-neutral": "#ffffff33",
           "status-dot-positive": "var(--accent)",
           "status-dot-negative": "var(--primitive-coral)",
@@ -1168,6 +1176,41 @@
       "files": [
         {
           "path": "registry/iq/ui/ring-chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "meter",
+      "type": "registry:ui",
+      "title": "Meter",
+      "description": "Gauge of radial ticks over a 200° arc, with the value in the middle, in a card with title, badge and context lines.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/chart"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/meter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toolbar-filters",
+      "type": "registry:ui",
+      "title": "Toolbar Filters",
+      "description": "Toolbar variant in test: Filter button, applied options as removable chips grouped by filter, and Remove all.",
+      "registryDependencies": [
+        "utils",
+        "@iq/tokens",
+        "@iq/button",
+        "@iq/filter"
+      ],
+      "files": [
+        {
+          "path": "registry/iq/ui/toolbar-filters.tsx",
           "type": "registry:ui"
         }
       ]
