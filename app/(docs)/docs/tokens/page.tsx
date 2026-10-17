@@ -33,7 +33,7 @@ function Group({ group }: { group: TokenGroup }) {
     <section>
       <H3 id={group.id}>{group.name}</H3>
       <P className="-mt-2 text-sm">{group.description}</P>
-      <div className="overflow-hidden ds-keep-dark rounded-[2px] border border-grid">
+      <div className="overflow-x-auto ds-keep-dark rounded-[2px] border border-grid">
         <ul className="divide-y divide-grid">
           {group.tokens.map((token) => (
             <li key={token.name} className="flex items-center gap-4 px-4 py-2.5">

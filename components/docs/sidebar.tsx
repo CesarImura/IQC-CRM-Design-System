@@ -32,9 +32,9 @@ export function SidebarNav({ onNavigate, touch = false }: { onNavigate?: () => v
                     )}
                   >
                     {active && (
-                      <span aria-hidden className="mr-2 size-1.5 rounded-full bg-brand" />
+                      <span aria-hidden className="mr-2 size-1.5 shrink-0 rounded-full bg-brand" />
                     )}
-                    {item.title}
+                    <span className="min-w-0 truncate">{item.title}</span>
                   </Link>
                 </li>
               )

@@ -21,6 +21,14 @@ export function SmoothScroll() {
       allowNestedScroll: true,
       // Menus, popovers, modals and the side menu (it has its own instance) keep their own scrolling.
       prevent: (node) => !!node.closest("[data-lenis-prevent], [role=dialog], [role=listbox], [data-radix-popper-content-wrapper]"),
+      // Sideways scroll belongs to the browser: Lenis only drives the vertical page scroll. When the wheel is horizontal
+      // (trackpad swipe, mouse tilt wheel) or Shift is held, and a card under the pointer scrolls sideways (preview
+      // cards, state matrices, tables), skip Lenis so the event isn't cancelled and the card scrolls natively.
+      virtualScroll: ({ deltaX, deltaY, event }) => {
+        if (!event.type.includes("wheel")) return true
+        if (!event.shiftKey && Math.abs(deltaX) < Math.abs(deltaY)) return true
+        return !event.composedPath().some((n) => n instanceof HTMLElement && n.scrollWidth > n.clientWidth + 1 && /^(auto|scroll|overlay)$/.test(getComputedStyle(n).overflowX))
+      },
     })
     pageRef.current = page
 

@@ -35,8 +35,10 @@ body {
   [data-docs-aside] {
     transition: width 0.16s ease, padding 0.16s ease, border-color 0.16s ease, visibility 0s linear 0s;
   }
+  /* 12rem fits the 199px the links get next to the vertical scroll bar (240 - 32 padding - 1 border - 8 bar);
+     the old 13rem (208px) was wider than that and made the menu scroll sideways. */
   [data-docs-aside] > * {
-    min-width: 13rem;
+    min-width: 12rem;
   }
   html[data-docs-sidebar="hidden"] [data-docs-aside] {
     width: 0;

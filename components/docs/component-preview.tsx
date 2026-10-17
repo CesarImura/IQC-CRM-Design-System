@@ -18,7 +18,9 @@ export function ComponentPreview({
       className={cn(
         "my-4 flex min-h-[200px] w-full flex-wrap items-center gap-4 overflow-x-auto ds-keep-dark rounded-[2px] border border-grid p-8 sm:p-10",
         "bg-[radial-gradient(circle,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-size-[16px_16px]",
-        align === "center" ? "justify-center" : "justify-start",
+        // "safe": when the content is wider than the card it starts at the left edge instead of overflowing both sides
+        // (a plain justify-center hides the left part where the scroll can't reach).
+        align === "center" ? "justify-center-safe" : "justify-start",
         className
       )}
     >
