@@ -7,6 +7,7 @@ import * as React from "react"
 // The choice is applied before paint by DOCS_PREFS_SCRIPT (lib/docs-prefs.ts) in app/layout.tsx.
 
 import { SIDEBAR_KEY, THEME_KEY } from "@/lib/docs-prefs"
+import { Tabs, TabsPillList, TabsPillTrigger } from "@/registry/iq/ui/tabs"
 
 const icon = "size-4 fill-none stroke-current [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.4]"
 
@@ -59,24 +60,21 @@ export function ThemeSwitch() {
     try { localStorage.setItem(THEME_KEY, t) } catch {}
     setTheme(t)
   }
+  // DS Tabs / Pill, small (same switch as the grid/list view toggle in the page toolbars). Icon-only items have
+  // no text line, so the track is pinned to 32px to match the buttons beside it.
   const item = (t: "dark" | "light", label: string, children: React.ReactNode) => (
-    <button
-      type="button"
-      onClick={() => choose(t)}
-      aria-label={label}
-      aria-pressed={theme === t}
-      title={label}
-      className="grid h-6 w-8 cursor-pointer place-items-center rounded-[2px] text-white/50 outline-none transition-colors hover:bg-white/10 hover:text-white focus-visible:shadow-[0_0_0_2px_var(--focus-ring)] aria-pressed:bg-white/[0.14] aria-pressed:text-white"
-    >
+    <TabsPillTrigger value={t} aria-label={label} title={label} className="h-full px-2 py-0">
       {children}
-    </button>
+    </TabsPillTrigger>
   )
   return (
-    <div role="group" aria-label="Theme" className="flex gap-1 rounded-[2px] border border-grid p-1">
-      {item("dark", "Dark theme",
-        <svg viewBox="0 0 16 16" aria-hidden className={icon}><path d="M13.5 9.6A5.6 5.6 0 0 1 6.4 2.5a5.6 5.6 0 1 0 7.1 7.1z" /></svg>)}
-      {item("light", "Light theme",
-        <svg viewBox="0 0 16 16" aria-hidden className={icon}><circle cx="8" cy="8" r="3" /><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" /></svg>)}
-    </div>
+    <Tabs value={theme} onValueChange={(v) => choose(v as "dark" | "light")} className="gap-0">
+      <TabsPillList size="sm" aria-label="Theme" className="h-8">
+        {item("dark", "Dark theme",
+          <svg viewBox="0 0 16 16" aria-hidden className={icon}><path d="M13.5 9.6A5.6 5.6 0 0 1 6.4 2.5a5.6 5.6 0 1 0 7.1 7.1z" /></svg>)}
+        {item("light", "Light theme",
+          <svg viewBox="0 0 16 16" aria-hidden className={icon}><circle cx="8" cy="8" r="3" /><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" /></svg>)}
+      </TabsPillList>
+    </Tabs>
   )
 }
