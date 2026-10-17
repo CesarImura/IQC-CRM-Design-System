@@ -32,7 +32,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           </span>
           <CommandMenu />
           <div className="flex items-center gap-2">
-            <Button asChild variant="secondary" size="sm">
+            <Button asChild variant="ghost" size="sm">
               <a href={PROTOTYPE_URL} target="_blank" rel="noreferrer">
                 Prototype
                 <Launch />
